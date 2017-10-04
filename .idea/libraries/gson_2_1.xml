@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="gson-2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../gson-master/gson-2.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gson-master" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../gson-master/gson-2.1-javadoc.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gson-master/gson/docs/javadocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../gson-master/gson-2.1-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gson-master" />
+      <root url="file://$PROJECT_DIR$/../gson-master/codegen/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/codegen/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/examples/android-proguard-example/src" />
+      <root url="file://$PROJECT_DIR$/../gson-master/extras/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/extras/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/gson/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/gson/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/metrics/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/proto/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../gson-master/proto/src/test/java" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../gson-master" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../gson-master" recursive="false" type="SOURCES" />
+  </library>
+</component>

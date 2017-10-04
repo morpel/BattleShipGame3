@@ -1,0 +1,47 @@
+html{
+
+}
+#hero{
+    background-image:url("./Resources/background.png");
+    width:100%;
+    height:100%;
+    background-origin: content-box;
+    background-size: cover;
+    overflow-y: hidden;
+}
+body,h1,h2,h3,h4{
+
+    font-family: "Poppins",sans-serif;
+    font-weight: 100;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.50);
+
+}
+h1{
+    font-size:48px;
+}
+h2{
+    font-size:24px;
+}
+span{
+    font-size:48px;
+}
+#toolbar{
+    background-color:#3E3E3E;
+
+}
+
+#footer{
+    background-color:#3E3E3E;
+
+}
+.custom-inputMaterial{
+    width:343px;
+    height:50px;
+    opacity: 0.89;
+    background: #4A4A4A;
+    border-radius: 55px;
+    outline:0;
+    padding-left:10%;
+}
