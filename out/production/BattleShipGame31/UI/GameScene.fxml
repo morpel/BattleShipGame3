@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXDrawersStack?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSnackbar?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="655.0" prefWidth="744.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.GameSceneController">
+    <children>
+      <AnchorPane fx:id="snackBarContainer" layoutX="20.0" layoutY="20.0" prefHeight="102.0" prefWidth="844.0">
+         <children>
+            <JFXSnackbar fx:id="snackBar" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+         </children>
+      </AnchorPane>
+        <AnchorPane fx:id="BackgroundTop" layoutY="1.0" prefHeight="228.0" prefWidth="855.0" style="-fx-background-color: #9b26af;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane layoutX="299.0" prefHeight="55.0" prefWidth="200.0" />
+         </children></AnchorPane>
+        <AnchorPane fx:id="BackgroundBottom" layoutX="-3.0" layoutY="230.0" prefHeight="425.0" prefWidth="858.0" style="-fx-background-color: #69efad;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0" />
+        <GridPane fx:id="theKingPane" layoutX="62.0" layoutY="36.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="703.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="36.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="3000.0" minWidth="10.0" prefWidth="358.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="3000.0" minWidth="10.0" prefWidth="362.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="55.1729736328125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="25.8270263671875" />
+                <RowConstraints maxHeight="562.7675704956055" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Text fx:id="ShipsBoardText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ships Board" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Poppins Medium" size="21.0" />
+                    </font>
+                </Text>
+            <HBox GridPane.columnIndex="1">
+               <children>
+                  <Text fx:id="CurrentHistoryBoardPlayer" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="Poppins Medium" size="21.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Text>
+                      <JFXHamburger fx:id="HamburgerMenu" alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="422.0" />
+               </children>
+            </HBox>
+                <Text fx:id="AttackingBoardText" fill="#251a1a" strokeType="OUTSIDE" strokeWidth="0.0" text="Attacking Board" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Poppins Medium" size="21.0" />
+                    </font>
+                </Text>
+            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="PlayerIDText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="Poppins SemiBold" size="20.0" />
+                     </font>
+                  </Text>
+                  <HBox fx:id="NextPrevButtonsBox" alignment="CENTER" opacity="0.7" prefHeight="34.0" prefWidth="349.0" spacing="80.0" style="-fx-background-color: white;" visible="false">
+                     <children>
+                        <JFXButton fx:id="nextBoardButton" buttonType="RAISED" disable="true" onAction="#showNextBoard" ripplerFill="#574e56" text="NEXT">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="prevBoardButton" buttonType="RAISED" onAction="#showPrevBoard" ripplerFill="#574e56" text="PREV">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="15.0" />
+                     </StackPane.margin>
+                  </HBox>
+               </children>
+            </StackPane>
+            </children>
+        </GridPane>
+        <GridPane layoutX="95.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="699.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="112.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="345.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="167.0" minHeight="0.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <GridPane fx:id="AttackingBoard" prefHeight="330.0" prefWidth="376.0" scaleZ="2.0" style="-fx-background-color: black;" translateZ="1.0" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+				   <effect>
+					  <DropShadow />
+				   </effect>
+				   <GridPane.margin>
+					  <Insets right="15.0" top="15.0" />
+				   </GridPane.margin>
+				</GridPane>
+                <GridPane fx:id="ShipsBoard" scaleZ="1.0" style="-fx-background-color: black;" translateZ="1.0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <GridPane.margin>
+                  <Insets right="15.0" top="15.0" />
+               </GridPane.margin>
+            </GridPane>
+            <StackPane alignment="CENTER_LEFT" GridPane.rowIndex="1">
+               <children>
+                  <Text fx:id="playerStatsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Stats:">
+                     <font>
+                        <Font name="Poppins SemiBold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="18.0" />
+               </padding>
+            </StackPane>
+            <StackPane GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="17.0" />
+               </GridPane.margin>
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="147.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="225.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="43.0" minHeight="10.0" />
+                      <RowConstraints maxHeight="81.0" minHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="124.0" minHeight="2.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="124.0" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="124.0" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="124.0" minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text fx:id="currentPlayeText11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Ships:">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="currentPlayeText1112" fill="WHITE" layoutX="10.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy's Ships:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="currentPlayeText111" fill="WHITE" layoutX="10.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Move Time:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="currentPlayeText1111" fill="WHITE" layoutX="10.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Mines:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="currentPlayeText11111" fill="WHITE" layoutX="10.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hits:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="currentPlayeText11121" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Misses:" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="PlayerShipsText" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="EnemyShipsText" fill="WHITE" layoutX="157.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="AvgMoveTimeText" fill="WHITE" layoutX="157.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="AvailableMinesText" fill="WHITE" layoutX="157.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="PlayerHitsText" fill="WHITE" layoutX="157.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="PlayerMissesText" fill="WHITE" layoutX="157.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+               </children>
+            </StackPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="147.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="225.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" />
+                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" />
+                  <RowConstraints maxHeight="43.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="2.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text fx:id="currentPlayeText111" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1 Score;" wrappingWidth="145.14199829101562" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayeText11121" fill="WHITE" layoutX="10.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2 Score:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayeText1111" fill="WHITE" layoutX="10.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Moves Counter:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayeText11111" fill="WHITE" layoutX="10.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Time:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="PlayerShipsText1" fill="WHITE" layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Poppins SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="EnemyShipsText1" fill="WHITE" layoutX="157.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Poppins SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="AvgMoveTimeText1" fill="WHITE" layoutX="157.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Poppins SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="AvailableMinesText1" fill="WHITE" layoutX="157.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Poppins SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Player1ScoreText" fill="WHITE" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="145.14199829101562" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Poppins SemiBold" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Player2ScoreText" fill="WHITE" layoutX="152.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="145.14199829101562" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="TimeCtrText" fill="WHITE" layoutX="152.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="145.14199829101562" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="MoveCtrText" fill="WHITE" layoutX="152.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="145.14199829101562" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Poppins Light" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayeText12" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Stats:">
+                     <font>
+                        <Font name="Poppins SemiBold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </GridPane>
+            <Pane fx:id="MineImgPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+        <GridPane fx:id="menuGrid" layoutX="-8.0" layoutY="-3.0" prefWidth="189.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="665.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="NEVER" />
+            </rowConstraints>
+            <children>
+                <JFXDrawersStack fx:id="drawerStack" alignment="TOP_LEFT" maxWidth="-Infinity" prefWidth="100.0" GridPane.hgrow="NEVER">
+                    <children>
+                        <JFXDrawer fx:id="Drawer" alignment="TOP_LEFT" defaultDrawerSize="250.0" maxWidth="-Infinity" prefHeight="659.0" prefWidth="190.0">
+                            <children>
+                                <HBox prefHeight="659.0" prefWidth="209.0">
+                                    <children>
+                                        <VBox fx:id="sideMenu" maxWidth="-Infinity" prefHeight="659.0" prefWidth="150.0" spacing="30.0">
+                                            <children>
+                                                <ImageView fitHeight="106.0" fitWidth="196.0" pickOnBounds="true">
+                                                    <image>
+                                                        <Image url="/resources/20.jpg" />
+                                                    </image>
+                                                </ImageView>
+                                                <JFXButton buttonType="RAISED" defaultButton="true" onAction="#playerSurrended" prefHeight="40.0" prefWidth="196.0" ripplerFill="#00d6fc" text="Surrender" underline="true">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#resetCurrentGame" prefHeight="40.0" prefWidth="196.0" ripplerFill="#00ff11" text="Reset Game" textAlignment="CENTER" underline="true">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#startNewGame" prefHeight="40.0" prefWidth="196.0" ripplerFill="#fa0055" text="Load Level" textAlignment="CENTER" underline="true">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#onThemePressed" prefHeight="40.0" prefWidth="196.0" ripplerFill="#ff7300" text="Themes" textAlignment="CENTER" underline="true">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </JFXButton>
+                                                <Pane fx:id="themesContainer" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                                    <children>
+                                                        <JFXRadioButton onAction="#setDefaultTheme" prefHeight="17.0" prefWidth="195.0" selected="true" text="Google Material">
+                                                            <toggleGroup>
+                                                                <ToggleGroup fx:id="themes" />
+                                                            </toggleGroup>
+                                                        </JFXRadioButton>
+                                                        <JFXRadioButton layoutY="27.0" onAction="#setPartnerTheme" prefHeight="17.0" prefWidth="195.0" text="Partner" toggleGroup="$themes" />
+                                                        <JFXRadioButton layoutY="56.0" onAction="#setJavaFXTheme" prefHeight="17.0" prefWidth="195.0" text="JavaFX Buggy" toggleGroup="$themes" />
+                                                    </children>
+                                                </Pane>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </JFXDrawer>
+                    </children>
+                </JFXDrawersStack>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
