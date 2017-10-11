@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OpeningSceneController">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="324.0" prefWidth="600.0">
+         <top>
+            <VBox id="header" prefHeight="128.0" prefWidth="600.0" stylesheets="/resources/XmlLoader.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="65.0" prefWidth="600.0" text="Welcome Pirate!" textFill="WHITE">
+                     <font>
+                        <Font name="Poppins SemiBold" size="38.0" />
+                     </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="6.17" radius="1.0425" width="0.0" />
+                     </effect>
+                  </Label>
+                  <HBox id="header" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="600.0" stylesheets="/resources/XmlLoader.css">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="735.0" text="Please choose the xml DB file" textFill="WHITE">
+                           <font>
+                              <Font name="Poppins Light" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin></Label>
+                        <ImageView fx:id="VImage" accessibleText="VImage" blendMode="MULTIPLY" fitHeight="39.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="/resources/checkSign.jpg" />
+                           </image>
+                        </ImageView>
+                        <JFXButton id="header" alignment="CENTER" buttonType="RAISED" contentDisplay="RIGHT" defaultButton="true" onAction="#openFileChooser" prefHeight="41.0" prefWidth="362.0" ripplerFill="#b9cbff" stylesheets="/resources/XmlLoader.css" text="Choose file" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Poppins Black" size="11.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="15.0" top="15.0" />
+                           </padding></JFXButton>
+                     </children>
+                  </HBox>
+                  <Label fx:id="errLabel" prefHeight="19.0" prefWidth="427.0" textFill="RED">
+                     <font>
+                        <Font name="Poppins SemiBold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <bottom>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="StartGameButton" alignment="CENTER" buttonType="RAISED" contentDisplay="RIGHT" disable="true" onAction="#startGame" prefHeight="30.0" prefWidth="102.0" ripplerFill="#2a2c2c" text="Start Game!" textFill="#1badb5" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="20.0" right="12.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Poppins Medium" size="12.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+         <center>
+            <JFXProgressBar fx:id="progressBar" visible="false" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

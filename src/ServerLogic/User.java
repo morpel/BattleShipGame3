@@ -11,4 +11,8 @@ public class User implements Comparable{
     public int compareTo(Object o) {
         return name.compareTo(((User) o).name);
     }
+
+    public String getName() {
+        return name;
+    }
 }

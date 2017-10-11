@@ -11,10 +11,11 @@ public class ServletUtils {
     private static final String CHAT_MANAGER_ATTRIBUTE_NAME = "chatManager";
 
     public static ServerEngine getServerEngine(ServletContext servletContext) {
-	if (servletContext.getAttribute(SERVER_ENGINE_ATTRIBUTE_NAME) == null) {
-	    servletContext.setAttribute(SERVER_ENGINE_ATTRIBUTE_NAME, ServerEngine.getInstance());
-	}
-	return (ServerEngine) servletContext.getAttribute(SERVER_ENGINE_ATTRIBUTE_NAME);
+        if (servletContext.getAttribute(SERVER_ENGINE_ATTRIBUTE_NAME) == null) {
+            servletContext.setAttribute(SERVER_ENGINE_ATTRIBUTE_NAME, ServerEngine.getInstance());
+        }
+
+        return (ServerEngine) servletContext.getAttribute(SERVER_ENGINE_ATTRIBUTE_NAME);
     }
 //
 //    public static ChatManager getChatManager(ServletContext servletContext) {
