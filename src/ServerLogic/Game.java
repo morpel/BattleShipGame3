@@ -18,4 +18,16 @@ public class Game {
     public GameLogic getLogic() {
         return gameLogic;
     }
+
+    public String getName() {
+        return gameName;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public User[] getCurrentlyPlaying() {
+        return currentlyPlaying;
+    }
 }

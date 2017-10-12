@@ -2,6 +2,7 @@ package Servlets;
 
 import ServerLogic.Game;
 import ServerLogic.ServerEngine;
+import ServerLogic.User;
 import com.google.gson.Gson;
 import utils.Constants;
 import utils.ServletUtils;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
+import java.util.*;
 
 //Should run on startup and every 2 seconds
 @WebServlet(name = "GameServlet")
@@ -24,14 +25,49 @@ public class GameServlet extends HttpServlet {
         String userName = SessionUtils.getUsername(req);
         resp.setContentType("text/html;charset=UTF-8");
         if (serverEngine.isPlayerLoggedIn(userName)){
-            Map<String, Game> games = serverEngine.getGames();
+            //generate all games details
+            List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
             Gson gson = new Gson();
-            String json = gson.toJson(games);
-            req.setAttribute(Constants.GAMES_MAP, json);
+            String GamesJson = gson.toJson(gamesDetails);
+            req.setAttribute(Constants.GAMES_DETAILS, GamesJson);
+
+            //generate all players list
+            List<String> loggedInUsers = serverEngine.getUsersList();
+            String usersJson = gson.toJson(loggedInUsers);
+            req.setAttribute(Constants.USERS_LIST, usersJson);
+
             getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
         } else{
             //Player is not logged in
             resp.sendRedirect("index.html");
+        }
+    }
+
+    private List<SingleGameDetails> getGameDetails(Map<String,Game> games){
+        List<SingleGameDetails> m_Details;
+        m_Details = new ArrayList<>();
+
+        for (Game game : games.values()){
+            SingleGameDetails sgd = new SingleGameDetails(game);
+            m_Details.add(sgd);
+        }
+
+        return m_Details;
+    }
+
+    private class SingleGameDetails{
+        String gameName;
+        String creator;
+        int boardSize;
+        String gameStyle;
+        int isOtherPlayerInGame;
+
+        public SingleGameDetails(Game game) {
+            gameName = game.getName();
+            creator = game.getCreator().getName();
+            boardSize = game.getLogic().getBoardSize();
+            gameStyle = null; //TODO!!!!!!!!!!!!!
+            isOtherPlayerInGame = game.getCurrentlyPlaying().length;
         }
     }
 }

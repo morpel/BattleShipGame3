@@ -10,5 +10,6 @@ public class Constants {
     public static final String XML_PATH = "xmlPath";
     public static final String XML_LOAD_SUCCESS = "xml_loaded";
     public static final String XML_LOAD_ERROR = "xml_error";
-    public static final String GAMES_MAP = "gamesMap";
+    public static final String GAMES_DETAILS = "gamesDetails";
+    public static final String USERS_LIST = "usersList";
 }

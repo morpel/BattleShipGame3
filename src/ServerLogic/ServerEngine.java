@@ -95,4 +95,18 @@ public final class ServerEngine {
     public Map<String, Game> getGames() {
         return m_Games;
     }
+
+    public Set<User> getUsers() {
+        return m_Users;
+    }
+
+    public List<String> getUsersList() {
+        List<String> res = new ArrayList<>();
+
+        for(User user : m_Users){
+            res.add(user.getName());
+        }
+
+        return res;
+    }
 }
