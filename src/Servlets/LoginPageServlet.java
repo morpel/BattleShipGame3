@@ -28,7 +28,7 @@ public class LoginPageServlet extends HttpServlet {
                 //no username in session and no username in parameter -
                 //redirect back to the index page
                 //this return an HTTP code back to the browser telling it to load
-                response.sendRedirect("signUp.html");
+                response.sendRedirect("index.html");
             } else {
                 //normalize the username value
                 usernameFromParameter = usernameFromParameter.trim();
