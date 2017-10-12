@@ -1,14 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="BattleShipGame31:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded</output-path>
+  <artifact type="exploded-war" name="BattleShipGame3:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/BattleShipGame3_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="BattleShipGame3/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="BattleShipGame3" />
         </element>
-        <element id="directory" name="lib" />
       </element>
+      <element id="javaee-facet-resources" facet="BattleShipGame3/web/Web" />
     </root>
   </artifact>
 </component>

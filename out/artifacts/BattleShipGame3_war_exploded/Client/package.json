@@ -1,0 +1,13 @@
+{
+  "name": "Client",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "lite-server": "^2.3.0",
+    "material-components-web": "^0.21.1"
+  },
+  "scripts": {
+    "server": "lite-server -c bs-config-local.json",
+    "example": "lite-server -c bs-config-material.jsonn"
+  }
+}

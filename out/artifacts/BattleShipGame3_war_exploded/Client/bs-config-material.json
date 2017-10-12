@@ -1,0 +1,6 @@
+{
+    "port": 8000,
+    "files": ["./**/*.{html,htm,css,js}"],
+    "server": { "baseDir": "./material-design-lite/dist" },
+    "browser": "google chrome"
+}
