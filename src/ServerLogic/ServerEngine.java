@@ -1,14 +1,16 @@
 package ServerLogic;
 
+import Logic.Cell;
 import Logic.InvalidXMLInputsException;
 import Logic.NotXMLFileException;
-import jdk.nashorn.internal.parser.TokenStream;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.List;
 
 public final class ServerEngine {
     private static ServerEngine ServerEngineInstance = null;
@@ -120,5 +122,22 @@ public final class ServerEngine {
 
     public Game getGame(String gameName) {
         return m_Games.get(gameName);
+    }
+
+    public Cell.BoardObjects checkPlayerMove(String gameName, int row, int col) {
+        //User user = getUser(userName);
+        Game game = m_Games.get(gameName);
+        game.getLogic().getCurrentPlayer().getStats().stopClock();
+        Point attackedPoint = new Point(col,row);
+        Cell.BoardObjects hitResult = game.getLogic().checkMove(attackedPoint);
+        if (!hitResult.equals(Cell.BoardObjects.ship)) {
+            game.getLogic().switchPlayers();
+        }
+
+        return hitResult;
+    }
+
+    public boolean isGameEnded(String gameName) {
+        return (getGame(gameName).getLogic().checkIfGameFinished());
     }
 }
