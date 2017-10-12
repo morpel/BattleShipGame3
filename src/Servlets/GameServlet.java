@@ -2,7 +2,6 @@ package Servlets;
 
 import ServerLogic.Game;
 import ServerLogic.ServerEngine;
-import ServerLogic.User;
 import com.google.gson.Gson;
 import utils.Constants;
 import utils.ServletUtils;
@@ -61,13 +60,15 @@ public class GameServlet extends HttpServlet {
         int boardSize;
         String gameStyle;
         int isOtherPlayerInGame;
+        Boolean isGameFullyOccupied;
 
         public SingleGameDetails(Game game) {
             gameName = game.getName();
             creator = game.getCreator().getName();
             boardSize = game.getLogic().getBoardSize();
             gameStyle = null; //TODO!!!!!!!!!!!!!
-            isOtherPlayerInGame = game.getCurrentlyPlaying().length;
+            isOtherPlayerInGame = game.getCurrentlyPlaying().size();
+            isGameFullyOccupied = game.getIsFull();
         }
     }
 }

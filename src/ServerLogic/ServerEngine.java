@@ -2,7 +2,7 @@ package ServerLogic;
 
 import Logic.InvalidXMLInputsException;
 import Logic.NotXMLFileException;
-import javafx.application.Platform;
+import jdk.nashorn.internal.parser.TokenStream;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
@@ -64,6 +64,7 @@ public final class ServerEngine {
         try {
             if (theCurrentGame.getLogic().initGameFromXML()) {
                 if (theCurrentGame.getLogic().checkGameInputs()) {
+                    theCurrentGame.setIsXMLLoaded(true);
                     res = null;
                 } else {
                     res = "The inputs in the XML file are invalid, Load another XML file!";
@@ -108,5 +109,16 @@ public final class ServerEngine {
         }
 
         return res;
+    }
+
+    public void assignUserToGame(String userName, String gameName) {
+        User user = getUser(userName);
+        Game game = m_Games.get(gameName);
+        user.setCurrentGame(game);
+        game.addPlayer(user);
+    }
+
+    public Game getGame(String gameName) {
+        return m_Games.get(gameName);
     }
 }

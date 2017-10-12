@@ -1,7 +1,5 @@
 package ServerLogic;
 
-import Logic.GameLogic;
-
 public class User implements Comparable{
     private String name;
     private Game myCurrrentGame;
@@ -17,5 +15,9 @@ public class User implements Comparable{
 
     public String getName() {
         return name;
+    }
+
+    public void setCurrentGame(Game game){
+        myCurrrentGame = game;
     }
 }
