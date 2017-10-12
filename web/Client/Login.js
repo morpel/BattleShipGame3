@@ -1,8 +1,11 @@
-const $ = import('/node_modules/jquery/dist/jquery.js');
 
 function checkNickName() {
-    const name = $("nickNameInput").val();
-    $.ajax({
-        url:
-    })
+    const name = $("#nickNameInput").val();
+    console.log(name);
+    $.get({
+        url:"LoginPageServlet",
+        success:(res)=>{console.log(res)},
+        error:(error=>console.log(error))
+    });
+
 }

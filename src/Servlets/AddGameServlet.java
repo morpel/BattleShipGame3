@@ -28,7 +28,7 @@ public class AddGameServlet extends HttpServlet {
             String XMLPath = (String)req.getAttribute(Constants.XML_PATH);
             String gameInputsErr = serverEngine.checkXML(XMLPath, enteredGameName);
             if (gameInputsErr == null){//XML is valid
-                String message = "Game " + enteredGameName + " has loaded successfully";
+                String message = "Game \"" + enteredGameName + "\" has loaded successfully";
                 req.setAttribute(Constants.XML_LOAD_SUCCESS, message);
                 getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
             }
