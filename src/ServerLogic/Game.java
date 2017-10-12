@@ -14,4 +14,8 @@ public class Game {
         creator = i_Creator;
         gameName = i_GameName;
     }
+
+    public GameLogic getLogic() {
+        return gameLogic;
+    }
 }

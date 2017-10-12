@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
 import java.io.FileNotFoundException;
-import java.nio.file.FileSystemNotFoundException;
+import java.nio.file.*;
 import java.util.*;
 
 public final class ServerEngine {
@@ -56,51 +56,32 @@ public final class ServerEngine {
     }
 
     public String checkXML(String xmlPath, String gameName) {
-        String res = null;
+        String res;
         Game theCurrentGame = m_Games.get(gameName);
-/*
+        Path path = Paths.get(xmlPath);
+        theCurrentGame.getLogic().setXMLPath(path);
+
         try {
-            if (gameLogic.initGameFromXML()) {
-                if (gameLogic.checkGameInputs()) {
-                    res = true;
-                    VImage.setVisible(true);
-                    StartGameButton.setDisable(false);
+            if (theCurrentGame.getLogic().initGameFromXML()) {
+                if (theCurrentGame.getLogic().checkGameInputs()) {
+                    res = null;
                 } else {
-                    errLabel.setText("The inputs in the XML file are invalid, Load another XML file!");
+                    res = "The inputs in the XML file are invalid, Load another XML file!";
                 }
             } else {
-                errLabel.setText("Game initialization failed!");
+                res = "Game initialization failed!";
             }
-        } catch (NotXMLFileException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText(ex.getMessage());
-            });
-        } catch (FileSystemNotFoundException e) {
-            Platform.runLater(() -> {
-                errLabel.setText("File Not Found. Try Again!\n");
-            });
-        } catch (FileNotFoundException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("File Not Found. Try Again!\n");
-            });
-        } catch (InvalidXMLInputsException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText(ex.getMessage());
-            });
+        } catch (NotXMLFileException|InvalidXMLInputsException ex) {
+            res = ex.getMessage();
+        } catch (FileSystemNotFoundException|FileNotFoundException e) {
+            res = "File Not Found. Try Again!\n";
         } catch (UnmarshalException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("The XML file doesn't contain the requested data");
-            });
+           res = "The XML file doesn't contain the requested data";
         } catch (JAXBException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("Path parsing didn't work");
-            });
+            res = "Path parsing didn't work";
         } catch (Exception ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("Something went wrong :(");
-            });
+            res = "Something went wrong :(";
         }
-*/
 
         return res;
     }
@@ -109,5 +90,9 @@ public final class ServerEngine {
         User creator = getUser(i_UserName);
         Game newGame = new Game(i_GameName, creator);
         m_Games.put(i_GameName,newGame);
+    }
+
+    public Map<String, Game> getGames() {
+        return m_Games;
     }
 }
