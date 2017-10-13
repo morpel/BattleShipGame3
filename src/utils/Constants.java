@@ -14,4 +14,7 @@ public class Constants {
     public static final String USERS_LIST = "usersList";
     public static final String HIT_RESULT = "hitResult";
     public static final String IS_GAME_ENDED = "isGameEnded";
+    public static final String IS_MINE_SET_SUCCESSFULLY = "isMineSetSuccessfully";
+    public static final String IS_DELETE_GAME_SUCCESS = "isDeleteGameSuccess";
+    public static final String DELETE_GAME_ERROR = "deleteGameError";
 }

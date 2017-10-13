@@ -140,4 +140,29 @@ public final class ServerEngine {
     public boolean isGameEnded(String gameName) {
         return (getGame(gameName).getLogic().checkIfGameFinished());
     }
+
+    public boolean checkMineLocation(String gameName, Point minePlace) {
+        Game game = getGame(gameName);
+        return game.getLogic().getCurrentPlayer().checkMineLocation(minePlace);
+    }
+
+    public void addMineToPlayer(String gameName, Point minePlace) {
+        Game game = getGame(gameName);
+        game.getLogic().getCurrentPlayer().addMine(minePlace);
+    }
+
+    public boolean isUserCreatedTheGame(String gameName, String userName) {
+        Game game = getGame(gameName);
+        User user = getUser(userName);
+        return game.getCreator().equals(user);
+    }
+
+    public boolean isGameWithoutPlayers(String gameName) {
+        Game game = getGame(gameName);
+        return (game.getCurrentlyPlaying().size() == 0);
+    }
+
+    public void deleteGame(String gameName) {
+        m_Games.remove(gameName);
+    }
 }
