@@ -1,10 +1,8 @@
 package Servlets;
 
 import Logic.Cell;
-import ServerLogic.Game;
 import ServerLogic.ServerEngine;
 import com.google.gson.Gson;
-import com.sun.javafx.geom.ConcentricShapePair;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -31,7 +29,9 @@ public class PlayerMadeMoveServlet extends HttpServlet{
         String hitResJson = gson.toJson(hitResult);
         req.setAttribute(Constants.HIT_RESULT, hitResJson);
         if (serverEngine.isGameEnded(gameName)){
-
+            req.setAttribute(Constants.IS_GAME_ENDED, true);
+        }else{
+            req.setAttribute(Constants.IS_GAME_ENDED, false);
         }
     }
 }

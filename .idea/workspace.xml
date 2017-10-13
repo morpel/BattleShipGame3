@@ -7,53 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2369abe8-fa71-43fd-9cf9-d298765fe980" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/BattleShipGame3_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_11.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$Boards$Board$Ship$Position.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$Boards$Board$Ship.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$Boards$Board.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$Boards.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$Mine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$ShipTypes$ShipType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame$ShipTypes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BattleShipGame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/BoardComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Cell$BoardObjects.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Cell.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/ComponentsFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/GameLogic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/GameStatistics.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/InvalidXMLInputsException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/LShip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Mine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/NotXMLFileException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/ObjectFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Player$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Player$Stats.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Player.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/PlayersBoard.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/RegularShip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/SelectionOutOfBoundException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/Ship.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Logic/StopWatch.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/ServerLogic/Game.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/ServerLogic/ServerEngine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/ServerLogic/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/AddGameServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/EnterGameServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet$SingleGameDetails.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/LoginPageServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/LogoutServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/PlayerMadeMoveServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/utils/Constants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/utils/ServletUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/utils/SessionUtils.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/BattleShipGame31_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/BattleShipGame31_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleShipGame3.iml" afterPath="$PROJECT_DIR$/BattleShipGame3.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java" afterPath="$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Constants.java" afterPath="$PROJECT_DIR$/src/utils/Constants.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,8 +48,18 @@
       <file leaf-file-name="AddGameServlet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-217">
-              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+            <state relative-caret-position="-203">
+              <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lobby.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Lobby/lobby.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-778">
+              <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -160,11 +126,21 @@
       <file leaf-file-name="PlayerMadeMoveServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+            <state relative-caret-position="340">
+              <caret line="32" column="9" lean-forward="false" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,6 +166,8 @@
         <option value="$PROJECT_DIR$/src/Servlets/AddGameServlet.java" />
         <option value="$PROJECT_DIR$/BattleShipGame3.iml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/src/utils/Constants.java" />
+        <option value="$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java" />
       </list>
     </option>
   </component>
@@ -539,12 +517,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1507824997435</updated>
-      <workItem from="1507825045749" duration="137000" />
+      <workItem from="1507825045749" duration="1379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1127000" />
+    <option name="totallyTimeSpent" value="2369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -562,7 +540,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41196582" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20854701" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26495728" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22617246" sideWeight="0.5018248" order="4" side_tool="false" content_ui="combo" />
@@ -717,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Lobby/lobby.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.225/GetSelectionServlet.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.740/SimpleAjaxResponse.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.924/LogicServlet.java" />
@@ -847,14 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/Online Chat V2/chatWebApp/src/chat/servlets/ChatServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -943,16 +906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BattleShipGame3.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -960,18 +913,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-217">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Lobby/lobby.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-778">
+          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="32" column="9" lean-forward="false" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding />
         </state>
       </provider>

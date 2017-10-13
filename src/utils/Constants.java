@@ -13,4 +13,5 @@ public class Constants {
     public static final String GAMES_DETAILS = "gamesDetails";
     public static final String USERS_LIST = "usersList";
     public static final String HIT_RESULT = "hitResult";
+    public static final String IS_GAME_ENDED = "isGameEnded";
 }
