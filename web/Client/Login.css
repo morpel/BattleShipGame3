@@ -1,6 +1,6 @@
 body{
     margin:0 0 0 0;
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 .hero{
@@ -9,7 +9,7 @@ body{
     height:100%;
     /*background-origin: content-box;*/
     background-size: cover;
-    overflow-y: hidden;
+    /*overflow-y:hidden;*/
 }
 h1,h2,h3,h4{
 
@@ -46,8 +46,8 @@ span{
 
 }
 .custom-inputMaterial{
-    width:343px;
-    height:50px;
+    /*width:343px;*/
+    /*height:50px;*/
     opacity: 0.89;
     background: #4A4A4A;
     border-radius: 55px;

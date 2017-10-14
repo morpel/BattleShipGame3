@@ -21,24 +21,30 @@ $(document).ready(function () {
     checkIfSessionExists();
     $("#nickNameForm").submit((event) => {
         const name = $("#nickNameInput").val();
-        $.ajax({
-            type: 'POST',
-            url: `http://localhost:8080/${servletUrl}`,
-            data: {
-                userName: name
-            },
-            success: function (data) {
-                // console.log(data.stringify(data));
-                if (data !== undefined && data !== null) {
-                    const url = JSON.parse(data);
-                    console.log(url.content);
-                    window.location.href = url.content;
+        if (name === "" || name === null || name === undefined)
+        {
+            alert("please choose a valid nickName!");
+        }
+        else
+        {
+            $.ajax({
+                type: 'POST',
+                url: `http://localhost:8080/${servletUrl}`,
+                data: {
+                    userName: name
+                },
+                success: function (data) {
+                    // console.log(data.stringify(data));
+                    if (data !== undefined && data !== null) {
+                        const url = JSON.parse(data);
+                        console.log(url.content);
+                        window.location.href = url.content;
 
-                }
-            },
-            error: error => console.log(error)
-        });
+                    }
+                },
+                error: error => console.log(error)
+            });
+        }
         event.preventDefault();
-
     });
 })

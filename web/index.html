@@ -3,7 +3,7 @@
     <title>The Battleship Game</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,900" rel="stylesheet">
     <link rel="stylesheet" href="/Client/node_modules/material-components-web/dist/material-components-web.css">
-    <link rel="stylesheet" href="Client/Client.css">
+    <link rel="stylesheet" href="Client/Login.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -23,42 +23,32 @@
         <div class="mdc-layout-grid__inner ">
 
             <!--white space-->
-            <div class="mdc-layout-grid__cell--span-12" />
+            <div class="mdc-layout-grid__cell--span-12"/>
+            <div class="mdc-layout-grid__cell--span-12"/>
+            <div class="mdc-layout-grid__cell--span-12"/>
+            <div class="mdc-layout-grid__cell--span-12"/>
+            <div class="mdc-layout-grid__cell--span-12"/>
+            <!--white space-->
+            <div class="mdc-layout-grid__cell--span-1"></div>
+            <div class="mdc-layout-grid__cell--span-11">
+                <h1>Welcome Pirate!</h1>
+                <h3>Grab your rum. it's game on</h3>
+                <h4>Please enter your nickname</h4>
+            </div>
+            <div class="mdc-layout-grid__cell--span-12">
+                <form action="LoginPageServlet" method="POST" id="nickNameForm">
+                    <div class="mdc-textfield">
+                        <input id="nickNameInput" class=" mdc-textfield__input " type="text"
+                               placeholder="nickname..."
+                               value="">
+                        <input type="submit"
+                               class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface"
+                               value="Play"/>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mdc-layout-grid__cell--span-12" />
     </div>
-    <div class="mdc-layout-grid__cell--span-12" />
 </div>
-<div class="mdc-layout-grid__cell--span-12" />
-</div>
-<div class="mdc-layout-grid__cell--span-12" />
-</div>
-<!--white space-->
-<div class="mdc-layout-grid__cell--span-1"></div>
-<div class="mdc-layout-grid__cell--span-11">
-    <h1>Welcome Pirate!</h1>
-    <div class="mdc-layout-grid__cell--span-12">
-        <h3>Grab your rum. it's game on</h3>
-    </div>
-    <h4>Please enter your nickname</h4>
-</div>
-<form action="LoginPageServlet" method="POST" id="nickNameForm">
-    <div class="mdc-layout-grid__cell--span-1"></div>
-    <div clas="mdc-layout-grid__cell--span-11">
-        <div class="mdc-textfield">
-            <input  id="nickNameInput" class=" mdc-textfield__input " type="text" placeholder="nickname..." value="">
-        </div>
-    </div>
-    <div class="mdc-layout-grid__cell--span-12"></div>
-    <div class="mdc-layout-grid__cell--span-3"></div>
-    <div clas="mdc-layout-grid__cell--span-7">
-        <input type="submit" class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface" value="Play" />
-    </div>
-</form>
-</div>
-</div>
-</div>
-</div>
-<footer class="footer"></footer>
 </body>
 </html>

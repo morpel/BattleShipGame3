@@ -1,7 +1,7 @@
 
 body{
     margin:0 0 0 0;
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 .hero{
@@ -10,7 +10,7 @@ body{
     height:100%;
     /*background-origin: content-box;*/
     background-size: cover;
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
 }
 h1,h2,h3,h4{
 
@@ -36,18 +36,7 @@ span{
     text-shadow: 0 2px 5px rgba(0,0,0,0.50);
 
 }
-#toolbar{
-    background-color:#3E3E3E;
-    padding:12px;
-
-}
-
-.footer{
-    background-color:#3E3E3E;
-
-}
-
-.mdc-grid-tile {
-    --mdc-grid-list-tile-width: 800px;
-    border-radius:15px;
+#toolbar {
+    background-color: #3E3E3E;
+    padding: 12px;
 }
