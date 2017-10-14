@@ -27,6 +27,15 @@ public class AddGameServlet extends HttpServlet {
             serverEngine.addNewGame(enteredGameName,userNameFromSession);
             String XMLPath = (String)req.getAttribute(Constants.XML_PATH);
             String gameInputsErr = serverEngine.checkXML(XMLPath, enteredGameName);
+            if (gameInputsErr == null){//XML is valid
+                String message = "Game \"" + enteredGameName + "\" has loaded successfully";
+                req.setAttribute(Constants.XML_LOAD_SUCCESS, message);
+                getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
+            }
+            else{
+                req.setAttribute(Constants.XML_LOAD_ERROR, gameInputsErr);
+                getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
+            }
         }
     }
 }

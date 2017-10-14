@@ -1,8 +1,30 @@
-const $ = import('/node_modules/jquery/dist/jquery.js');
-
-function checkNickName() {
-    const name = $("nickNameInput").val();
+const servletUrl = buildUrlWithContextPath("LoginPageServlet")
+console.log(servletUrl);
+$(document).ready(function(){
+    console.log('in Login!');
+    $("#nickNameForm").submit((event)=>{
+        const name = $("#nickNameInput").val();
     $.ajax({
-        url:
-    })
-}
+        type:'POST',
+        url:`http://localhost:8080/${servletUrl}`,
+        data:{
+            userName:name
+        },
+        success:function(data){
+        console.log(data.content);
+        // console.log(data.stringify(data));
+    if(data!== undefined && data !== null)
+    {
+        const url = JSON.parse(data);
+        console.log(url.content);
+        window.location.href=url.content;
+
+    }
+},
+    error:error=>console.log(error)
+});
+    event.preventDefault();
+
+});
+
+})

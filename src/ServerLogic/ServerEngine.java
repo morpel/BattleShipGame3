@@ -1,14 +1,16 @@
 package ServerLogic;
 
+import Logic.Cell;
 import Logic.InvalidXMLInputsException;
 import Logic.NotXMLFileException;
-import javafx.application.Platform;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
+import java.awt.*;
 import java.io.FileNotFoundException;
-import java.nio.file.FileSystemNotFoundException;
+import java.nio.file.*;
 import java.util.*;
+import java.util.List;
 
 public final class ServerEngine {
     private static ServerEngine ServerEngineInstance = null;
@@ -56,51 +58,33 @@ public final class ServerEngine {
     }
 
     public String checkXML(String xmlPath, String gameName) {
-        String res = null;
+        String res;
         Game theCurrentGame = m_Games.get(gameName);
-/*
+        Path path = Paths.get(xmlPath);
+        theCurrentGame.getLogic().setXMLPath(path);
+
         try {
-            if (gameLogic.initGameFromXML()) {
-                if (gameLogic.checkGameInputs()) {
-                    res = true;
-                    VImage.setVisible(true);
-                    StartGameButton.setDisable(false);
+            if (theCurrentGame.getLogic().initGameFromXML()) {
+                if (theCurrentGame.getLogic().checkGameInputs()) {
+                    theCurrentGame.setIsXMLLoaded(true);
+                    res = null;
                 } else {
-                    errLabel.setText("The inputs in the XML file are invalid, Load another XML file!");
+                    res = "The inputs in the XML file are invalid, Load another XML file!";
                 }
             } else {
-                errLabel.setText("Game initialization failed!");
+                res = "Game initialization failed!";
             }
-        } catch (NotXMLFileException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText(ex.getMessage());
-            });
-        } catch (FileSystemNotFoundException e) {
-            Platform.runLater(() -> {
-                errLabel.setText("File Not Found. Try Again!\n");
-            });
-        } catch (FileNotFoundException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("File Not Found. Try Again!\n");
-            });
-        } catch (InvalidXMLInputsException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText(ex.getMessage());
-            });
+        } catch (NotXMLFileException|InvalidXMLInputsException ex) {
+            res = ex.getMessage();
+        } catch (FileSystemNotFoundException|FileNotFoundException e) {
+            res = "File Not Found. Try Again!\n";
         } catch (UnmarshalException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("The XML file doesn't contain the requested data");
-            });
+           res = "The XML file doesn't contain the requested data";
         } catch (JAXBException ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("Path parsing didn't work");
-            });
+            res = "Path parsing didn't work";
         } catch (Exception ex) {
-            Platform.runLater(() -> {
-                errLabel.setText("Something went wrong :(");
-            });
+            res = "Something went wrong :(";
         }
-*/
 
         return res;
     }
@@ -109,5 +93,76 @@ public final class ServerEngine {
         User creator = getUser(i_UserName);
         Game newGame = new Game(i_GameName, creator);
         m_Games.put(i_GameName,newGame);
+    }
+
+    public Map<String, Game> getGames() {
+        return m_Games;
+    }
+
+    public Set<User> getUsers() {
+        return m_Users;
+    }
+
+    public List<String> getUsersList() {
+        List<String> res = new ArrayList<>();
+
+        for(User user : m_Users){
+            res.add(user.getName());
+        }
+
+        return res;
+    }
+
+    public void assignUserToGame(String userName, String gameName) {
+        User user = getUser(userName);
+        Game game = m_Games.get(gameName);
+        user.setCurrentGame(game);
+        game.addPlayer(user);
+    }
+
+    public Game getGame(String gameName) {
+        return m_Games.get(gameName);
+    }
+
+    public Cell.BoardObjects checkPlayerMove(String gameName, int row, int col) {
+        //User user = getUser(userName);
+        Game game = m_Games.get(gameName);
+        game.getLogic().getCurrentPlayer().getStats().stopClock();
+        Point attackedPoint = new Point(col,row);
+        Cell.BoardObjects hitResult = game.getLogic().checkMove(attackedPoint);
+        if (!hitResult.equals(Cell.BoardObjects.ship)) {
+            game.getLogic().switchPlayers();
+        }
+
+        return hitResult;
+    }
+
+    public boolean isGameEnded(String gameName) {
+        return (getGame(gameName).getLogic().checkIfGameFinished());
+    }
+
+    public boolean checkMineLocation(String gameName, Point minePlace) {
+        Game game = getGame(gameName);
+        return game.getLogic().getCurrentPlayer().checkMineLocation(minePlace);
+    }
+
+    public void addMineToPlayer(String gameName, Point minePlace) {
+        Game game = getGame(gameName);
+        game.getLogic().getCurrentPlayer().addMine(minePlace);
+    }
+
+    public boolean isUserCreatedTheGame(String gameName, String userName) {
+        Game game = getGame(gameName);
+        User user = getUser(userName);
+        return game.getCreator().equals(user);
+    }
+
+    public boolean isGameWithoutPlayers(String gameName) {
+        Game game = getGame(gameName);
+        return (game.getCurrentlyPlaying().size() == 0);
+    }
+
+    public void deleteGame(String gameName) {
+        m_Games.remove(gameName);
     }
 }

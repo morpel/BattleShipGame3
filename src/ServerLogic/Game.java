@@ -2,16 +2,50 @@ package ServerLogic;
 
 import Logic.GameLogic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     private GameLogic gameLogic;
     private User creator;
     private String gameName;
-    private User[] currentlyPlaying;
+    private List<User> currentlyPlaying;
     private boolean isXMLLoaded = false;
+    private boolean isFull = false;
 
     public Game(String i_GameName, User i_Creator) {
         gameLogic = new GameLogic();
         creator = i_Creator;
         gameName = i_GameName;
+        currentlyPlaying = new ArrayList<>();
+    }
+
+    public boolean getIsFull(){
+        return isFull;
+    }
+
+    public GameLogic getLogic() {
+        return gameLogic;
+    }
+
+    public String getName() {
+        return gameName;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public List<User> getCurrentlyPlaying() {
+        return currentlyPlaying;
+    }
+
+    public void addPlayer(User user) {
+        currentlyPlaying.add(user);
+        isFull = currentlyPlaying.size() == 2;
+    }
+
+    public void setIsXMLLoaded(boolean i_IsXMLLoaded) {
+        isXMLLoaded = i_IsXMLLoaded;
     }
 }

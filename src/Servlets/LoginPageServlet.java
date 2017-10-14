@@ -1,6 +1,9 @@
 package Servlets;
 
 import ServerLogic.ServerEngine;
+import com.google.gson.Gson;
+//import com.sun.javafx.tools.ant.Platform;
+//import javafx.scene.Parent;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -11,11 +14,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 //should run when login page is loaded
 @WebServlet(name = "LoginPageServlet")
 public class LoginPageServlet extends HttpServlet {
 
+    private class Url{
+        public String getContent() {
+            return content;
+        }
+
+        String content;
+        public Url(String content)
+        {
+            this.content=content;
+        }
+
+    }
+    public final String LOBBYURL = "/Lobby/lobby.html";
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String usernameFromSession = SessionUtils.getUsername(request);
@@ -28,7 +45,7 @@ public class LoginPageServlet extends HttpServlet {
                 //no username in session and no username in parameter -
                 //redirect back to the index page
                 //this return an HTTP code back to the browser telling it to load
-                response.sendRedirect("signUp.html");
+                response.sendRedirect("index.html");
             } else {
                 //normalize the username value
                 usernameFromParameter = usernameFromParameter.trim();
@@ -51,13 +68,25 @@ public class LoginPageServlet extends HttpServlet {
                     request.getSession(true).setAttribute(Constants.USERNAME, usernameFromParameter);
 
                     //redirect the request to the chat room - in order to actually change the URL
-                    System.out.println("On login, request URI is: " + request.getRequestURI());
-                    response.sendRedirect("/Lobby/lobby.html");
+//                    System.out.println("On login, request URI is: " + request.getRequestURI());
+
+                    //redirecting the client , by json (not by server-side)
+                    Gson responseJson = new Gson();
+                    Url redirectUrl = new Url(LOBBYURL);
+                    String responseFormmated = responseJson.toJson(redirectUrl);
+                    PrintWriter out = response.getWriter();
+                    out.print(responseFormmated);
+                    out.flush();
+//                    response.sendRedirect("/Lobby/lobby.html");
                 }
             }
         } else {
             //user is already logged in
             response.sendRedirect("/Lobby/lobby.html");
         }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }
