@@ -1,11 +1,30 @@
+const servletUrl = buildUrlWithContextPath("LoginPageServlet")
+console.log(servletUrl);
+$(document).ready(function(){
+    console.log('in Login!');
+    $("#nickNameForm").submit((event)=>{
+        const name = $("#nickNameInput").val();
+    $.ajax({
+        type:'POST',
+        url:`http://localhost:8080/${servletUrl}`,
+        data:{
+            userName:name
+        },
+        success:function(data){
+        console.log(data.content);
+        // console.log(data.stringify(data));
+    if(data!== undefined && data !== null)
+    {
+        const url = JSON.parse(data);
+        console.log(url.content);
+        window.location.href=url.content;
 
-function checkNickName() {
-    const name = $("#nickNameInput").val();
-    console.log(name);
-    $.get({
-        url:"LoginPageServlet",
-        success:(res)=>{console.log(res)},
-        error:(error=>console.log(error))
-    });
+    }
+},
+    error:error=>console.log(error)
+});
+    event.preventDefault();
 
-}
+});
+
+})
