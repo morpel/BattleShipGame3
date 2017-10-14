@@ -23,6 +23,30 @@
         <servlet-name>AddGameServlet</servlet-name>
         <servlet-class>Servlets.AddGameServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlayerSatMineServlet</servlet-name>
+        <servlet-class>Servlets.PlayerSatMineServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayerMadeMoveServlet</servlet-name>
+        <servlet-class>Servlets.PlayerMadeMoveServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteGameServlet</servlet-name>
+        <servlet-class>Servlets.DeleteGameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteGameServlet</servlet-name>
+        <url-pattern>/DeleteGameServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayerMadeMoveServlet</servlet-name>
+        <url-pattern>/PlayerMadeMoveServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayerSatMineServlet</servlet-name>
+        <url-pattern>/PlayerSatMineServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EnterGameServlet</servlet-name>
         <url-pattern>/EnterGameServlet</url-pattern>

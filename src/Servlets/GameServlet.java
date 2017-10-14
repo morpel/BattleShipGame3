@@ -34,9 +34,9 @@ public class GameServlet extends HttpServlet {
             List<String> loggedInUsers = serverEngine.getUsersList();
             String usersJson = gson.toJson(loggedInUsers);
             req.setAttribute(Constants.USERS_LIST, usersJson);
-
             getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
-        } else{
+            //if above line doesnt work try do the same with req.getRe....
+        } else {
             //Player is not logged in
             resp.sendRedirect("index.html");
         }
