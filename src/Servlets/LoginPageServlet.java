@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
+import utils.Url;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,19 +19,6 @@ import java.io.PrintWriter;
 @WebServlet(name = "LoginPageServlet")
 public class LoginPageServlet extends HttpServlet {
 
-    private class Url{
-        String content;
-
-        public String getContent() {
-            return content;
-        }
-
-        public Url(String content)
-        {
-            this.content=content;
-        }
-    }
-    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String usernameFromSession = SessionUtils.getUsername(request);
