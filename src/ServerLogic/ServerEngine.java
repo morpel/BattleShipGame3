@@ -28,8 +28,12 @@ public final class ServerEngine {
     }
 
     public boolean isPlayerLoggedIn(String enteredName) {
-        User tmpUser = new User(enteredName);
-        return m_Users.contains(tmpUser);
+        User user = getUser(enteredName);
+        if (user == null){
+            return false;
+        }
+
+        return true;
     }
 
     public void addUser(String i_Username) {

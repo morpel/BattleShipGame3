@@ -2,8 +2,6 @@ package Servlets;
 
 import ServerLogic.ServerEngine;
 import com.google.gson.Gson;
-//import com.sun.javafx.tools.ant.Platform;
-//import javafx.scene.Parent;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -21,32 +19,31 @@ import java.io.PrintWriter;
 public class LoginPageServlet extends HttpServlet {
 
     private class Url{
+        String content;
+
         public String getContent() {
             return content;
         }
 
-        String content;
         public Url(String content)
         {
             this.content=content;
         }
-
     }
-    public final String LOBBYURL = "/Lobby/lobby.html";
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String usernameFromSession = SessionUtils.getUsername(request);
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
+        Gson responseJson = new Gson();
+        Url GoToLobby = new Url(Constants.LOBBY_URL);
+        String GoToLobbyJson = responseJson.toJson(GoToLobby);
+        PrintWriter out = response.getWriter();
 
         if (usernameFromSession == null) {
             //user is not logged in yet
             String usernameFromParameter = request.getParameter(Constants.USERNAME);
-            if (usernameFromParameter == null) {
-                //no username in session and no username in parameter -
-                //redirect back to the index page
-                //this return an HTTP code back to the browser telling it to load
-                response.sendRedirect("index.html");
-            } else {
+            if (usernameFromParameter != null) {
                 //normalize the username value
                 usernameFromParameter = usernameFromParameter.trim();
                 if (serverEngine.isPlayerLoggedIn(usernameFromParameter)) {
@@ -57,8 +54,9 @@ public class LoginPageServlet extends HttpServlet {
                     // and is relative to the web app root
                     // see this link for more details:
                     // http://timjansen.github.io/jarfiller/guide/servlet25/requestdispatcher.xhtml
-                    request.setAttribute(Constants.USER_NAME_ERROR, errorMessage);
-                    getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+                    response.setStatus(400);
+                    out.print(errorMessage);
+                    out.flush();
                 } else {
                     //add the new user to the users list
                     serverEngine.addUser(usernameFromParameter);
@@ -68,21 +66,22 @@ public class LoginPageServlet extends HttpServlet {
                     request.getSession(true).setAttribute(Constants.USERNAME, usernameFromParameter);
 
                     //redirect the request to the chat room - in order to actually change the URL
-//                    System.out.println("On login, request URI is: " + request.getRequestURI());
 
                     //redirecting the client , by json (not by server-side)
-                    Gson responseJson = new Gson();
-                    Url redirectUrl = new Url(LOBBYURL);
-                    String responseFormmated = responseJson.toJson(redirectUrl);
-                    PrintWriter out = response.getWriter();
-                    out.print(responseFormmated);
+                    out.print(GoToLobbyJson);
                     out.flush();
-//                    response.sendRedirect("/Lobby/lobby.html");
                 }
+            } else{
+                String n = null;
+                out.print(n);
+                out.flush();
+
             }
         } else {
             //user is already logged in
-            response.sendRedirect("/Lobby/lobby.html");
+            out.print(GoToLobbyJson);
+            out.flush();
+//            response.sendRedirect("/Lobby/lobby.html");
         }
     }
 
