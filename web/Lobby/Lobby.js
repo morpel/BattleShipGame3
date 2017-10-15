@@ -54,6 +54,25 @@ function userLoggedOut(data) {
     window.location.href = url.content;
 }
 
+function asyncFileVerifyer(){
+    const intervalId = setInterval(()=>{
+        $.ajax({
+            url:'http://localhost:8080/GameServlet',
+            type:"POST",
+            data: { fileProcessor:"true" },
+            success: function (data) {
+                console.log(data);
+                if (data !== "null") {
+                    const fileValidityFlags = JSON.parse(data);
+                    console.log(fileValidityFlags);
+                }
+                clearInterval(intervalId);
+            },
+            error: error => console.log(error)
+        })
+    },INTERVAL_TIME)
+}
+
 $(document).ready(
     ()=>{
         setInterval(()=>{

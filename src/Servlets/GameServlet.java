@@ -24,32 +24,42 @@ public class GameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
         String userName = SessionUtils.getUsername(req);
-        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        Url GoToIndex = new Url(Constants.INDEX_URL);
-        String GoToIndexJson = gson.toJson(GoToIndex);
+        String gameProc = req.getParameter("fileProcessor");
+        if (serverEngine.getIsXMLFileInQueue() && gameProc.equals("true")){
+            serverEngine.setIsXMLFileInQueue(false);
+            String ErrJson = gson.toJson(serverEngine.getXMLValidityMsg());
+            serverEngine.setXMLValidityMsg(null);
+            out.print(ErrJson);
+            out.flush();
+        }
+        else {
+            resp.setContentType("text/html;charset=UTF-8");
+            Url GoToIndex = new Url(Constants.INDEX_URL);
+            String GoToIndexJson = gson.toJson(GoToIndex);
 
-        if (serverEngine.isPlayerLoggedIn(userName)){
-            //generate all games details
-            List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
-            List<String> loggedInUsers = serverEngine.getUsersList();
+            if (serverEngine.isPlayerLoggedIn(userName)) {
+                //generate all games details
+                List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
+                List<String> loggedInUsers = serverEngine.getUsersList();
 //            String GamesListJson = gson.toJson(gamesDetails);
 //            String GamesListJson = gson.toJson(loggedInUsers);
 //            String GamesJson = gson.toJson(gamesDetails);
-            GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails,loggedInUsers);
-            String gamesAndUsersJson = gson.toJson(gamesAndUsers);
-            out.print(gamesAndUsersJson);
-            out.flush();
-            //generate all players list
+                GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers);
+                String gamesAndUsersJson = gson.toJson(gamesAndUsers);
+                out.print(gamesAndUsersJson);
+                out.flush();
+                //generate all players list
 //            String usersJson = gson.toJson(loggedInUsers);
 
-            //if above line doesnt work try do the same with req.getRe....
-        } else {
-            //Player is not logged in
-            resp.setStatus(400);
-            out.print(GoToIndexJson);
-            out.flush();
+                //if above line doesnt work try do the same with req.getRe....
+            } else {
+                //Player is not logged in
+                resp.setStatus(400);
+                out.print(GoToIndexJson);
+                out.flush();
+            }
         }
     }
 

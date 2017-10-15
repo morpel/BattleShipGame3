@@ -16,7 +16,16 @@ public final class ServerEngine {
     private static ServerEngine ServerEngineInstance = null;
     private static Map<String, Game> m_Games;
     private static Set<User> m_Users;
+    private static Boolean isXMLFileInQueue = false;
+    private static String XMLValidityMsg;
 
+    public static String getXMLValidityMsg() {
+        return XMLValidityMsg;
+    }
+
+    public static void setXMLValidityMsg(String XMLValidityMsg) {
+        ServerEngine.XMLValidityMsg = XMLValidityMsg;
+    }
 
     public static ServerEngine getInstance() {
         if (ServerEngineInstance == null) {
@@ -25,6 +34,14 @@ public final class ServerEngine {
             m_Users = new HashSet<>();
         }
         return ServerEngineInstance;
+    }
+
+    public static Boolean getIsXMLFileInQueue() {
+        return isXMLFileInQueue;
+    }
+
+    public static void setIsXMLFileInQueue(Boolean isXMLFileInQueue) {
+        ServerEngine.isXMLFileInQueue = isXMLFileInQueue;
     }
 
     public boolean isPlayerLoggedIn(String enteredName) {
@@ -168,5 +185,9 @@ public final class ServerEngine {
 
     public void deleteGame(String gameName) {
         m_Games.remove(gameName);
+    }
+
+    public void removeGame(String i_GameName) {
+        m_Games.remove(i_GameName);
     }
 }

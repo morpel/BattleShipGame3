@@ -1,9 +1,9 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>The Battleship Game</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,900" rel="stylesheet">
     <link rel="stylesheet" href="/Client/node_modules/material-components-web/dist/material-components-web.css">
-    <link rel="stylesheet" href="./Lobby.css">
+    <link rel="stylesheet" href="/Lobby/Lobby.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="/Plugins/jquery-3.2.1.min.js"></script>
     <script src="/Plugins/context-path-helper.js"></script>
@@ -38,9 +38,8 @@
                                name = "file"
                                value="Choose Game(.XML)"
                                id = "insertGameFile"/>
-                               <!--multiple onchange="insertNewGame()"/>-->
-                        <input id="gameName" name="gameName"/>
-                        <input type = "submit" name="upload">
+                        game name:<input id="gameName" name="gameName"/>
+                        <input type = "submit" name="upload" onclick="asyncFileVerifyer()"/>
                     </form>
                 </h2>
                 <ul>

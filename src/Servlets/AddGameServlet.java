@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.List;
 
 @WebServlet(name = "AddGameServlet")
 @MultipartConfig
@@ -25,18 +24,20 @@ public class AddGameServlet extends HttpServlet {
 
         final String gameName = req.getParameter("gameName");
         final Part filePart = req.getPart("file");
+        final String fileName = getFileName(filePart);
         String XMLPath = null;
-
         OutputStream out = null;
         InputStream fileContent = null;
 
         try{
-            File file = new File("C:\\Users\\morpel\\IdeaProjects\\BattleShipGame3\\src\\resources\\tmpXml.xml");
+            String prefix =  getServletContext().getRealPath("/");
+            String filePath = prefix.concat("Lobby\\" + fileName);
+            File file = new File(filePath);
             XMLPath = file.getPath();
             out = new FileOutputStream(file);
             fileContent = filePart.getInputStream();
 
-            int read =0;
+            int read;
             final byte[] bytes = new byte[1024];
 
             while((read = fileContent.read(bytes)) != -1){
@@ -53,24 +54,20 @@ public class AddGameServlet extends HttpServlet {
                 fileContent.close();
             }
         }
+
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
+        serverEngine.setIsXMLFileInQueue(true);
         String userNameFromSession = SessionUtils.getUsername(req);
         String enteredGameName = req.getParameter(Constants.GAME_NAME);
         if(serverEngine.isGameNameExist(enteredGameName)){
             String errorMessage = "Game name " + enteredGameName + " already exists. Please enter a different game name.";
-            req.setAttribute(Constants.GAME_NAME_ERROR_MSG, errorMessage);
-            getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
-        } else{
+            serverEngine.setXMLValidityMsg(errorMessage);
+        } else {
             serverEngine.addNewGame(enteredGameName,userNameFromSession);
             String gameInputsErr = serverEngine.checkXML(XMLPath, enteredGameName);
-            if (gameInputsErr == null){//XML is valid
-                String message = "Game \"" + enteredGameName + "\" has loaded successfully";
-                req.setAttribute(Constants.XML_LOAD_SUCCESS, message);
-                getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
-            }
-            else{
-                req.setAttribute(Constants.XML_LOAD_ERROR, gameInputsErr);
-                getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
+            serverEngine.setXMLValidityMsg(gameInputsErr);
+            if (gameInputsErr != null){
+                serverEngine.removeGame(enteredGameName);
             }
         }
     }
@@ -78,5 +75,16 @@ public class AddGameServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
+    }
+
+    private String getFileName(final Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                        content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
     }
 }
