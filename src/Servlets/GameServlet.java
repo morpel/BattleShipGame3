@@ -53,6 +53,11 @@ public class GameServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
     private List<SingleGameDetails> getGameDetails(Map<String,Game> games){
         List<SingleGameDetails> m_Details;
         m_Details = new ArrayList<>();

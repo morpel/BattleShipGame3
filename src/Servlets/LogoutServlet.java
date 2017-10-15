@@ -1,8 +1,11 @@
 package Servlets;
 
 import ServerLogic.ServerEngine;
+import com.google.gson.Gson;
+import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
+import utils.Url;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "LogoutPageServlet")
 public class LogoutServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String usernameFromSession = SessionUtils.getUsername(req);
@@ -30,8 +39,14 @@ public class LogoutServlet extends HttpServlet {
             the best way (IMO) is to fetch the context path dynamically and build the redirection from it and on
             (from some reason this call works as well; response.sendRedirect("../../../index.html"); not sure why. the request uri is '/pages/chatroom/chat/logout')
              */
-
-            resp.sendRedirect(req.getContextPath() + "/index.html");
+            Gson gson = new Gson();
+            Url GoToIndex = new Url(Constants.INDEX_URL);
+            String GoToIndexJson = gson.toJson(GoToIndex);
+            PrintWriter out = resp.getWriter();
+            out.print(GoToIndexJson);
+            out.flush();
         }
+
+
     }
 }

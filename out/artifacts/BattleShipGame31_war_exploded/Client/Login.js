@@ -1,5 +1,13 @@
 const servletUrl = buildUrlWithContextPath("LoginPageServlet")
 console.log(servletUrl);
+
+function loginErr(data) {
+    $("#errMsg").css({'color':'red'});
+    $("#errMsg").val(data.responseText);
+    document.getElementById("errMsg").innerText = data.responseText;
+    console.log(data.responseText);
+}
+
 $(document).ready(function () {
     const checkIfSessionExists = () => {
         $.ajax({
@@ -9,7 +17,7 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 if (data !== "null") {
-                    url = JSON.parse(data);
+                    let url = JSON.parse(data);
                     console.log(url.content);
                     window.location.href = url.content;
                 }
@@ -34,7 +42,6 @@ $(document).ready(function () {
                     userName: name
                 },
                 success: function (data) {
-                    // console.log(data.stringify(data));
                     if (data !== undefined && data !== null) {
                         const url = JSON.parse(data);
                         console.log(url.content);
@@ -42,7 +49,7 @@ $(document).ready(function () {
 
                     }
                 },
-                error: error => console.log(error)
+                error: (data) => {loginErr(data)}
             });
         }
         event.preventDefault();

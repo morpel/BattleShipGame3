@@ -12,14 +12,21 @@
 </head>
 <body>
 <div id="toolbar">
-    <span>The Battleship Game - Lobby</span>
+    <span>The Battleship Game - Lobby
+            <input type="button"
+                   class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface"
+                   value="LogOut"
+                    id = "logoutBtn"
+                    onclick="logoutUser()"/>
+    </span>
 </div>
 <div class="hero">
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner ">
             <!--connected players-->
             <div class="mdc-layout-grid--align-left mdc-layout-grid__cell--span-4">
-                <ul>
+                <h1>Logged in users</h1>
+                <ul id="usersList">
                 </ul>
             </div>
             <!--connected players end-->

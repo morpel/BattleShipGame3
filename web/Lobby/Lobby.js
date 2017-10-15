@@ -1,18 +1,17 @@
 const INTERVAL_TIME = 2000;
-const servletUrl = buildUrlWithContextPath("GameServlet")
 
 function renderCurrentGames(games) {
     
 }
 
 function renderLoggedinUsers(users) {
-
+    $("#usersList").empty();
+    $.each(users,(index,user) => {
+        $("#usersList").append('<h3>'+user+'</h3>');
+    })
 }
 
 function renderGamesAndUsers(data){
-    // $.each(data,(key,value)=>{
-    //     console.log(value);
-    // })
     const gamesAndUsersObj = JSON.parse(data);
     console.log(gamesAndUsersObj);
     if (gamesAndUsersObj !== null && gamesAndUsersObj!==undefined){
@@ -22,7 +21,10 @@ function renderGamesAndUsers(data){
 }
 
 function userLoggedOut(data) {
-
+    console.log(data);
+    const url = JSON.parse(data);
+    console.log(url.content);
+    window.location.href = url.content;
 }
 
 $(document).ready(
@@ -38,3 +40,33 @@ $(document).ready(
         },INTERVAL_TIME)
     }
 )
+
+function logoutUser(){
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/LogoutServlet`,
+        data: {},
+        success: (data) => userLoggedOut(data),
+        error: (data) => {console.log(data)}
+    });
+    event.preventDefault();
+}
+
+$(document).ready(function () {
+    $("#logoutBtn").onclick = function(event){
+            $.ajax({
+                type: 'POST',
+                url: `http://localhost:8080/LogoutServlet`,
+                data: {},
+                success: function (data) {
+                    if (data !== undefined && data !== null) {
+                        const url = JSON.parse(data);
+                        console.log(url.content);
+                        window.location.href = url.content;
+                    }
+                },
+                error: (data) => {console.log(data)}
+            });
+        event.preventDefault();
+    }
+});
