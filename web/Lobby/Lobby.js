@@ -20,9 +20,36 @@ function renderGamesAndUsers(data){
     }
 }
 
+function gameLoadError(data) {
+
+}
+
+function gameLoadSuccess(data) {
+
+}
+/*
+function insertNewGame() {
+    var selectedFile = document.getElementById('insertGameBtn').files[0];
+    console.log(selectedFile);
+    var reader = new FileReader();
+    reader.onload = (function(theFile) {
+        return function(e) {
+            $.ajax({
+                url: `http://localhost:8080/AddGameServlet`,
+                type: "POST",
+                data: { "xmlPath":e},
+                success:(data) => gameLoadSuccess(data) ,
+                error: (data) => gameLoadError(data)
+            })
+        }
+    });
+    reader.readAsText(selectedFile);
+
+}
+*/
 function userLoggedOut(data) {
     console.log(data);
-    const url = JSON.parse(data);
+    const url = JSON.parse(data.responseText);
     console.log(url.content);
     window.location.href = url.content;
 }
@@ -32,14 +59,14 @@ $(document).ready(
         setInterval(()=>{
             $.ajax({
                 url: `http://localhost:8080/GameServlet`,
-                type: "GET",
+                type: "POST",
                 data: {},
                 success:(data) => renderGamesAndUsers(data) ,
                 error: (data) => userLoggedOut(data)
             })
         },INTERVAL_TIME)
     }
-)
+);
 
 function logoutUser(){
     $.ajax({

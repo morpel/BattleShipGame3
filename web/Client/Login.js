@@ -17,7 +17,7 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 if (data !== "null") {
-                    let url = JSON.parse(data);
+                    const url = JSON.parse(data);
                     console.log(url.content);
                     window.location.href = url.content;
                 }

@@ -32,8 +32,18 @@
             <!--connected players end-->
             <!--current Games-->
             <div class="mdc-layout-grid--align-center mdc-layout-grid__cell--span-8">
+                <h2>Enter your own game:
+                    <form action="/AddGameServlet" method="POST" id="addGameForm" enctype="multipart/form-data">
+                        <input type="file"
+                               name = "file"
+                               value="Choose Game(.XML)"
+                               id = "insertGameFile"/>
+                               <!--multiple onchange="insertNewGame()"/>-->
+                        <input id="gameName" name="gameName"/>
+                        <input type = "submit" name="upload">
+                    </form>
+                </h2>
                 <ul>
-
                 </ul>
             </div>
             <!--current Games end-->
