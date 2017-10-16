@@ -4,9 +4,20 @@ function renderCurrentGames(games) {
     $("#gamesList").empty();
     $.each(games,(index,game) => {
         console.log(game);
-        $("#gamesList").append('<li id ="gamesItem" + index></li>');
+        $("#gamesList").append(
+                '<li>Game Name: ' +game.gameName+'</li>' +
+                '<li>Game Creator: ' +game.creator+'</li>' +
+                '<li>Board Size: ' +game.boardSize+'</li>' +
+                '<li>Game Type: ' +game.gameStyle+'</li>' +
+                '<li>Players Connected: ' +game.otherPlayerInGame+'</li>' +
+                '<li><button onclick="enterGame('+game.gameName+')">Enter</button></li>'
+        );
         $('#gamesItem' + index).append('<h3> + Game Name: ' +game.gameName+'</h3>')
     })
+}
+
+function enterGame(gameName) {
+    console.log(gameName);
 }
 
 function renderLoggedinUsers(users) {
@@ -25,33 +36,6 @@ function renderGamesAndUsers(data){
     }
 }
 
-function gameLoadError(data) {
-
-}
-
-function gameLoadSuccess(data) {
-
-}
-/*
-function insertNewGame() {
-    var selectedFile = document.getElementById('insertGameBtn').files[0];
-    console.log(selectedFile);
-    var reader = new FileReader();
-    reader.onload = (function(theFile) {
-        return function(e) {
-            $.ajax({
-                url: `http://localhost:8080/AddGameServlet`,
-                type: "POST",
-                data: { "xmlPath":e},
-                success:(data) => gameLoadSuccess(data) ,
-                error: (data) => gameLoadError(data)
-            })
-        }
-    });
-    reader.readAsText(selectedFile);
-
-}
-*/
 function userLoggedOut(data) {
     console.log(data);
     if (data !== "null") {
@@ -68,31 +52,15 @@ function printXmlError(data) {
         console.log(message);
         console.log(message.XMLValidityMsg);
         if(message.XMLValidityMsg !== undefined) {
+            $("#XmlErrMsg").css({'color':'red'});
             document.getElementById("XmlErrMsg").innerText = message.XMLValidityMsg;
+        } else{
+            $("#XmlErrMsg").css({'color':'green'});
+            document.getElementById("XmlErrMsg").innerText = "Game Loaded Successfully";
         }
     }
 }
 
-/*
-function asyncFileVerifyer(){
-    const intervalId = setInterval(()=>{
-        $.ajax({
-            url:'http://localhost:8080/AddGameServlet',
-            type:"POST",
-            data: { fileProcessor:"true" },
-            success: function (data) {
-                console.log(data);
-                if (data !== "null") {
-                    const fileValidityFlags = JSON.parse(data);
-                    console.log(fileValidityFlags);
-                }
-                clearInterval(intervalId);
-            },
-            error: error => console.log(error)
-        })
-    },INTERVAL_TIME)
-}
-*/
 $(document).ready(
     ()=>{
         setInterval(()=>{

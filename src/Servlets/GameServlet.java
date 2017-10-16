@@ -75,15 +75,15 @@ public class GameServlet extends HttpServlet {
         String creator;
         int boardSize;
         String gameStyle;
-        int isOtherPlayerInGame;
+        int otherPlayerInGame;
         Boolean isGameFullyOccupied;
 
         public SingleGameDetails(Game game) {
             gameName = game.getName();
             creator = game.getCreator().getName();
             boardSize = game.getLogic().getBoardSize();
-            gameStyle = null; //TODO!!!!!!!!!!!!!
-            isOtherPlayerInGame = game.getCurrentlyPlaying().size();
+            gameStyle = ""; //TODO!!!!!!!!!!!!!
+            otherPlayerInGame = game.getCurrentlyPlaying().size();
             isGameFullyOccupied = game.getIsFull();
         }
     }
