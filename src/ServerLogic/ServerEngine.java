@@ -201,7 +201,7 @@ public final class ServerEngine {
     }
 
     private static class XMLCheckReporter{
-        protected static Boolean isXMLFileInQueue = false;
-        protected static String XMLValidityMsg;
+        protected Boolean isXMLFileInQueue = false;
+        protected String XMLValidityMsg;
     }
 }

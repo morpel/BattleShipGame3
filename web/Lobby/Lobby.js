@@ -55,7 +55,7 @@ function userLoggedOut(data) {
         window.location.href = url.content;
     }
 }
-
+/*
 function asyncFileVerifyer(){
     const intervalId = setInterval(()=>{
         $.ajax({
@@ -74,19 +74,33 @@ function asyncFileVerifyer(){
         })
     },INTERVAL_TIME)
 }
-
+*/
 $(document).ready(
     ()=>{
         setInterval(()=>{
-            console.log("mememe");
+                $.ajax({
+                    url:'http://localhost:8080/CheckForXmlErrorsServlet',
+                    type:"POST",
+                    data: {},
+                    success: function (data) {
+                        console.log(data);
+                        if (data !== "null") {
+                            const fileValidityFlags = JSON.parse(data);
+                            console.log("file: " + fileValidityFlags);
+                        }
+                    },
+                    error: error => console.log(error)
+                })
+            },INTERVAL_TIME);
+        setInterval(()=>{
             $.ajax({
                 url: `http://localhost:8080/GameServlet`,
                 type: "POST",
                 data: {},
                 success:(data) => renderGamesAndUsers(data) ,
                 error: (data) => userLoggedOut(data)
-            })
-        },INTERVAL_TIME)
+            })}
+        ,INTERVAL_TIME);
     }
 );
 

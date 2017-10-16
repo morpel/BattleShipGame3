@@ -7,23 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2369abe8-fa71-43fd-9cf9-d298765fe980" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/ServerLogic/ServerEngine.class" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/ServerLogic/ServerEngine.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Servlets/CheckForXmlErrorsServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/AddGameServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/AddGameServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/GameServlet$GamesAndUsersList.class" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/GameServlet$GamesAndUsersList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/GameServlet$SingleGameDetails.class" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/GameServlet$SingleGameDetails.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/GameServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/classes/Servlets/GameServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/ServerLogic/ServerEngine.class" afterPath="$PROJECT_DIR$/out/production/BattleShipGame3/ServerLogic/ServerEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/AddGameServlet.class" afterPath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/AddGameServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet$GamesAndUsersList.class" afterPath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet$GamesAndUsersList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet$SingleGameDetails.class" afterPath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet$SingleGameDetails.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet.class" afterPath="$PROJECT_DIR$/out/production/BattleShipGame3/Servlets/GameServlet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Client/Login.js" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Client/Login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Lobby/Lobby.js" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Lobby/Lobby.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Lobby/lobby.html" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Lobby/lobby.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerLogic/ServerEngine.java" afterPath="$PROJECT_DIR$/src/ServerLogic/ServerEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Servlets/AddGameServlet.java" afterPath="$PROJECT_DIR$/src/Servlets/AddGameServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Servlets/GameServlet.java" afterPath="$PROJECT_DIR$/src/Servlets/GameServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Lobby/Lobby.js" afterPath="$PROJECT_DIR$/web/Lobby/Lobby.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Lobby/lobby.html" afterPath="$PROJECT_DIR$/web/Lobby/lobby.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AddGameServlet.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java">
+      <file leaf-file-name="CheckForXmlErrorsServlet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Servlets/CheckForXmlErrorsServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="172">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,11 +42,41 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Gson.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../gson-master/gson-2.1.jar!/com/google/gson/Gson.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="256" column="0" lean-forward="false" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LogoutServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Servlets/LogoutServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="560">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lobby.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Lobby/Lobby.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="88" column="35" lean-forward="true" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="860">
+              <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -60,8 +85,8 @@
       <file leaf-file-name="GameServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Servlets/GameServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="198">
+              <caret line="80" column="45" lean-forward="true" selection-start-line="80" selection-start-column="45" selection-end-line="80" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -70,18 +95,8 @@
       <file leaf-file-name="lobby.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Lobby/lobby.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="41" column="81" lean-forward="true" selection-start-line="41" selection-start-column="81" selection-end-line="41" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+            <state relative-caret-position="320">
+              <caret line="41" column="60" lean-forward="false" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -90,10 +105,9 @@
       <file leaf-file-name="ServerEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerLogic/ServerEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+            <state relative-caret-position="57">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
-                <element signature="e#944#945#0" expanded="true" />
                 <element signature="e#983#984#0" expanded="true" />
                 <element signature="e#1433#1434#0" expanded="true" />
                 <element signature="e#1489#1490#0" expanded="true" />
@@ -104,22 +118,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lobby.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Lobby/Lobby.css">
+      <file leaf-file-name="GameLogic.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/GameLogic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
-              <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lobby.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/Lobby/Lobby.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="80" column="34" lean-forward="false" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="68">
+              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding>
+                <element signature="e#2177#2178#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,8 +133,8 @@
       <file leaf-file-name="Login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Client/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+            <state relative-caret-position="0">
+              <caret line="0" column="52" lean-forward="false" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -147,6 +153,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>PlayerMa</find>
+      <find>Check</find>
       <find>addGameSer</find>
     </findStrings>
   </component>
@@ -166,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java" />
         <option value="$PROJECT_DIR$/src/Servlets/PlayerSatMineServlet.java" />
         <option value="$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/utils/ServletUtils.java" />
         <option value="$PROJECT_DIR$/web/Client/bs-config-local.json" />
         <option value="$PROJECT_DIR$/src/utils/Constants.java" />
@@ -178,11 +184,14 @@
         <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/web/Lobby/Lobby.css" />
         <option value="$PROJECT_DIR$/src/Servlets/LogoutServlet.java" />
-        <option value="$PROJECT_DIR$/web/Client/Login.js" />
         <option value="$PROJECT_DIR$/src/Servlets/GameServlet.java" />
+        <option value="$PROJECT_DIR$/src/Servlets/CheckForXmlErrorsSerlvlet.java" />
+        <option value="$PROJECT_DIR$/src/Servlets/AddGameServlet.java" />
+        <option value="$PROJECT_DIR$/web/Client/Login.js" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/Servlets/CheckForXmlErrorsServlet.java" />
         <option value="$PROJECT_DIR$/web/Lobby/lobby.html" />
         <option value="$PROJECT_DIR$/src/ServerLogic/ServerEngine.java" />
-        <option value="$PROJECT_DIR$/src/Servlets/AddGameServlet.java" />
         <option value="$PROJECT_DIR$/web/Lobby/Lobby.js" />
       </list>
     </option>
@@ -216,6 +225,20 @@
     <option name="width" value="1936" />
     <option name="height" value="1096" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Correctness</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -242,6 +265,40 @@
             <path>
               <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
               <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="BattleShipGame31_war_exploded" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BattleShipGame3" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BattleShipGame3" type="b2602c69:ProjectViewProjectNode" />
@@ -311,9 +368,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../gson-master/gson-2.1.jar!/" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="run/debug &#9;ACTION&#9;RunConfiguration" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -400,6 +458,7 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method>
+        <option name="Make" enabled="false" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="BattleShipGame31:war exploded" />
         </option>
@@ -551,6 +610,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2369abe8-fa71-43fd-9cf9-d298765fe980" name="Default" comment="" />
@@ -559,12 +621,21 @@
       <option name="presentableId" value="Default" />
       <updated>1507824997435</updated>
       <workItem from="1507825045749" duration="5621000" />
-      <workItem from="1507974330644" duration="62097000" />
+      <workItem from="1507974330644" duration="66996000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68708000" />
+    <option name="totallyTimeSpent" value="73607000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -580,7 +651,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2957265" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43418804" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16752137" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -588,10 +659,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24273504" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06495727" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22919819" sideWeight="0.5018248" order="4" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13993949" sideWeight="0.49817517" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6786325" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5709402" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22919819" sideWeight="0.4957265" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22919819" sideWeight="0.50427353" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32478634" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26096824" sideWeight="0.50598294" order="3" side_tool="true" content_ui="tabs" />
@@ -647,7 +718,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/Lobby/Lobby.js</url>
-          <line>97</line>
+          <line>111</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
@@ -676,19 +747,19 @@
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java</url>
-          <line>39</line>
+          <url>file://$PROJECT_DIR$/src/Servlets/CheckForXmlErrorsServlet.java</url>
+          <line>24</line>
           <properties />
-          <option name="timeStamp" value="55" />
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java</url>
-          <line>34</line>
+          <url>file://$PROJECT_DIR$/src/Servlets/GameServlet.java</url>
+          <line>83</line>
           <properties />
-          <option name="timeStamp" value="57" />
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="58" />
+      <option name="time" value="63" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
@@ -698,18 +769,12 @@
         <watch expression="serverEngine" language="JAVA" />
         <watch expression="serverEngine.getXMLValidityMsg()" language="JAVA" />
         <watch expression="serverEngine.getIsXMLFileInQueue()" language="JAVA" />
+        <watch expression="ErrJson.value" />
+        <watch expression="serverEngine.getXmlCheckReporter()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../gson-master/gson-2.1.jar!/com/google/gson/Gson.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/FxIconLabelWrapper.java" />
     <entry file="jar://$PROJECT_DIR$/../gson-master/gson-2.1-sources.jar!/com/google/gson/Gson.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2614">
@@ -743,6 +808,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -776,13 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/GameLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="137" column="29" lean-forward="false" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/Online Chat V2/chatWebApp/src/chat/servlets/ChatServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -802,6 +861,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -926,19 +986,11 @@
         <state relative-caret-position="40">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="e#87#88#0" expanded="true" />
-            <element signature="e#117#118#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-            <element signature="e#191#192#0" expanded="true" />
+            <element signature="e#87#88#0" expanded="false" />
+            <element signature="e#117#118#0" expanded="false" />
+            <element signature="e#155#156#0" expanded="false" />
+            <element signature="e#191#192#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -963,8 +1015,8 @@
         <state relative-caret-position="274">
           <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
           <folding>
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="false" />
+            <element signature="e#588#589#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -974,8 +1026,8 @@
         <state relative-caret-position="119">
           <caret line="510" column="18" lean-forward="false" selection-start-line="510" selection-start-column="18" selection-end-line="510" selection-end-column="18" />
           <folding>
-            <element signature="e#21135#21136#0" expanded="true" />
-            <element signature="e#21162#21163#0" expanded="true" />
+            <element signature="e#21135#21136#0" expanded="false" />
+            <element signature="e#21162#21163#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -998,57 +1050,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/LogoutServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Client/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/GameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerLogic/ServerEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-          <folding>
-            <element signature="e#944#945#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1433#1434#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#6052#6053#0" expanded="true" />
-            <element signature="e#6094#6095#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/net/DualStackPlainSocketImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="282" column="22" lean-forward="false" selection-start-line="282" selection-start-column="22" selection-end-line="282" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1061,26 +1066,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/net/DualStackPlainSocketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="282" column="22" lean-forward="false" selection-start-line="282" selection-start-column="22" selection-end-line="282" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/LogoutServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/GameLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding>
+            <element signature="e#2177#2178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/GameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="80" column="45" lean-forward="true" selection-start-line="80" selection-start-column="45" selection-end-line="80" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/Lobby/lobby.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="41" column="81" lean-forward="true" selection-start-line="41" selection-start-column="81" selection-end-line="41" selection-end-column="81" />
+        <state relative-caret-position="320">
+          <caret line="41" column="60" lean-forward="false" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../gson-master/gson-2.1.jar!/com/google/gson/Gson.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="256" column="0" lean-forward="false" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerLogic/ServerEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1433#1434#0" expanded="true" />
+            <element signature="e#1489#1490#0" expanded="true" />
+            <element signature="e#6052#6053#0" expanded="true" />
+            <element signature="e#6094#6095#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Client/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="52" lean-forward="false" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Lobby/Lobby.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="80" column="34" lean-forward="false" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
+        <state relative-caret-position="360">
+          <caret line="88" column="35" lean-forward="true" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/AddGameServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/Servlets/CheckForXmlErrorsServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="172">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
