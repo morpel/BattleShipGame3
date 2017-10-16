@@ -1,7 +1,12 @@
 const INTERVAL_TIME = 2000;
 
 function renderCurrentGames(games) {
-    
+    $("#gamesList").empty();
+    $.each(games,(index,game) => {
+        console.log(game);
+        $("#gamesList").append('<li id ="gamesItem" + index></li>');
+        $('#gamesItem' + index).append('<h3> + Game Name: ' +game.gameName+'</h3>')
+    })
 }
 
 function renderLoggedinUsers(users) {
@@ -55,6 +60,19 @@ function userLoggedOut(data) {
         window.location.href = url.content;
     }
 }
+
+function printXmlError(data) {
+    console.log(data);
+    if (data !== "null" && data!==undefined) {
+        const message = JSON.parse(data);
+        console.log(message);
+        console.log(message.XMLValidityMsg);
+        if(message.XMLValidityMsg !== undefined) {
+            document.getElementById("XmlErrMsg").innerText = message.XMLValidityMsg;
+        }
+    }
+}
+
 /*
 function asyncFileVerifyer(){
     const intervalId = setInterval(()=>{
@@ -82,13 +100,7 @@ $(document).ready(
                     url:'http://localhost:8080/CheckForXmlErrorsServlet',
                     type:"POST",
                     data: {},
-                    success: function (data) {
-                        console.log(data);
-                        if (data !== "null") {
-                            const fileValidityFlags = JSON.parse(data);
-                            console.log("file: " + fileValidityFlags);
-                        }
-                    },
+                    success: (data) => printXmlError(data),
                     error: error => console.log(error)
                 })
             },INTERVAL_TIME);

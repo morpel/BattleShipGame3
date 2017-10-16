@@ -1,7 +1,6 @@
 package Servlets;
 
 import ServerLogic.ServerEngine;
-import com.google.gson.Gson;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.nio.file.Path;
-import java.util.List;
 
 @WebServlet(name = "AddGameServlet")
 @MultipartConfig

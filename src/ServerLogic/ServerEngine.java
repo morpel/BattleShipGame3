@@ -98,6 +98,7 @@ public final class ServerEngine {
                 if (theCurrentGame.getLogic().checkGameInputs()) {
                     theCurrentGame.setIsXMLLoaded(true);
                     res = null;
+                    theCurrentGame.getLogic().initGameComponents();
                 } else {
                     res = "The inputs in the XML file are invalid, Load another XML file!";
                 }
