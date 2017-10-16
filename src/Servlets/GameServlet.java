@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
+import utils.Url;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 //Should run on startup and every 2 seconds
@@ -22,31 +24,45 @@ public class GameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
         String userName = SessionUtils.getUsername(req);
+        PrintWriter out = resp.getWriter();
+        Gson gson = new Gson();
         resp.setContentType("text/html;charset=UTF-8");
-        if (serverEngine.isPlayerLoggedIn(userName)){
+        Url GoToIndex = new Url(Constants.INDEX_URL);
+        String GoToIndexJson = gson.toJson(GoToIndex);
+
+        if (serverEngine.isPlayerLoggedIn(userName)) {
             //generate all games details
             List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
-            Gson gson = new Gson();
-            String GamesJson = gson.toJson(gamesDetails);
-            req.setAttribute(Constants.GAMES_DETAILS, GamesJson);
-
-            //generate all players list
             List<String> loggedInUsers = serverEngine.getUsersList();
-            String usersJson = gson.toJson(loggedInUsers);
-            req.setAttribute(Constants.USERS_LIST, usersJson);
-            getServletContext().getRequestDispatcher("/Lobby/lobby.html").forward(req, resp);
+//            String GamesListJson = gson.toJson(gamesDetails);
+//            String GamesListJson = gson.toJson(loggedInUsers);
+//            String GamesJson = gson.toJson(gamesDetails);
+            GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers);
+            String gamesAndUsersJson = gson.toJson(gamesAndUsers);
+            out.print(gamesAndUsersJson);
+            out.flush();
+            //generate all players list
+//            String usersJson = gson.toJson(loggedInUsers);
+
             //if above line doesnt work try do the same with req.getRe....
         } else {
             //Player is not logged in
-            resp.sendRedirect("index.html");
+            resp.setStatus(400);
+            out.print(GoToIndexJson);
+            out.flush();
         }
     }
 
-    private List<SingleGameDetails> getGameDetails(Map<String,Game> games){
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
+    private List<SingleGameDetails> getGameDetails(Map<String, Game> games) {
         List<SingleGameDetails> m_Details;
         m_Details = new ArrayList<>();
 
-        for (Game game : games.values()){
+        for (Game game : games.values()) {
             SingleGameDetails sgd = new SingleGameDetails(game);
             m_Details.add(sgd);
         }
@@ -54,7 +70,7 @@ public class GameServlet extends HttpServlet {
         return m_Details;
     }
 
-    private class SingleGameDetails{
+    private class SingleGameDetails {
         String gameName;
         String creator;
         int boardSize;
@@ -69,6 +85,16 @@ public class GameServlet extends HttpServlet {
             gameStyle = null; //TODO!!!!!!!!!!!!!
             isOtherPlayerInGame = game.getCurrentlyPlaying().size();
             isGameFullyOccupied = game.getIsFull();
+        }
+    }
+
+    private class GamesAndUsersList {
+        private List<SingleGameDetails> games;
+        private List<String> users;
+
+        public GamesAndUsersList(List<SingleGameDetails> gamesDetails, List<String> loggedInUsers) {
+            games = gamesDetails;
+            users = loggedInUsers;
         }
     }
 }

@@ -16,15 +16,41 @@ public final class ServerEngine {
     private static ServerEngine ServerEngineInstance = null;
     private static Map<String, Game> m_Games;
     private static Set<User> m_Users;
-
+    private static XMLCheckReporter xmlCheckReporter;
 
     public static ServerEngine getInstance() {
         if (ServerEngineInstance == null) {
             ServerEngineInstance = new ServerEngine();
             m_Games = new HashMap<>();
             m_Users = new HashSet<>();
+            xmlCheckReporter = new XMLCheckReporter();
         }
         return ServerEngineInstance;
+    }
+
+    public static XMLCheckReporter getXmlCheckReporter() {
+        return xmlCheckReporter;
+    }
+
+    public String getXMLValidityMsg() {
+        return xmlCheckReporter.XMLValidityMsg == null ? null : xmlCheckReporter.XMLValidityMsg;
+    }
+
+    public void setXMLValidityMsg(String i_XMLValidityMsg) {
+        if (i_XMLValidityMsg == null){
+            xmlCheckReporter.XMLValidityMsg = null;
+        } else{
+            xmlCheckReporter.XMLValidityMsg = new String(i_XMLValidityMsg);
+        }
+    }
+
+
+    public Boolean getIsXMLFileInQueue() {
+        return xmlCheckReporter.isXMLFileInQueue;
+    }
+
+    public void setIsXMLFileInQueue(Boolean i_IsXMLFileInQueue) {
+        xmlCheckReporter.isXMLFileInQueue = i_IsXMLFileInQueue;
     }
 
     public boolean isPlayerLoggedIn(String enteredName) {
@@ -168,5 +194,14 @@ public final class ServerEngine {
 
     public void deleteGame(String gameName) {
         m_Games.remove(gameName);
+    }
+
+    public void removeGame(String i_GameName) {
+        m_Games.remove(i_GameName);
+    }
+
+    private static class XMLCheckReporter{
+        protected static Boolean isXMLFileInQueue = false;
+        protected static String XMLValidityMsg;
     }
 }
