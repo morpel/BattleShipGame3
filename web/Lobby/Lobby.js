@@ -49,15 +49,17 @@ function insertNewGame() {
 */
 function userLoggedOut(data) {
     console.log(data);
-    const url = JSON.parse(data.responseText);
-    console.log(url.content);
-    window.location.href = url.content;
+    if (data !== "null") {
+        const url = JSON.parse(data.responseText);
+        console.log(url.content);
+        window.location.href = url.content;
+    }
 }
 
 function asyncFileVerifyer(){
     const intervalId = setInterval(()=>{
         $.ajax({
-            url:'http://localhost:8080/GameServlet',
+            url:'http://localhost:8080/AddGameServlet',
             type:"POST",
             data: { fileProcessor:"true" },
             success: function (data) {
@@ -76,6 +78,7 @@ function asyncFileVerifyer(){
 $(document).ready(
     ()=>{
         setInterval(()=>{
+            console.log("mememe");
             $.ajax({
                 url: `http://localhost:8080/GameServlet`,
                 type: "POST",

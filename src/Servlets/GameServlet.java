@@ -26,40 +26,30 @@ public class GameServlet extends HttpServlet {
         String userName = SessionUtils.getUsername(req);
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        String gameProc = req.getParameter("fileProcessor");
-        if (serverEngine.getIsXMLFileInQueue() && gameProc.equals("true")){
-            serverEngine.setIsXMLFileInQueue(false);
-            String ErrJson = gson.toJson(serverEngine.getXMLValidityMsg());
-            serverEngine.setXMLValidityMsg(null);
-            out.print(ErrJson);
-            out.flush();
-        }
-        else {
-            resp.setContentType("text/html;charset=UTF-8");
-            Url GoToIndex = new Url(Constants.INDEX_URL);
-            String GoToIndexJson = gson.toJson(GoToIndex);
+        resp.setContentType("text/html;charset=UTF-8");
+        Url GoToIndex = new Url(Constants.INDEX_URL);
+        String GoToIndexJson = gson.toJson(GoToIndex);
 
-            if (serverEngine.isPlayerLoggedIn(userName)) {
-                //generate all games details
-                List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
-                List<String> loggedInUsers = serverEngine.getUsersList();
+        if (serverEngine.isPlayerLoggedIn(userName)) {
+            //generate all games details
+            List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
+            List<String> loggedInUsers = serverEngine.getUsersList();
 //            String GamesListJson = gson.toJson(gamesDetails);
 //            String GamesListJson = gson.toJson(loggedInUsers);
 //            String GamesJson = gson.toJson(gamesDetails);
-                GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers);
-                String gamesAndUsersJson = gson.toJson(gamesAndUsers);
-                out.print(gamesAndUsersJson);
-                out.flush();
-                //generate all players list
+            GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers);
+            String gamesAndUsersJson = gson.toJson(gamesAndUsers);
+            out.print(gamesAndUsersJson);
+            out.flush();
+            //generate all players list
 //            String usersJson = gson.toJson(loggedInUsers);
 
-                //if above line doesnt work try do the same with req.getRe....
-            } else {
-                //Player is not logged in
-                resp.setStatus(400);
-                out.print(GoToIndexJson);
-                out.flush();
-            }
+            //if above line doesnt work try do the same with req.getRe....
+        } else {
+            //Player is not logged in
+            resp.setStatus(400);
+            out.print(GoToIndexJson);
+            out.flush();
         }
     }
 
@@ -68,11 +58,11 @@ public class GameServlet extends HttpServlet {
         doGet(req, resp);
     }
 
-    private List<SingleGameDetails> getGameDetails(Map<String,Game> games){
+    private List<SingleGameDetails> getGameDetails(Map<String, Game> games) {
         List<SingleGameDetails> m_Details;
         m_Details = new ArrayList<>();
 
-        for (Game game : games.values()){
+        for (Game game : games.values()) {
             SingleGameDetails sgd = new SingleGameDetails(game);
             m_Details.add(sgd);
         }
@@ -80,7 +70,7 @@ public class GameServlet extends HttpServlet {
         return m_Details;
     }
 
-    private class SingleGameDetails{
+    private class SingleGameDetails {
         String gameName;
         String creator;
         int boardSize;
