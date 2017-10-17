@@ -32,6 +32,7 @@
             <!--connected players end-->
             <!--current Games-->
             <div class="mdc-layout-grid--align-center mdc-layout-grid__cell--span-8">
+                <h1>Current Games</h1>
                 <h2>Enter your own game:
                     <form action="/AddGameServlet" method="POST" id="addGameForm" enctype="multipart/form-data">
                         <input type="file"
@@ -39,10 +40,11 @@
                                value="Choose Game(.XML)"
                                id = "insertGameFile"/>
                         game name:<input id="gameName" name="gameName"/>
-                        <input type = "submit" name="upload" onclick="asyncFileVerifyer()"/>
+                        <input type = "submit" name="upload"/>
                     </form>
                 </h2>
-                <ul>
+                <h4 id = "XmlErrMsg"></h4>
+                <ul id="gamesList">
                 </ul>
             </div>
             <!--current Games end-->
