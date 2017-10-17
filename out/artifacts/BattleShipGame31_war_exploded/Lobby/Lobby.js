@@ -5,14 +5,19 @@ function renderCurrentGames(games) {
     $.each(games,(index,game) => {
         console.log(game);
         $("#gamesList").append(
+            '<div id="game'+index+'">' +
                 '<li>Game Name: ' +game.gameName+'</li>' +
                 '<li>Game Creator: ' +game.creator+'</li>' +
                 '<li>Board Size: ' +game.boardSize+'</li>' +
                 '<li>Game Type: ' +game.gameStyle+'</li>' +
                 '<li>Players Connected: ' +game.otherPlayerInGame+'</li>' +
-                '<li><button onclick="enterGame('+game.gameName+')">Enter</button></li>'
+                '<li><button id="enterNum'+index+'">Enter</button></li>' +
+            '</div>'
         );
-        $('#gamesItem' + index).append('<h3> + Game Name: ' +game.gameName+'</h3>')
+        const btnId = "#enterNum"+index;
+        $(btnId).click(function(event) {
+            enterGame(game.gameName);
+        });
     })
 }
 
