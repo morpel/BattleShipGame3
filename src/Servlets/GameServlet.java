@@ -31,20 +31,12 @@ public class GameServlet extends HttpServlet {
         String GoToIndexJson = gson.toJson(GoToIndex);
 
         if (serverEngine.isPlayerLoggedIn(userName)) {
-            //generate all games details
             List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
             List<String> loggedInUsers = serverEngine.getUsersList();
-//            String GamesListJson = gson.toJson(gamesDetails);
-//            String GamesListJson = gson.toJson(loggedInUsers);
-//            String GamesJson = gson.toJson(gamesDetails);
             GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers);
             String gamesAndUsersJson = gson.toJson(gamesAndUsers);
             out.print(gamesAndUsersJson);
             out.flush();
-            //generate all players list
-//            String usersJson = gson.toJson(loggedInUsers);
-
-            //if above line doesnt work try do the same with req.getRe....
         } else {
             //Player is not logged in
             resp.setStatus(400);

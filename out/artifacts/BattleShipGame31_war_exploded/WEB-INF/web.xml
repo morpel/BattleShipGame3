@@ -39,6 +39,14 @@
         <servlet-name>CheckForXmlErrorsServlet</servlet-name>
         <servlet-class>Servlets.CheckForXmlErrorsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IsPlayerOwnGameServlet</servlet-name>
+        <servlet-class>Servlets.IsPlayerOwnGameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IsPlayerOwnGameServlet</servlet-name>
+        <url-pattern>/IsPlayerOwnGameServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckForXmlErrorsServlet</servlet-name>
         <url-pattern>/CheckForXmlErrorsServlet</url-pattern>

@@ -20,4 +20,5 @@ public class Constants {
     public static final String LOBBY_URL = "/Lobby/lobby.html";
     public static final String INDEX_URL = "/index.html";
     public static final String GAME_URL = "";
+    public static final String GAME_CREATOR = "creator";
 }
