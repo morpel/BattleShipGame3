@@ -144,11 +144,16 @@ public final class ServerEngine {
         return res;
     }
 
-    public void assignUserToGame(String userName, String gameName) {
+    public Boolean assignUserToGame(String userName, String gameName) {
         User user = getUser(userName);
         Game game = m_Games.get(gameName);
-        user.setCurrentGame(game);
-        game.addPlayer(user);
+        if(game == null || game.getIsFull()){
+            return false;
+        } else {
+            user.setCurrentGame(game);
+            game.addPlayer(user);
+            return true;
+        }
     }
 
     public Game getGame(String gameName) {
@@ -156,7 +161,6 @@ public final class ServerEngine {
     }
 
     public Cell.BoardObjects checkPlayerMove(String gameName, int row, int col) {
-        //User user = getUser(userName);
         Game game = m_Games.get(gameName);
         game.getLogic().getCurrentPlayer().getStats().stopClock();
         Point attackedPoint = new Point(col,row);

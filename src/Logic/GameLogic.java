@@ -106,7 +106,9 @@ public class GameLogic {
 
     public boolean initGameFromXML() throws FileNotFoundException, NotXMLFileException, JAXBException {
         FileInputStream inputStream = null;
-
+        if (!XMLPath.toString().contains(".xml")){
+            throw new NotXMLFileException();
+        }
         if (XMLPath!=null) {
             inputStream = new FileInputStream(XMLPath.toString());
             BSGameInputs = deserializeFrom(inputStream);

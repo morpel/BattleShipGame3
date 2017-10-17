@@ -21,8 +21,25 @@ function renderCurrentGames(games) {
     })
 }
 
-function enterGame(gameName) {
-    console.log(gameName);
+function enterGame(i_gameName) {
+    console.log("Entering game: "+i_gameName);
+    $.ajax({
+        url:'http://localhost:8080/EnterGameServlet',
+        type:"POST",
+        data: {gameName:i_gameName},
+        success: (data) =>{
+            console.log(data);
+            if (data !== "null") {
+                const url = JSON.parse(data.responseText);
+                console.log(url.content);
+                window.location.href = url.content;
+            }
+    },
+        error: error => {
+            console.log(error);
+            alert(error.responseText);
+        }
+    })
 }
 
 function renderLoggedinUsers(users) {
@@ -63,6 +80,9 @@ function printXmlError(data) {
             $("#XmlErrMsg").css({'color':'green'});
             document.getElementById("XmlErrMsg").innerText = "Game Loaded Successfully";
         }
+        setTimeout(()=>{
+            document.getElementById("XmlErrMsg").innerText = "";
+        },5000)
     }
 }
 

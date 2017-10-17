@@ -19,5 +19,5 @@ public class Constants {
     public static final String DELETE_GAME_ERROR = "deleteGameError";
     public static final String LOBBY_URL = "/Lobby/lobby.html";
     public static final String INDEX_URL = "/index.html";
-
+    public static final String GAME_URL = "";
 }
