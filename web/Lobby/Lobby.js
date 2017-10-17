@@ -1,13 +1,15 @@
 const INTERVAL_TIME = 2000;
 
 function removeGame(i_gameName) {
-/*    $.ajax({
+    $.ajax({
         url:'http://localhost:8080/DeleteGameServlet',
         type:"POST",
         data: {gameName:i_gameName},
-        success: (data) => {},
-        error: (error) => {reject(error)},
-    })*/
+        success: (data) => {
+            alert(data);
+        },
+        error: (error) => {console.log(error)},
+    })
 }
 
  function isPlayerOwnGame(i_gameName) {

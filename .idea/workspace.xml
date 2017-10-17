@@ -7,13 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2369abe8-fa71-43fd-9cf9-d298765fe980" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Servlets/IsPlayerOwnGameServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Lobby/Lobby.js" afterPath="$PROJECT_DIR$/out/artifacts/BattleShipGame31_war_exploded/Lobby/Lobby.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Servlets/GameServlet.java" afterPath="$PROJECT_DIR$/src/Servlets/GameServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Constants.java" afterPath="$PROJECT_DIR$/src/utils/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java" afterPath="$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/Lobby/Lobby.js" afterPath="$PROJECT_DIR$/web/Lobby/Lobby.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Lobby.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Lobby.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Lobby/Lobby.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="60">
+              <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -47,11 +42,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LogoutServlet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Servlets/LogoutServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Client/Login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeleteGameServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -77,19 +92,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameLogic.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/GameLogic.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="109" column="44" lean-forward="false" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="44" />
-              <folding>
-                <element signature="e#2132#2133#0" expanded="true" />
-                <element signature="e#2177#2178#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ServerEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerLogic/ServerEngine.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -111,16 +113,6 @@
               <folding>
                 <element signature="e#779#780#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NotXMLFileException.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/NotXMLFileException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -167,7 +159,6 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java" />
         <option value="$PROJECT_DIR$/src/Servlets/PlayerSatMineServlet.java" />
-        <option value="$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java" />
         <option value="$PROJECT_DIR$/src/utils/ServletUtils.java" />
         <option value="$PROJECT_DIR$/web/Client/bs-config-local.json" />
         <option value="$PROJECT_DIR$/web/Client/Client.css" />
@@ -190,6 +181,7 @@
         <option value="$PROJECT_DIR$/src/Servlets/GameServlet.java" />
         <option value="$PROJECT_DIR$/src/Servlets/IsPlayerOwnGameServlet.java" />
         <option value="$PROJECT_DIR$/web/Client/Login.js" />
+        <option value="$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java" />
         <option value="$PROJECT_DIR$/web/Lobby/Lobby.js" />
       </list>
     </option>
@@ -604,12 +596,12 @@
       <option name="presentableId" value="Default" />
       <updated>1507824997435</updated>
       <workItem from="1507825045749" duration="5621000" />
-      <workItem from="1507974330644" duration="87272000" />
+      <workItem from="1507974330644" duration="87811000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93883000" />
+    <option name="totallyTimeSpent" value="94422000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -622,7 +614,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44273505" sideWeight="0.5060514" order="0" side_tool="true" content_ui="tabs" />
@@ -634,7 +625,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17264958" sideWeight="0.49394855" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6717949" sideWeight="0.49394855" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16752137" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -643,7 +634,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8888889" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6803419" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22919819" sideWeight="0.4957265" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22919819" sideWeight="0.50427353" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32478634" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -701,25 +692,25 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/Lobby/Lobby.js</url>
-          <line>158</line>
+          <line>160</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/Lobby/Lobby.js</url>
-          <line>103</line>
+          <line>105</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/Lobby/Lobby.js</url>
-          <line>41</line>
+          <line>43</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/Lobby/Lobby.js</url>
-          <line>49</line>
+          <line>51</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
@@ -827,14 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="28" column="58" lean-forward="true" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Servlets/PlayerMadeMoveServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -922,14 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="77" column="20" lean-forward="false" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Servlets/LogoutServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1122,6 +1097,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/DeleteGameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Servlets/IsPlayerOwnGameServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1142,8 +1125,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Lobby/Lobby.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="60">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Servlets/LogoutServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
