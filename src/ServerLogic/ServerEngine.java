@@ -205,6 +205,16 @@ public final class ServerEngine {
         m_Games.remove(i_GameName);
     }
 
+    public String[][] getUserShipsBoard(String userName) {
+        User user = getUser(userName);
+        return (user.getShipsBoard());
+    }
+
+    public String[][] getUserAttackingBoard(String userName) {
+        User user = getUser(userName);
+        return (user.getAttackingBoard());
+    }
+
     private static class XMLCheckReporter{
         protected Boolean isXMLFileInQueue = false;
         protected String XMLValidityMsg;
