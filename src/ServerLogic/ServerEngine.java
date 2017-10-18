@@ -268,6 +268,11 @@ public final class ServerEngine {
         }
     }
 
+    public boolean isUserCurrentPlayer(String userName, String gameName) {
+        Game game = getGame(gameName);
+        return game.getLogic().getCurrentPlayer().getName().equals(userName);
+    }
+
     private static class XMLCheckReporter{
         protected Boolean isXMLFileInQueue = false;
         protected String XMLValidityMsg;

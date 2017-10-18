@@ -52,6 +52,14 @@
         <servlet-name>BoardsInfoServlet</servlet-name>
         <servlet-class>Servlets.BoardsInfoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckIfIPlayServlet</servlet-name>
+        <servlet-class>Servlets.CheckIfIPlayServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckIfIPlayServlet</servlet-name>
+        <url-pattern>/CheckIfIPlayServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BoardsInfoServlet</servlet-name>
         <url-pattern>/BoardsInfoServlet</url-pattern>

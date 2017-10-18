@@ -22,7 +22,6 @@ function logoutUser(){
 
 function createCell(parentRow, row, col, content) {
     var newCell = parentRow.insertCell(col);
-    console.log(content);
     let prefix;
     if (parentRow.id === "sr"){
         prefix = "s";
@@ -102,6 +101,22 @@ function drawBoards(data) {
     }
 }
 
+function showOrHideScreen(data) {
+    if (data !== "true"){
+
+    }
+}
+
+function checkWhoIsPlaying() {
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/CheckIfIPlayServlet`,
+        data: {},
+        success: (data) => showOrHideScreen(data),
+        error: (data) => {console.log(data)}
+    });
+}
+
 $(document).ready(function () {
     $.ajax({
         type: 'POST',
@@ -109,5 +124,6 @@ $(document).ready(function () {
         data: {},
         success: (data) => drawBoards(data),
         error: (data) => {console.log(data)}
-    })
+    });
+    checkWhoIsPlaying();
 });
