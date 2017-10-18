@@ -240,6 +240,18 @@ public final class ServerEngine {
         return opponent;
     }
 
+    public void initGame(String gameName) {
+        Game game = getGame(gameName);
+        game.getLogic().initGameComponents();
+    }
+
+    public void detachUserFromGame(String userName, String gameName) {
+        User user = getUser(userName);
+        user.setCurrentGame(null);
+        Game game = getGame(gameName);
+        game.removePlayer(user);
+    }
+
     private static class XMLCheckReporter{
         protected Boolean isXMLFileInQueue = false;
         protected String XMLValidityMsg;

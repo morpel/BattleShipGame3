@@ -49,4 +49,9 @@ public class Game {
     public void setIsXMLLoaded(boolean i_IsXMLLoaded) {
         isXMLLoaded = i_IsXMLLoaded;
     }
+
+    public void removePlayer(User user) {
+        currentlyPlaying.remove(user);
+        isFull = currentlyPlaying.size() == 2;
+    }
 }
