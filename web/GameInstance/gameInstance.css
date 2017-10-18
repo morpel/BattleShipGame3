@@ -64,3 +64,19 @@ span{
     border-collapse:collapse;
     border:1px solid #7f7f7f;
 }
+
+.noHit{
+    background-color: red;
+}
+
+.shipHit{
+    background-color: green;
+}
+
+.sea{
+    background-color: midnightblue;
+}
+
+.myShip{
+    background-color: yellow;
+}

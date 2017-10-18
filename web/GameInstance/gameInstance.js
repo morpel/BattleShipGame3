@@ -22,7 +22,7 @@ function logoutUser(){
 
 function createCell(parentRow, row, col, content) {
     var newCell = parentRow.insertCell(col);
-    newCell.innerHTML = content;
+    console.log(content);
     let prefix;
     if (parentRow.id === "sr"){
         prefix = "s";
@@ -30,7 +30,17 @@ function createCell(parentRow, row, col, content) {
         prefix = "a";
     }
     newCell.id = prefix + row +","+col;
-    newCell.classList.add("cell");
+    switch(content){
+        case(null):{
+            newCell.className = "sea cell"
+            break;
+        } case("#"): {
+        newCell.className = "myShip cell"
+        break;
+        } default:{
+            console.log("I cant understand what u hit " + content );
+        }
+    }
     return newCell;
 }
 
@@ -40,20 +50,37 @@ function hendelHitResult(hitResJson) {
     console.log(cellId);
     let cell = document.getElementById(cellId);
     console.log(hitRes);
-    cell.innerHTML = hitRes.sign;
+    switch(hitRes.hitResult){
+        case("none"):{
+            cell.className = "noHit cell"
+            // cell.classList.add("noHit");
+            console.log(cell.classList);
+            break;
+        } case("ship" || "mine"): {
+        cell.className = "shipHit cell"
+        // cell.classList.add("shipHit");
+            break;
+        } default:{
+            console.log("I cant understand what u hit");
+        }
+    }
+    cell.removeEventListener("click",cellClickEvent);
 }
 
 function addOnClickEvents(attackingCell) {
-    attackingCell.onclick = (e)=>{
-            console.log(e.srcElement.id);
-            $.ajax({
-                type: 'POST',
-                url: `http://localhost:8080/PlayerMadeMoveServlet`,
-                data: {point:e.srcElement.id},
-                success: (data) => {hendelHitResult(data)},
-                error: (data) => {console.log(data)}
-            })
-    }
+    attackingCell.onclick = cellClickEvent;
+}
+
+function cellClickEvent(e){
+        e = e || window.event;
+        console.log(e.srcElement.id);
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:8080/PlayerMadeMoveServlet`,
+            data: {point:e.srcElement.id},
+            success: (data) => {hendelHitResult(data)},
+            error: (data) => {console.log(data)}
+        })
 }
 
 function drawBoards(data) {
@@ -68,7 +95,7 @@ function drawBoards(data) {
         var attackingRow = attackingTable.insertRow(i);
         attackingRow.id = "ar"
         for (var j=0;j<boardSize;j++){
-            createCell(shipsRow,i,j,processedData.ships[i][j]);
+            let shipCell = createCell(shipsRow,i,j,processedData.ships[i][j]);
             let attackingCell = createCell(attackingRow,i,j,processedData.attacking[i][j]);
             addOnClickEvents(attackingCell);
         }
