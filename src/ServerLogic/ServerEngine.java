@@ -3,6 +3,7 @@ package ServerLogic;
 import Logic.Cell;
 import Logic.InvalidXMLInputsException;
 import Logic.NotXMLFileException;
+import Logic.Player;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
@@ -168,6 +169,7 @@ public final class ServerEngine {
         if (!hitResult.equals(Cell.BoardObjects.ship)) {
             game.getLogic().switchPlayers();
         }
+        game.getLogic().getCurrentPlayer().getStats().startClock();
 
         return hitResult;
     }
@@ -213,6 +215,29 @@ public final class ServerEngine {
     public String[][] getUserAttackingBoard(String userName) {
         User user = getUser(userName);
         return (user.getAttackingBoard());
+    }
+
+    public Player.Stats getUserStats(String userName) {
+        User user = getUser(userName);
+        return user.getCurrentGameStats();
+    }
+
+    public int getOpponentScore(String userName){
+        return getOpponent(userName).getStats().getScore();
+    }
+
+    public Player getOpponent(String userName) {
+        User user = getUser(userName);
+        Player me = user.getCurrentGame().getLogic().getPlayerByName(userName);
+        Player opponent;
+        if(user.getCurrentGame().getLogic().getPlayers()[0].equals(me)){
+            opponent = user.getCurrentGame().getLogic().getPlayers()[0];
+        }
+        else{
+            opponent = user.getCurrentGame().getLogic().getPlayers()[1];
+        }
+
+        return opponent;
     }
 
     private static class XMLCheckReporter{

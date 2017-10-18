@@ -43,6 +43,24 @@
         <servlet-name>IsPlayerOwnGameServlet</servlet-name>
         <servlet-class>Servlets.IsPlayerOwnGameServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>GetStatsServlet</servlet-name>
+        <servlet-class>Servlets.GetStatsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BoardsInfoServlet</servlet-name>
+        <servlet-class>Servlets.BoardsInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BoardsInfoServlet</servlet-name>
+        <url-pattern>/BoardsInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetStatsServlet</servlet-name>
+        <url-pattern>/GetStatsServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>IsPlayerOwnGameServlet</servlet-name>
         <url-pattern>/IsPlayerOwnGameServlet</url-pattern>

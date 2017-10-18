@@ -41,6 +41,7 @@ public class Game {
     }
 
     public void addPlayer(User user) {
+        getLogic().getPlayers()[currentlyPlaying.size()].setName(user.getName());
         currentlyPlaying.add(user);
         isFull = currentlyPlaying.size() == 2;
     }

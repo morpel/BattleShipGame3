@@ -1,9 +1,10 @@
 package ServerLogic;
 
+import Logic.Player;
+
 public class User implements Comparable{
     private String name;
     private Game myCurrrentGame;
-    private Game currentGame;
 
     public User(String i_Name) {
         name = i_Name;
@@ -23,14 +24,18 @@ public class User implements Comparable{
     }
 
     public Game getCurrentGame() {
-        return currentGame;
+        return myCurrrentGame;
     }
 
     public String[][] getShipsBoard() {
-        return currentGame.getLogic().getCurrentPlayer().getMyShipBoard().getBoard();
+        return myCurrrentGame.getLogic().getPlayerByName(name).getMyShipBoard().getBoard();
     }
 
     public String[][] getAttackingBoard() {
-        return currentGame.getLogic().getCurrentPlayer().getMyAttackingBoard().getBoard();
+        return myCurrrentGame.getLogic().getPlayerByName(name).getMyAttackingBoard().getBoard();
+    }
+
+    public Player.Stats getCurrentGameStats() {
+        return myCurrrentGame.getLogic().getPlayerByName(name).getStats();
     }
 }

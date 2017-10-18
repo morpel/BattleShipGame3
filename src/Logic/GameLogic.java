@@ -332,4 +332,11 @@ public class GameLogic {
 //        TODO
         return true;
     }
+
+    public Player getPlayerByName(String name) {
+        if(players[0].getName().equals(name)){
+            return players[0];
+        }
+        return players[1];
+    }
 }
