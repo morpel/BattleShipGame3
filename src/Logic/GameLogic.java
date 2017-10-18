@@ -23,6 +23,7 @@ public class GameLogic {
     private ArrayList<PlayersBoard> shipBoardsHistory;
     private ArrayList<PlayersBoard> AttackingBoardsHistory;
     private ArrayList<String> PlayerNameHistory;
+    private String gameType;
 
     public void initGameComponents() {
         players = new Player[PLAYERS_AMOUNT];
@@ -41,11 +42,11 @@ public class GameLogic {
         AttackingBoardsHistory = new ArrayList<>();
         PlayerNameHistory = new ArrayList<>();
         gameStats.startWatch();
-        initHTMLSessions();
+        gameType = BSGameInputs.gameType;
     }
 
-    private void initHTMLSessions() {
-
+    public String getGameType() {
+        return gameType;
     }
 
     public boolean isGameLoaded() {
@@ -326,11 +327,6 @@ public class GameLogic {
         }
 
         return null;
-    }
-
-    public boolean checkIfPlayerExist(String enterdName) {
-//        TODO
-        return true;
     }
 
     public Player getPlayerByName(String name) {

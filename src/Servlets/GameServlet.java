@@ -74,7 +74,7 @@ public class GameServlet extends HttpServlet {
             gameName = game.getName();
             creator = game.getCreator().getName();
             boardSize = game.getLogic().getBoardSize();
-            gameStyle = ""; //TODO!!!!!!!!!!!!!
+            gameStyle = game.getLogic().getGameType();
             otherPlayerInGame = game.getCurrentlyPlaying().size();
             isGameFullyOccupied = game.getIsFull();
         }
