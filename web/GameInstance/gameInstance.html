@@ -1,0 +1,290 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>The Battleship Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,900" rel="stylesheet">
+    <link rel="stylesheet" href="/Client/node_modules/material-components-web/dist/material-components-web.css">
+    <link rel="stylesheet" href="/GameInstance/gameInstance.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="/Plugins/jquery-3.2.1.min.js"></script>
+    <script src="/Plugins/context-path-helper.js"></script>
+
+</head>
+<body>
+<div id="toolbar">
+    <span>The Battleship Game - Match
+            <input type="button"
+                   class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface"
+                   value="LogOut"
+                   id="logoutBtn"
+                   onclick="logoutUser()"/>
+    </span>
+</div>
+<div>
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner ">
+            <div class="mdc-layout-grid__cell-span-1"></div>
+            <div class="mdc-layout-grid__cell--span-5">
+            <div class="mdc-grid-list mdc-grid-list--tile-gutter-1">
+                <ul class="mdc-grid-list__tiles">
+                <li class="mdc-grid-tile">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                </li>
+                <li class="mdc-grid-tile">
+                    <div class="mdc-grid-tile__primary">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </div>
+                </li>
+                <li class="mdc-grid-tile">
+                    <div class="mdc-grid-tile__primary">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </div>
+                </li>
+                <li class="mdc-grid-tile">
+                    <div class="mdc-grid-tile__primary">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </div>
+                </li>
+                <li class="mdc-grid-tile">
+                    <div class="mdc-grid-tile__primary">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </div>
+                </li>
+            </ul>
+                <ul class="mdc-grid-list__tiles">
+                    <li class="mdc-grid-tile">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mdc-grid-list__tiles">
+                    <li class="mdc-grid-tile">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mdc-grid-list__tiles">
+                    <li class="mdc-grid-tile">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mdc-grid-list__tiles">
+                    <li class="mdc-grid-tile">
+                        <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                    <li class="mdc-grid-tile">
+                        <div class="mdc-grid-tile__primary">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            <div class="mdc-layout-grid__cell-span-1"></div>
+            <div class="mdc-layout-grid__cell--span-5">
+                <div class="mdc-grid-list mdc-grid-list--tile-gutter-1">
+                    <ul class="mdc-grid-list__tiles">
+                        <li class="mdc-grid-tile">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mdc-grid-list__tiles">
+                        <li class="mdc-grid-tile">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mdc-grid-list__tiles">
+                        <li class="mdc-grid-tile">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mdc-grid-list__tiles">
+                        <li class="mdc-grid-tile">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="mdc-grid-list__tiles">
+                        <li class="mdc-grid-tile">
+                            <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                        <li class="mdc-grid-tile">
+                            <div class="mdc-grid-tile__primary">
+                                <img class="mdc-grid-tile__primary-content" src="/Client/Resources/m1.jpg"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
