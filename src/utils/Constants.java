@@ -5,6 +5,7 @@ public class Constants {
     public static final String USER_NAME_ERROR = "userNameError";
     public static final String ROW = "row";
     public static final String COLUMN = "col";
+    public static final String POINT = "point";
     public static final String GAME_NAME = "gameName";
     public static final String GAME_NAME_ERROR_MSG = "gameNameError";
     public static final String XML_PATH = "xmlPath";
@@ -19,6 +20,6 @@ public class Constants {
     public static final String DELETE_GAME_ERROR = "deleteGameError";
     public static final String LOBBY_URL = "/Lobby/lobby.html";
     public static final String INDEX_URL = "/index.html";
-    public static final String GAME_URL = "";
+    public static final String GAME_URL = "/GameInstance/gameInstance.html";
     public static final String GAME_CREATOR = "creator";
 }

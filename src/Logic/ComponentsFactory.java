@@ -9,6 +9,8 @@ public class ComponentsFactory {
         while (currShipType.compareTo(shipTypesInGame.shipType.get(index).id) != 0) {
             index++;
         }
+        pos.x = pos.x-1;
+        pos.y = pos.y-1;
         if (shipTypesInGame.shipType.get(index).category.equals("L_SHAPE"))
             return new LShip(directionStr, pos, shipTypesInGame.shipType.get(index).length, shipTypesInGame.shipType.get(index).score);
         else

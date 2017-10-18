@@ -1,54 +1,4 @@
 const INTERVAL_TIME = 2000;
-const NumOfProfilePics = 3;
-const profilePicsKind = ".svg"
-function renderCurrentGames(games) {
-    $("#gamesList").empty();
-    $.each(games,(index,game) => {
-        console.log(game);
-        $("#gamesList").append(
-            '<div id="game'+index+'">' +
-                '<li>Game Name: ' +game.gameName+'</li>' +
-                '<li>Game Creator: ' +game.creator+'</li>' +
-                '<li>Board Size: ' +game.boardSize+'</li>' +
-                '<li>Game Type: ' +game.gameStyle+'</li>' +
-                '<li>Players Connected: ' +game.otherPlayerInGame+'</li>' +
-                '<li><button id="enterNum'+index+'">Enter</button></li>' +
-            '</div>'
-        );
-        const btnId = "#enterNum"+index;
-        $(btnId).click(function(event) {
-            enterGame(game.gameName);
-        });
-    })
-}
-
-function enterGame(gameName) {
-    console.log(gameName);
-}
-
-function randProfilePic(){
-    let profilePicPath = "../Client/Resources/animal";
-    const randIndex = Math.floor(Math.random()*NumOfProfilePics + 1);
-    profilePicPath=profilePicPath.concat(randIndex).concat(profilePicsKind);
-    return profilePicPath;
-}
-function renderLoggedinUsers(users) {
-    $("#usersList").empty();
-    let profilePicPath = randProfilePic();
-    $.each(users,(index,user) => {
-        $("#usersList").append(`<li class="mdc-list-item"><img class="mdc-list-item__start-detail profilePic" src=${profilePicPath}> <h2 class="bold">${user.toLocaleUpperCase()}</h2></li>`);
-        profilePicPath = randProfilePic();
-    })
-}
-
-function renderGamesAndUsers(data){
-    const gamesAndUsersObj = JSON.parse(data);
-    console.log(gamesAndUsersObj);
-    if (gamesAndUsersObj !== null && gamesAndUsersObj!==undefined){
-        renderCurrentGames(gamesAndUsersObj.games);
-        renderLoggedinUsers(gamesAndUsersObj.users);
-    }
-}
 
 function userLoggedOut(data) {
     console.log(data);
@@ -58,45 +8,6 @@ function userLoggedOut(data) {
         window.location.href = url.content;
     }
 }
-
-function printXmlError(data) {
-    console.log(data);
-    if (data !== "null" && data!==undefined) {
-        const message = JSON.parse(data);
-        console.log(message);
-        console.log(message.XMLValidityMsg);
-        if(message.XMLValidityMsg !== undefined) {
-            $("#XmlErrMsg").css({'color':'red'});
-            document.getElementById("XmlErrMsg").innerText = message.XMLValidityMsg;
-        } else{
-            $("#XmlErrMsg").css({'color':'green'});
-            document.getElementById("XmlErrMsg").innerText = "Game Loaded Successfully";
-        }
-    }
-}
-
-$(document).ready(
-    ()=>{
-        setInterval(()=>{
-                $.ajax({
-                    url:'http://localhost:8080/CheckForXmlErrorsServlet',
-                    type:"POST",
-                    data: {},
-                    success: (data) => printXmlError(data),
-                    error: error => console.log(error)
-                })
-            },INTERVAL_TIME);
-        setInterval(()=>{
-            $.ajax({
-                url: `http://localhost:8080/GameServlet`,
-                type: "POST",
-                data: {},
-                success:(data) => renderGamesAndUsers(data) ,
-                error: (data) => userLoggedOut(data)
-            })}
-        ,INTERVAL_TIME);
-    }
-);
 
 function logoutUser(){
     $.ajax({
@@ -109,21 +20,67 @@ function logoutUser(){
     event.preventDefault();
 }
 
-$(document).ready(function () {
-    $("#logoutBtn").onclick = function(event){
+function createCell(parentRow, row, col, content) {
+    var newCell = parentRow.insertCell(col);
+    newCell.innerHTML = content;
+    let prefix;
+    if (parentRow.id === "sr"){
+        prefix = "s";
+    } else{
+        prefix = "a";
+    }
+    newCell.id = prefix + row +","+col;
+    newCell.classList.add("cell");
+    return newCell;
+}
+
+function hendelHitResult(hitResJson) {
+    let hitRes = JSON.parse(hitResJson);
+    let cellId = "a"+hitRes.hitPoint.x + "," + hitRes.hitPoint.y;
+    console.log(cellId);
+    let cell = document.getElementById(cellId);
+    console.log(hitRes);
+    cell.innerHTML = hitRes.sign;
+}
+
+function addOnClickEvents(attackingCell) {
+    attackingCell.onclick = (e)=>{
+            console.log(e.srcElement.id);
             $.ajax({
                 type: 'POST',
-                url: `http://localhost:8080/LogoutServlet`,
-                data: {},
-                success: function (data) {
-                    if (data !== undefined && data !== null) {
-                        const url = JSON.parse(data);
-                        console.log(url.content);
-                        window.location.href = url.content;
-                    }
-                },
+                url: `http://localhost:8080/PlayerMadeMoveServlet`,
+                data: {point:e.srcElement.id},
+                success: (data) => {hendelHitResult(data)},
                 error: (data) => {console.log(data)}
-            });
-        event.preventDefault();
+            })
     }
+}
+
+function drawBoards(data) {
+    let processedData = JSON.parse(data);
+    var shipsTable = document.getElementById("shipsTable")//$("#shipsTable");
+    var attackingTable = document.getElementById("attackingTable");
+    let boardSize = processedData.boardSize;
+    console.log(processedData);
+    for (var i=0;i<boardSize;i++){
+        var shipsRow = shipsTable.insertRow(i);
+        shipsRow.id = "sr";
+        var attackingRow = attackingTable.insertRow(i);
+        attackingRow.id = "ar"
+        for (var j=0;j<boardSize;j++){
+            createCell(shipsRow,i,j,processedData.ships[i][j]);
+            let attackingCell = createCell(attackingRow,i,j,processedData.attacking[i][j]);
+            addOnClickEvents(attackingCell);
+        }
+    }
+}
+
+$(document).ready(function () {
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/BoardsInfoServlet`,
+        data: {},
+        success: (data) => drawBoards(data),
+        error: (data) => {console.log(data)}
+    })
 });

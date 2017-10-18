@@ -74,7 +74,7 @@ function enterGame(i_gameName) {
         success: (data) =>{
             console.log(data);
             if (data !== "null") {
-                const url = JSON.parse(data.responseText);
+                const url = JSON.parse(data);
                 console.log(url.content);
                 window.location.href = url.content;
             }

@@ -33,6 +33,7 @@ public class EnterGameServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         Boolean isPlayerEnteredGame = serverEngine.assignUserToGame(userName,gameName);
         if (isPlayerEnteredGame){
+            req.getSession(true).setAttribute(Constants.GAME_NAME, gameName);
             Url GoToGame = new Url(Constants.GAME_URL);
             String GoToGameJson = responseJson.toJson(GoToGame);
             out.print(GoToGameJson);

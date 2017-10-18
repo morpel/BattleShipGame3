@@ -161,10 +161,9 @@ public final class ServerEngine {
         return m_Games.get(gameName);
     }
 
-    public Cell.BoardObjects checkPlayerMove(String gameName, int row, int col) {
+    public Cell.BoardObjects checkPlayerMove(String gameName, Point attackedPoint) {
         Game game = m_Games.get(gameName);
         game.getLogic().getCurrentPlayer().getStats().stopClock();
-        Point attackedPoint = new Point(col,row);
         Cell.BoardObjects hitResult = game.getLogic().checkMove(attackedPoint);
         if (!hitResult.equals(Cell.BoardObjects.ship)) {
             game.getLogic().switchPlayers();
@@ -250,6 +249,23 @@ public final class ServerEngine {
         user.setCurrentGame(null);
         Game game = getGame(gameName);
         game.removePlayer(user);
+    }
+
+    public int getBoardSize(String gameName) {
+        return getGame(gameName).getLogic().getBoardSize();
+    }
+
+    public Point getPointFromString(String str) {
+        if(str!=null) {
+            str = str.substring(1);
+            String[] values = str.split(",");
+            int row = Integer.valueOf(values[0]);
+            int col = Integer.valueOf(values[1]);
+
+            return new Point(row, col);
+        } else{
+            return null;
+        }
     }
 
     private static class XMLCheckReporter{

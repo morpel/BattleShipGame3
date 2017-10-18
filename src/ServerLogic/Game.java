@@ -11,13 +11,14 @@ public class Game {
     private String gameName;
     private List<User> currentlyPlaying;
     private boolean isXMLLoaded = false;
-    private boolean isFull = false;
+    private boolean isFull;
 
     public Game(String i_GameName, User i_Creator) {
         gameLogic = new GameLogic();
         creator = i_Creator;
         gameName = i_GameName;
         currentlyPlaying = new ArrayList<>();
+        isFull = false;
     }
 
     public boolean getIsFull(){

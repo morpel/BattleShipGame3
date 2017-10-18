@@ -45,7 +45,7 @@ public class PlayersBoard {
     }
 
     public void insertToBoard(Cell cell) {
-        board[cell.getWhere().y-1][cell.getWhere().x-1] = cell.getSign();
+        board[cell.getWhere().y][cell.getWhere().x] = cell.getSign();
     }
 
     private void createBoard() {

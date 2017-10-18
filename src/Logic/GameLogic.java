@@ -150,7 +150,7 @@ public class GameLogic {
             currentPlayer.addNewMove(userMove,false,0);
             attackedPlayer.addNewHitInMyBoard(userMove,false);
         }
-        maintainHistory();
+//        maintainHistory();
         return res;
     }
 

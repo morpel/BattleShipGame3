@@ -20,12 +20,12 @@ public class BoardsInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
         String userName = SessionUtils.getUsername(req);
-        String gameName = req.getParameter(Constants.GAME_NAME);
+        String gameName = SessionUtils.getGameName(req);
 
         String[][] shipsBoard = serverEngine.getUserShipsBoard(userName);
         String[][] attackingBoard = serverEngine.getUserAttackingBoard(userName);
 
-        UserBoards userBoards = new UserBoards(attackingBoard,shipsBoard);
+        UserBoards userBoards = new UserBoards(attackingBoard,shipsBoard,serverEngine.getBoardSize(gameName));
 
         Gson gson = new Gson();
         String boardsJson = gson.toJson(userBoards);
@@ -38,10 +38,12 @@ public class BoardsInfoServlet extends HttpServlet {
     private class UserBoards {
         String[][] attacking;
         String[][] ships;
+        int boardSize;
 
-        public UserBoards(String[][] attacking, String[][] ships) {
+        public UserBoards(String[][] attacking, String[][] ships, int boardSize) {
             this.attacking = attacking;
             this.ships = ships;
+            this.boardSize = boardSize;
         }
     }
 

@@ -51,3 +51,16 @@ span{
 .mdc-grid-tile {
     --mdc-grid-list-tile-width: 100px;
 }
+
+.cell{
+    border:1px solid #7f7f7f;
+    width:50px;
+    height:50px;
+    text-align:center;
+}
+
+
+.playingBoard{
+    border-collapse:collapse;
+    border:1px solid #7f7f7f;
+}
