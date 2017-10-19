@@ -1,5 +1,5 @@
 const INTERVAL_TIME = 2000;
-
+let isPageBlocked;
 function userLoggedOut(data) {
     console.log(data);
     if (data !== "null") {
@@ -39,6 +39,12 @@ function createCell(parentRow, row, col, content) {
         } case("X"):{
             newCell.className = "noHit cell";
             break;
+        }case("V"):{
+            newCell.className = "shipHit cell";
+            break;
+        }case("M"):{
+            newCell.className = "mine cell";
+            break;
         }default:{
             console.log("I cant understand what u hit " + content );
         }
@@ -46,29 +52,36 @@ function createCell(parentRow, row, col, content) {
     return newCell;
 }
 
-function hendelHitResult(hitResJson) {
-    let hitRes = JSON.parse(hitResJson);
-    let cellId = "a"+hitRes.hitPoint.x + "," + hitRes.hitPoint.y;
-    console.log(cellId);
-    let cell = document.getElementById(cellId);
-    console.log(hitRes);
-    switch(hitRes.hitResult){
-        case("none"):{
-            cell.className = "noHit cell"
-            console.log(cell.classList);
-            break;
-        } case("ship" || "mine"): {
-        cell.className = "shipHit cell"
-            break;
-        } default:{
-            console.log("I cant understand what u hit");
+function hendelHitResult(hitResJson, prefix) {
+    if(hitResJson !== "null") {
+        let hitRes = JSON.parse(hitResJson);
+        let cellId = prefix + hitRes.hitPoint.x + "," + hitRes.hitPoint.y;
+        console.log(cellId);
+        let cell = document.getElementById(cellId);
+        console.log(hitRes);
+        switch (hitRes.hitResult) {
+            case("none"): {
+                cell.className = "noHit cell";
+                console.log(cell.classList);
+                break;
+            }
+            case("ship" || "mine"): {
+                cell.className = "shipHit cell";
+                break;
+            }
+            default: {
+                console.log("I cant understand what u hit");
+            }
         }
+        cell.removeEventListener("click", cellClickEvent);
+        // getBoardsInfo();
     }
-    cell.removeEventListener("click",cellClickEvent);
 }
 
 function addOnClickEvents(attackingCell) {
-    attackingCell.onclick = cellClickEvent;
+    if(attackingCell.classList.contains("sea")) {
+        attackingCell.onclick = cellClickEvent;
+    }
 }
 
 function cellClickEvent(e){
@@ -78,7 +91,7 @@ function cellClickEvent(e){
         type: 'POST',
         url: `http://localhost:8080/PlayerMadeMoveServlet`,
         data: {point:e.srcElement.id},
-        success: (data) => {hendelHitResult(data)},
+        success: (data) => {hendelHitResult(data,"a")},
         error: (data) => {console.log(data)}
     });
     checkWhoIsPlaying();
@@ -105,12 +118,20 @@ function drawBoards(data) {
 
 function showOrHideScreen(data) {
     if (data !== "true"){
-        console.log("covering");
-        $("#body").block({ css: { backgroundColor: '#f80', color: '#fff' },
-                            message: '<h3> The Other Player Makes A Move</h3>'});
+        if(!isPageBlocked) {
+            console.log("covering");
+            $("#body").block({
+                css: {backgroundColor: '#f80', color: '#fff'},
+                message: '<h3> The Other Player Makes A Move</h3>'
+            });
+            isPageBlocked = true;
+        }
     } else{
-        console.log("un-covering");
-        $("#body").unblock();
+        if(isPageBlocked) {
+            console.log("un-covering");
+            $("#body").unblock();
+            isPageBlocked = false;
+        }
     }
 }
 
@@ -124,7 +145,7 @@ function checkWhoIsPlaying() {
     });
 }
 
-$(document).ready(function () {
+function getBoardsInfo() {
     $.ajax({
         type: 'POST',
         url: `http://localhost:8080/BoardsInfoServlet`,
@@ -133,4 +154,21 @@ $(document).ready(function () {
         error: (data) => {console.log(data)}
     });
     checkWhoIsPlaying();
-});
+}
+
+$(document).ready(getBoardsInfo);
+
+$(document).ready(
+    setInterval( () => {
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/CheckForNewMovesServlet`,
+        data: {},
+        success: (data) => {
+            console.log("new hit on me: " + data);
+            hendelHitResult(data, "s")
+        },
+        error: (data) => {console.log(data)}
+    });
+    checkWhoIsPlaying();
+    },2000));

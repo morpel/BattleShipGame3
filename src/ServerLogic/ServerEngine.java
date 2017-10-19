@@ -4,6 +4,7 @@ import Logic.Cell;
 import Logic.InvalidXMLInputsException;
 import Logic.NotXMLFileException;
 import Logic.Player;
+import Servlets.PlayerMadeMoveServlet;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
@@ -230,10 +231,10 @@ public final class ServerEngine {
         Player me = user.getCurrentGame().getLogic().getPlayerByName(userName);
         Player opponent;
         if(user.getCurrentGame().getLogic().getPlayers()[0].equals(me)){
-            opponent = user.getCurrentGame().getLogic().getPlayers()[0];
+            opponent = user.getCurrentGame().getLogic().getPlayers()[1];
         }
         else{
-            opponent = user.getCurrentGame().getLogic().getPlayers()[1];
+            opponent = user.getCurrentGame().getLogic().getPlayers()[0];
         }
 
         return opponent;
@@ -271,6 +272,27 @@ public final class ServerEngine {
     public boolean isUserCurrentPlayer(String userName, String gameName) {
         Game game = getGame(gameName);
         return game.getLogic().getCurrentPlayer().getName().equals(userName);
+    }
+
+    public void updateOtherPlayer(String gameName, String username, PlayerMadeMoveServlet.MoveRes move) {
+        User otherUser = getUser(getOpponent(username).getName());
+        otherUser.newHitMade(move);
+
+    }
+
+    public boolean isNewMoveMade(String userName) {
+        User user = getUser(userName);
+        return user.getIsNewMoveMade();
+    }
+
+    public PlayerMadeMoveServlet.MoveRes getNewMoveForUser(String userName) {
+        User user = getUser(userName);
+        return user.getNewMove();
+    }
+
+    public void setIsNewMoveMadeForUser(String userName, boolean value) {
+        User user = getUser(userName);
+        user.setIsNewMoveMade(value);
     }
 
     private static class XMLCheckReporter{

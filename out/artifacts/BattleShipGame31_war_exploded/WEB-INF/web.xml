@@ -56,6 +56,14 @@
         <servlet-name>CheckIfIPlayServlet</servlet-name>
         <servlet-class>Servlets.CheckIfIPlayServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckForNewMovesServlet</servlet-name>
+        <servlet-class>Servlets.CheckForNewMovesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckForNewMovesServlet</servlet-name>
+        <url-pattern>/CheckForNewMovesServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckIfIPlayServlet</servlet-name>
         <url-pattern>/CheckIfIPlayServlet</url-pattern>

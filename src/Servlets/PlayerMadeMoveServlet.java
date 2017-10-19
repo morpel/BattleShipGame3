@@ -30,6 +30,7 @@ public class PlayerMadeMoveServlet extends HttpServlet{
         PrintWriter out = resp.getWriter();
         MoveRes moveRes = new MoveRes(hitResult,serverEngine.isGameEnded(gameName), attackingPoint, hitResult.sign());
         String moveResJson = gson.toJson(moveRes);
+        serverEngine.updateOtherPlayer(gameName,SessionUtils.getUsername(req),moveRes);
         out.print(moveResJson);
         out.flush();
     }
@@ -39,7 +40,7 @@ public class PlayerMadeMoveServlet extends HttpServlet{
         doGet(req, resp);
     }
 
-    private class MoveRes{
+    public class MoveRes{
         private Cell.BoardObjects hitResult;
         private Point hitPoint;
         private Boolean isGameEnded;

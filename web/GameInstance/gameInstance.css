@@ -81,6 +81,10 @@ span{
     background-color: yellow;
 }
 
+.mine{
+    background-color: grey;
+}
+
 .center {
     margin: auto;
     width: 90%;
