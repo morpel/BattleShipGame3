@@ -74,6 +74,7 @@ function hendelHitResult(hitResJson, prefix) {
             }
         }
         cell.removeEventListener("click", cellClickEvent);
+        // getBoardsInfo();
     }
 }
 
