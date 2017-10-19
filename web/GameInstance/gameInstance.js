@@ -1,15 +1,24 @@
 const INTERVAL_TIME = 2000;
 let isPageBlocked;
+let waitForOtherPlayerIntervalId;
+
 function userLoggedOut(data) {
     console.log(data);
     if (data !== "null") {
-        const url = JSON.parse(data.responseText);
+        const url = JSON.parse(data);
         console.log(url.content);
         window.location.href = url.content;
     }
 }
 
 function logoutUser(){
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/FinishGameServlet`,
+        data: {},
+        success: (data) => {console.log(data)},
+        error: (data) => {console.log(data)}
+    });
     $.ajax({
         type: 'POST',
         url: `http://localhost:8080/LogoutServlet`,
@@ -28,7 +37,7 @@ function createCell(parentRow, row, col, content) {
     } else{
         prefix = "a";
     }
-    newCell.id = prefix + row +","+col;
+    newCell.id = prefix + col +","+row;
     switch(content){
         case(null):{
             newCell.className = "sea cell";
@@ -73,7 +82,7 @@ function hendelHitResult(hitResJson, prefix) {
                 console.log("I cant understand what u hit");
             }
         }
-        cell.removeEventListener("click", cellClickEvent);
+        cell.removeEventListener("click", cellClickEvent,true);
     }
 }
 
@@ -83,8 +92,13 @@ function addOnClickEvents(attackingCell) {
     }
 }
 
-function cellClickEvent(e){
+let cellClickEvent = (e)=>{
     e = e || window.event;
+    let cellId = e.srcElement.id.split(",")[0] + "," + e.srcElement.id.split(",")[1];
+    console.log("!!!!!!!!!!!!!" + cellId);
+    let cell = document.getElementById(cellId);
+    let new_element = cell.cloneNode(true);
+    cell.parentNode.replaceChild(new_element, cell);
     console.log(e.srcElement.id);
     $.ajax({
         type: 'POST',
@@ -98,8 +112,10 @@ function cellClickEvent(e){
 
 function drawBoards(data) {
     let processedData = JSON.parse(data);
-    var shipsTable = document.getElementById("shipsTable")//$("#shipsTable");
+    var shipsTable = document.getElementById("shipsTable");
     var attackingTable = document.getElementById("attackingTable");
+    shipsTable.innerHTML = "";
+    attackingTable.innerHTML = "";
     let boardSize = processedData.boardSize;
     console.log(processedData);
     for (var i=0;i<boardSize;i++){
@@ -119,7 +135,7 @@ function showOrHideScreen(data) {
     if (data !== "true"){
         if(!isPageBlocked) {
             console.log("covering");
-            $("#body").block({
+            $("#cover").block({
                 css: {backgroundColor: '#f80', color: '#fff'},
                 message: '<h3> The Other Player Makes A Move</h3>'
             });
@@ -128,7 +144,7 @@ function showOrHideScreen(data) {
     } else{
         if(isPageBlocked) {
             console.log("un-covering");
-            $("#body").unblock();
+            $("#cover").unblock();
             isPageBlocked = false;
         }
     }
@@ -155,19 +171,98 @@ function getBoardsInfo() {
     checkWhoIsPlaying();
 }
 
-$(document).ready(getBoardsInfo);
-
-$(document).ready(
-    setInterval( () => {
+function getPlayerStats() {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/CheckForNewMovesServlet`,
+        url: `http://localhost:8080/GetStatsServlet`,
         data: {},
         success: (data) => {
-            console.log("new hit on me: " + data);
-            hendelHitResult(data, "s")
+            console.log("stats: " + data);
+            let stats = JSON.parse(data);
+            console.log(stats);
+            $("#playerScoreInput").text(stats.myScore);
+            $("#hitsCounterInput").text(stats.myHits);
+            $("#missCounterInput").text(stats.myMisses);
+            $("#minesLeftInput").text(stats.minesLeft);
+
+            $("#opponentScoreInput").text(stats.opponentScore);
+            $("#gameTypeInput").text(stats.gameType);
+            $("#avgMoveTimeInput").text(stats.avgMoveTime);
+            $("#shipsLeftInput").text(stats.shipsLeftToSink);
         },
         error: (data) => {console.log(data)}
     });
-    checkWhoIsPlaying();
-    },2000));
+}
+
+function initPage() {
+    getBoardsInfo();
+    getPlayerStats();
+    setInterval( () => {
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:8080/CheckForNewMovesServlet`,
+            data: {},
+            success: (data) => {
+                hendelHitResult(data, "s")
+            },
+            error: (data) => {console.log(data)}
+        });
+        checkWhoIsPlaying();
+        getPlayerStats();
+    },2000);
+}
+
+function checkIfOtherPlayerEntered(data) {
+    if (data !== "true"){
+        console.log("blocking");
+        if(isPageBlocked === false || isPageBlocked === undefined){
+            $("#cover").block({
+                css: {backgroundColor: '#f78', color: '#fff'},
+                message: '<h3> Waiting for other player to enter the game...</h3>'
+            });
+            isPageBlocked = true;
+        }
+    } else{
+        console.log("unblocking 1");
+        if(isPageBlocked === true || isPageBlocked === undefined){
+            console.log("unblocking 2");
+            $("#cover").unblock();
+            isPageBlocked = false;
+            clearInterval(waitForOtherPlayerIntervalId);
+            initPage();
+        }
+    }
+}
+
+$(document).ready(()=>{
+    isPageBlocked = undefined;
+    waitForOtherPlayerIntervalId = setInterval(()=>{
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:8080/WaitForOtherPlayerServlet`,
+            data: {},
+            success: (data) => {
+                console.log(data);
+                checkIfOtherPlayerEntered(data);
+            },
+            error: (data) => {console.log(data)}
+        });
+    },3000);
+});
+// $(document).ready(getBoardsInfo);
+// $(document).ready(getPlayerStats);
+// $(document).ready(
+//     setInterval( () => {
+//     $.ajax({
+//         type: 'POST',
+//         url: `http://localhost:8080/CheckForNewMovesServlet`,
+//         data: {},
+//         success: (data) => {
+//             console.log("new hit on me: " + data);
+//             hendelHitResult(data, "s")
+//         },
+//         error: (data) => {console.log(data)}
+//     });
+//     checkWhoIsPlaying();
+//     getPlayerStats();
+//     },2000));

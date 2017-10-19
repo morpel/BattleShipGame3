@@ -17,30 +17,54 @@
             <input type="button"
                    class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface"
                    value="LogOut"
-                   id="logoutBtn"
+                   id = "logoutBtn"
                    onclick="logoutUser()"/>
+            <input type="button"
+                   class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface"
+                   value="Exit Game"
+                   id="exitGameBtn"
+                   onclick="exitGame()"/>
     </span>
 </div>
 <div id = "cover">
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner ">
-            <div class="mdc-layout-grid__cell--span-5">
+            <div class="mdc-layout-grid__cell--span-6">
                 <div class="mdc-grid-list mdc-grid-list--tile-gutter-1">
                     <table class ="playingBoard center" id="shipsTable"></table>
                 </div>
             </div>
-            <div class="mdc-layout-grid__cell-span-1">
-                <button class="center mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface">Quit Game</button>
-            </div>
-            <div class="mdc-layout-grid__cell--span-5">
+            <div class="mdc-layout-grid__cell--span-6">
                 <div id="attackingGrid" class="mdc-grid-list mdc-grid-list--tile-gutter-1">
                     <table class ="playingBoard center" id="attackingTable"></table>
                 </div>
             </div>
-            <div class="mdc-layout-grid__cell-span-1"></div>
+            <div class="mdc-layout-grid__cell--span-3">
+                <h3 class = "center" id="playerScore">My Score: </h3>
+                <h3 class = "center" id="hitsCounter">Hits: </h3>
+                <h3 class = "center" id="missCounter">Misses: </h3>
+                <h3 class = "center" id="minesLeft">Mines Left: </h3>
+            </div>
+            <div class="mdc-layout-grid__cell--span-3">
+                <h3 class = "center" id="playerScoreInput"></h3>
+                <h3 class = "center" id="hitsCounterInput"></h3>
+                <h3 class = "center" id="missCounterInput"></h3>
+                <h3 class = "center" id="minesLeftInput"></h3>
+            </div>
+            <div class="mdc-layout-grid__cell--span-3">
+                <h3 class = "center" id="opponentScore">Enemy Score: </h3>
+                <h3 class = "center" id="gameType">Game Type: </h3>
+                <h3 class = "center" id="avgMoveTime">Avg Time: </h3>
+                <h3 class = "center" id="shipsLeft">Ships Left: </h3>
+            </div>
+            <div class="mdc-layout-grid__cell--span-3">
+                <h3 class = "center" id="opponentScoreInput"></h3>
+                <h3 class = "center" id="gameTypeInput"></h3>
+                <h3 class = "center" id="avgMoveTimeInput"></h3>
+                <h3 class = "center" id="shipsLeftInput"></h3>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>

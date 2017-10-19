@@ -295,6 +295,16 @@ public final class ServerEngine {
         user.setIsNewMoveMade(value);
     }
 
+    public Boolean isGameFull(String gameName) {
+        Game game = getGame(gameName);
+        return game.getIsFull();
+    }
+
+    public boolean isUserPlaysGame(String username, String gameName) {
+        User user = getUser(username);
+        return user.getCurrentGame()!=null;
+    }
+
     private static class XMLCheckReporter{
         protected Boolean isXMLFileInQueue = false;
         protected String XMLValidityMsg;

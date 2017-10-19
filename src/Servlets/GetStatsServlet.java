@@ -47,11 +47,11 @@ public class GetStatsServlet extends HttpServlet {
         public GameStats(ServerEngine serverEngine, String userName) {
             User user = serverEngine.getUser(userName);
             myScore = user.getCurrentGameStats().getScore();
+            myHits = user.getCurrentGameStats().getNumHits();
+            myMisses = user.getCurrentGameStats().getNumMiss();
+            minesLeft = user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
             opponentScore = serverEngine.getOpponentScore(userName);
             gameType = user.getCurrentGame().getLogic().getGameType();
-            myHits = user.getCurrentGameStats().getNumHits();
-            myHits = user.getCurrentGameStats().getNumMiss();
-            minesLeft = user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
             avgMoveTime = user.getCurrentGameStats().getAvgMovesTimeAsString();
             shipsLeftToSink = serverEngine.getOpponent(userName).getLShipsCount() + serverEngine.getOpponent(userName).getRegularShipsCount();
         }

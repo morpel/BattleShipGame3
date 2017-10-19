@@ -29,16 +29,12 @@ public class LogoutServlet extends HttpServlet {
 
         if (usernameFromSession != null) {
             System.out.println("Clearing session for " + usernameFromSession);
+            String gameName = SessionUtils.getGameName(req);
+            if (serverEngine.isUserPlaysGame(usernameFromSession,gameName)){
+                serverEngine.detachUserFromGame(usernameFromSession,gameName);
+            }
             serverEngine.removeUser(usernameFromSession);
             SessionUtils.clearSession(req);
-
-            /*
-            when sending redirect, tomcat has a shitty logic how to calculate the URL given, weather its relative or not
-            you can read about it here:
-            https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServletResponse.html#sendRedirect(java.lang.String)
-            the best way (IMO) is to fetch the context path dynamically and build the redirection from it and on
-            (from some reason this call works as well; response.sendRedirect("../../../index.html"); not sure why. the request uri is '/pages/chatroom/chat/logout')
-             */
             Gson gson = new Gson();
             Url GoToIndex = new Url(Constants.INDEX_URL);
             String GoToIndexJson = gson.toJson(GoToIndex);
@@ -46,7 +42,5 @@ public class LogoutServlet extends HttpServlet {
             out.print(GoToIndexJson);
             out.flush();
         }
-
-
     }
 }
