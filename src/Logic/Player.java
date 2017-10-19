@@ -144,6 +144,10 @@ public class Player {
         return minesLeft;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public class Stats {
 
         private int numHits;

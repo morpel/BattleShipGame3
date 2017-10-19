@@ -39,6 +39,48 @@
         <servlet-name>CheckForXmlErrorsServlet</servlet-name>
         <servlet-class>Servlets.CheckForXmlErrorsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IsPlayerOwnGameServlet</servlet-name>
+        <servlet-class>Servlets.IsPlayerOwnGameServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetStatsServlet</servlet-name>
+        <servlet-class>Servlets.GetStatsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BoardsInfoServlet</servlet-name>
+        <servlet-class>Servlets.BoardsInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckIfIPlayServlet</servlet-name>
+        <servlet-class>Servlets.CheckIfIPlayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckForNewMovesServlet</servlet-name>
+        <servlet-class>Servlets.CheckForNewMovesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckForNewMovesServlet</servlet-name>
+        <url-pattern>/CheckForNewMovesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckIfIPlayServlet</servlet-name>
+        <url-pattern>/CheckIfIPlayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BoardsInfoServlet</servlet-name>
+        <url-pattern>/BoardsInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetStatsServlet</servlet-name>
+        <url-pattern>/GetStatsServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>IsPlayerOwnGameServlet</servlet-name>
+        <url-pattern>/IsPlayerOwnGameServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckForXmlErrorsServlet</servlet-name>
         <url-pattern>/CheckForXmlErrorsServlet</url-pattern>

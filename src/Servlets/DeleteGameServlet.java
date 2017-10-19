@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "DeleteGameServlet")
 public class DeleteGameServlet extends HttpServlet{
@@ -18,20 +19,21 @@ public class DeleteGameServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
-        String userNameFromSession = SessionUtils.getUsername(req);
-        String gameName = (String)req.getAttribute(Constants.GAME_NAME);
-        if (serverEngine.isUserCreatedTheGame(gameName,userNameFromSession)){
-            if (serverEngine.isGameWithoutPlayers(gameName)){
-                serverEngine.deleteGame(gameName);
-                req.setAttribute(Constants.IS_DELETE_GAME_SUCCESS, true);
-            } else{
-                req.setAttribute(Constants.IS_DELETE_GAME_SUCCESS, false);
-                req.setAttribute(Constants.DELETE_GAME_ERROR, "You can't delete game with signed in users");
-            }
+        String gameName = req.getParameter(Constants.GAME_NAME);
+        PrintWriter out = resp.getWriter();
+        String msg;
+        if (serverEngine.isGameWithoutPlayers(gameName)){
+            serverEngine.deleteGame(gameName);
+            msg = "Game Deleted Successfully";
+        } else{
+            msg = "This Game Is Busy, You Can't Delete It";
         }
-        else{
-            req.setAttribute(Constants.IS_DELETE_GAME_SUCCESS, false);
-            req.setAttribute(Constants.DELETE_GAME_ERROR, "You cant delete a game you didn't create");
-        }
+        out.print(msg);
+        out.flush();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

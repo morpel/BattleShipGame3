@@ -23,6 +23,7 @@ public class GameLogic {
     private ArrayList<PlayersBoard> shipBoardsHistory;
     private ArrayList<PlayersBoard> AttackingBoardsHistory;
     private ArrayList<String> PlayerNameHistory;
+    private String gameType;
 
     public void initGameComponents() {
         players = new Player[PLAYERS_AMOUNT];
@@ -41,11 +42,11 @@ public class GameLogic {
         AttackingBoardsHistory = new ArrayList<>();
         PlayerNameHistory = new ArrayList<>();
         gameStats.startWatch();
-        initHTMLSessions();
+        gameType = BSGameInputs.gameType;
     }
 
-    private void initHTMLSessions() {
-
+    public String getGameType() {
+        return gameType;
     }
 
     public boolean isGameLoaded() {
@@ -106,7 +107,9 @@ public class GameLogic {
 
     public boolean initGameFromXML() throws FileNotFoundException, NotXMLFileException, JAXBException {
         FileInputStream inputStream = null;
-
+        if (!XMLPath.toString().contains(".xml")){
+            throw new NotXMLFileException();
+        }
         if (XMLPath!=null) {
             inputStream = new FileInputStream(XMLPath.toString());
             BSGameInputs = deserializeFrom(inputStream);
@@ -147,7 +150,7 @@ public class GameLogic {
             currentPlayer.addNewMove(userMove,false,0);
             attackedPlayer.addNewHitInMyBoard(userMove,false);
         }
-        maintainHistory();
+//        maintainHistory();
         return res;
     }
 
@@ -326,8 +329,10 @@ public class GameLogic {
         return null;
     }
 
-    public boolean checkIfPlayerExist(String enterdName) {
-//        TODO
-        return true;
+    public Player getPlayerByName(String name) {
+        if(players[0].getName().equals(name)){
+            return players[0];
+        }
+        return players[1];
     }
 }

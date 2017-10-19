@@ -1,0 +1,102 @@
+body{
+    margin:0 0 0 0;
+    /*overflow:hidden;*/
+    background-image:url("../Client/Resources/background.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    /*background-attachment: fixed;*/
+    background-size: cover;
+}
+
+h1,h2,h3,h4{
+    font-family: "Poppins",sans-serif;
+    font-weight: 100;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.50);
+}
+
+h1{
+    font-size:48px;
+}
+
+h2{
+    font-size:24px;
+}
+
+span{
+    font-size:48px;
+    font-family: "Poppins",sans-serif;
+    font-weight: 100;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.50);
+
+}
+
+#toolbar {
+    background-color: #3E3E3E;
+    padding: 12px;
+}
+
+.bold{
+
+    font-weight:400;
+}
+
+.profilePic{
+    width:64px;
+    height:64px;
+}
+.mdc-grid-tile {
+    --mdc-grid-list-tile-width: 100px;
+}
+
+.cell{
+    border:1px solid #7f7f7f;
+    width:50px;
+    height:50px;
+    text-align:center;
+}
+
+
+.playingBoard{
+    border-collapse:collapse;
+    border:1px solid #7f7f7f;
+}
+
+.noHit{
+    background-color: red;
+}
+
+.shipHit{
+    background-color: green;
+}
+
+.sea{
+    background-color: midnightblue;
+}
+
+.myShip{
+    background-color: yellow;
+}
+
+.mine{
+    background-color: grey;
+}
+
+.center {
+    margin: auto;
+    width: 90%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color:#000;
+    opacity: .75;
+    z-index: 9999999;
+}
