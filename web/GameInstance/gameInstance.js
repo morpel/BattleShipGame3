@@ -31,12 +31,15 @@ function createCell(parentRow, row, col, content) {
     newCell.id = prefix + row +","+col;
     switch(content){
         case(null):{
-            newCell.className = "sea cell"
+            newCell.className = "sea cell";
             break;
         } case("#"): {
-        newCell.className = "myShip cell"
-        break;
-        } default:{
+            newCell.className = "myShip cell";
+            break;
+        } case("X"):{
+            newCell.className = "noHit cell";
+            break;
+        }default:{
             console.log("I cant understand what u hit " + content );
         }
     }
@@ -52,12 +55,10 @@ function hendelHitResult(hitResJson) {
     switch(hitRes.hitResult){
         case("none"):{
             cell.className = "noHit cell"
-            // cell.classList.add("noHit");
             console.log(cell.classList);
             break;
         } case("ship" || "mine"): {
         cell.className = "shipHit cell"
-        // cell.classList.add("shipHit");
             break;
         } default:{
             console.log("I cant understand what u hit");
@@ -71,15 +72,16 @@ function addOnClickEvents(attackingCell) {
 }
 
 function cellClickEvent(e){
-        e = e || window.event;
-        console.log(e.srcElement.id);
-        $.ajax({
-            type: 'POST',
-            url: `http://localhost:8080/PlayerMadeMoveServlet`,
-            data: {point:e.srcElement.id},
-            success: (data) => {hendelHitResult(data)},
-            error: (data) => {console.log(data)}
-        })
+    e = e || window.event;
+    console.log(e.srcElement.id);
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/PlayerMadeMoveServlet`,
+        data: {point:e.srcElement.id},
+        success: (data) => {hendelHitResult(data)},
+        error: (data) => {console.log(data)}
+    });
+    checkWhoIsPlaying();
 }
 
 function drawBoards(data) {
@@ -103,7 +105,12 @@ function drawBoards(data) {
 
 function showOrHideScreen(data) {
     if (data !== "true"){
-
+        console.log("covering");
+        $("#body").block({ css: { backgroundColor: '#f80', color: '#fff' },
+                            message: '<h3> The Other Player Makes A Move</h3>'});
+    } else{
+        console.log("un-covering");
+        $("#body").unblock();
     }
 }
 
