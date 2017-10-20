@@ -25,7 +25,6 @@ public class FinishGameServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.print("Going Out");
         out.flush();
-//        resp.sendRedirect("/LoginPageServlet");
     }
 
     @Override

@@ -297,7 +297,10 @@ public final class ServerEngine {
 
     public Boolean isGameFull(String gameName) {
         Game game = getGame(gameName);
-        return game.getIsFull();
+        if (game != null) {
+            return game.getIsFull();
+        }
+        return true;
     }
 
     public boolean isUserPlaysGame(String username, String gameName) {

@@ -20,13 +20,18 @@ public class GetStatsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
         String userName = SessionUtils.getUsername(req);
-
-        GameStats gameStats = new GameStats(serverEngine,userName);
-        Gson gson = new Gson();
-        String gameStatsJson = gson.toJson(gameStats);
+        String gameName = SessionUtils.getGameName(req);
         PrintWriter out = resp.getWriter();
-        out.print(gameStatsJson);
-        out.flush();
+        if(serverEngine.isGameFull(gameName)) {
+            GameStats gameStats = new GameStats(serverEngine, userName);
+            Gson gson = new Gson();
+            String gameStatsJson = gson.toJson(gameStats);
+            out.print(gameStatsJson);
+            out.flush();
+        } else{
+            out.print("null");
+            out.flush();
+        }
     }
 
     @Override

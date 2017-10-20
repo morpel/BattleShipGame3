@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <BattleShipGame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BattleShipGame.xsd">
     <GameType>ADVANCE</GameType>
-    <boardSize>10</boardSize>
+    <boardSize>20</boardSize>
     <shipTypes>
         <shipType id="shipTypeA">
             <category>L_SHAPE</category>

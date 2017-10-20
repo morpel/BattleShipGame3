@@ -11,7 +11,7 @@ function userLoggedOut(data) {
     }
 }
 
-function logoutUser(){
+async function finishGame() {
     $.ajax({
         type: 'POST',
         url: `http://localhost:8080/FinishGameServlet`,
@@ -19,6 +19,11 @@ function logoutUser(){
         success: (data) => {console.log(data)},
         error: (data) => {console.log(data)}
     });
+    event.preventDefault();
+}
+
+function logoutUser(){
+    finishGame();
     $.ajax({
         type: 'POST',
         url: `http://localhost:8080/LogoutServlet`,
@@ -171,6 +176,11 @@ function getBoardsInfo() {
     checkWhoIsPlaying();
 }
 
+function doWhenOtherPlayerLeavesGame() {
+    alert("Your Opponent Left The Game, You Won!!");
+    finishGame().then(()=>window.location.href = "/Lobby/lobby.html");
+}
+
 function getPlayerStats() {
     $.ajax({
         type: 'POST',
@@ -178,17 +188,22 @@ function getPlayerStats() {
         data: {},
         success: (data) => {
             console.log("stats: " + data);
-            let stats = JSON.parse(data);
-            console.log(stats);
-            $("#playerScoreInput").text(stats.myScore);
-            $("#hitsCounterInput").text(stats.myHits);
-            $("#missCounterInput").text(stats.myMisses);
-            $("#minesLeftInput").text(stats.minesLeft);
+            if (data !== "null") {
+                console.log("stats: " + data);
+                let stats = JSON.parse(data);
+                console.log(stats);
+                $("#playerScoreInput").text(stats.myScore);
+                $("#hitsCounterInput").text(stats.myHits);
+                $("#missCounterInput").text(stats.myMisses);
+                $("#minesLeftInput").text(stats.minesLeft);
 
-            $("#opponentScoreInput").text(stats.opponentScore);
-            $("#gameTypeInput").text(stats.gameType);
-            $("#avgMoveTimeInput").text(stats.avgMoveTime);
-            $("#shipsLeftInput").text(stats.shipsLeftToSink);
+                $("#opponentScoreInput").text(stats.opponentScore);
+                $("#gameTypeInput").text(stats.gameType);
+                $("#avgMoveTimeInput").text(stats.avgMoveTime);
+                $("#shipsLeftInput").text(stats.shipsLeftToSink);
+            } else{
+                doWhenOtherPlayerLeavesGame();
+            }
         },
         error: (data) => {console.log(data)}
     });
@@ -234,35 +249,20 @@ function checkIfOtherPlayerEntered(data) {
     }
 }
 
-$(document).ready(()=>{
-    isPageBlocked = undefined;
-    waitForOtherPlayerIntervalId = setInterval(()=>{
-        $.ajax({
-            type: 'POST',
-            url: `http://localhost:8080/WaitForOtherPlayerServlet`,
-            data: {},
-            success: (data) => {
-                console.log(data);
-                checkIfOtherPlayerEntered(data);
-            },
-            error: (data) => {console.log(data)}
-        });
-    },3000);
-});
-// $(document).ready(getBoardsInfo);
-// $(document).ready(getPlayerStats);
-// $(document).ready(
-//     setInterval( () => {
-//     $.ajax({
-//         type: 'POST',
-//         url: `http://localhost:8080/CheckForNewMovesServlet`,
-//         data: {},
-//         success: (data) => {
-//             console.log("new hit on me: " + data);
-//             hendelHitResult(data, "s")
-//         },
-//         error: (data) => {console.log(data)}
-//     });
-//     checkWhoIsPlaying();
-//     getPlayerStats();
-//     },2000));
+function initWaitForPlayerInterval() {
+        isPageBlocked = undefined;
+        waitForOtherPlayerIntervalId = setInterval(()=>{
+            $.ajax({
+                type: 'POST',
+                url: `http://localhost:8080/WaitForOtherPlayerServlet`,
+                data: {},
+                success: (data) => {
+                    console.log(data);
+                    checkIfOtherPlayerEntered(data);
+                },
+                error: (data) => {console.log(data)}
+            });
+        },3000);
+}
+
+$(document).ready(initWaitForPlayerInterval());
