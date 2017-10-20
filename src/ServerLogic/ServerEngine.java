@@ -178,9 +178,9 @@ public final class ServerEngine {
         return (getGame(gameName).getLogic().checkIfGameFinished());
     }
 
-    public boolean checkMineLocation(String gameName, Point minePlace) {
+    public boolean checkMineLocation(String gameName, Point minePlace, String userName) {
         Game game = getGame(gameName);
-        return game.getLogic().getCurrentPlayer().checkMineLocation(minePlace);
+        return game.getLogic().getPlayerByName(userName).checkMineLocation(minePlace);
     }
 
     public void addMineToPlayer(String gameName, Point minePlace) {
@@ -306,6 +306,11 @@ public final class ServerEngine {
     public boolean isUserPlaysGame(String username, String gameName) {
         User user = getUser(username);
         return user.getCurrentGame()!=null;
+    }
+
+    public boolean isGoodPlaceForMineToUser(String userName, Point minePoint) {
+        User user = getUser(userName);
+        return user.getCurrentGame().getLogic().getPlayerByName(userName).checkMineLocation(minePoint);
     }
 
     private static class XMLCheckReporter{

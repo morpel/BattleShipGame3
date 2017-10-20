@@ -58,7 +58,10 @@ function createCell(parentRow, row, col, content) {
             newCell.className = "shipHit cell";
             break;
         }case("M"):{
-            newCell.className = "mine cell";
+            var img = document.createElement('img');
+            img.src = "mineImg.jpg";
+            img.className = "mineImg";
+            newCell.appendChild(img);
             break;
         }default:{
             console.log("I cant understand what u hit " + content );
@@ -116,6 +119,38 @@ let cellClickEvent = (e)=>{
     checkWhoIsPlaying();
 }
 
+function isGoodCellForMine(i_row, i_col) {
+    return new Promise((resolve,reject)=>{
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:8080/IsGoodPlaceForMineServlet`,
+            data: {row:i_row, col:i_col},
+            success: (data) => {
+                if (data === "yes"){
+                    resolve(true);
+                } else{
+                    resolve(false);
+                }
+            },
+            error: (data) => {reject(data)}
+        })
+    })
+}
+
+async function addDragEvents(shipCell,i_row,i_col) {
+    await isGoodCellForMine(i_row,i_col).then((isGoodCellForMineBool)=>{
+        if(isGoodCellForMineBool){
+            if(shipCell.children[0] === undefined) {
+                shipCell.ondrop = drop;
+                shipCell.ondragover = allowDrop;
+            }
+        } else {
+            shipCell.ondrop = null;
+            shipCell.ondragover = null;
+        }
+    }).catch((error)=>console.log(error));
+}
+
 function drawBoards(data) {
     let processedData = JSON.parse(data);
     var shipsTable = document.getElementById("shipsTable");
@@ -133,6 +168,7 @@ function drawBoards(data) {
             let shipCell = createCell(shipsRow,i,j,processedData.ships[i][j]);
             let attackingCell = createCell(attackingRow,i,j,processedData.attacking[i][j]);
             addOnClickEvents(attackingCell);
+            addDragEvents(shipCell,i,j);
         }
     }
 }
@@ -270,3 +306,35 @@ function initWaitForPlayerInterval() {
 }
 
 $(document).ready(initWaitForPlayerInterval());
+
+/*drag and drop funcs*/
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function doWhenMineIsSat(data) {
+    alert(data);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    let cell = ev.target;
+    let parent = cell.parentNode;
+    let newCell = cell.cloneNode(true);
+    parent.replaceChild(newCell,cell);
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/PlayerSatMineServlet`,
+        data: {point:ev.target.id},
+        success: (data) => {
+            doWhenMineIsSat(data);
+        },
+        error: (data) => {console.log(data)}
+    })
+}

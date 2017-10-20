@@ -100,3 +100,9 @@ span{
     opacity: .75;
     z-index: 9999999;
 }
+
+.mineImg{
+    height: 50px;
+    width: 50px;
+    alignment: center;
+}

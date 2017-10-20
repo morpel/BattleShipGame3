@@ -123,8 +123,13 @@ public class Player {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (minePlace.y + j < myShipBoard.getBoardSize() && minePlace.x + i < myShipBoard.getBoardSize()) {
-                    if (myShipBoard.getStrAt(minePlace.x + i, minePlace.y + j).equals(Cell.BoardObjects.ship.sign())) {
-                        return false;
+                    if(minePlace.y + j >= 0 && minePlace.x + i>=0) {
+                        String tmp = myShipBoard.getStrAt(minePlace.x + i, minePlace.y + j);
+                        if(tmp!=null) {
+                            if (tmp.equals(Cell.BoardObjects.ship.sign())){
+                                return false;
+                            }
+                        }
                     }
                 }
             }
