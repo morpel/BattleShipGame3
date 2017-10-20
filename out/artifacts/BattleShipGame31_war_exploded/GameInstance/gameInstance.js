@@ -1,6 +1,8 @@
 const INTERVAL_TIME = 2000;
 let isPageBlocked;
 let waitForOtherPlayerIntervalId;
+let isOtherPlayerLeftTheGame = false;
+let statsAndMovesIntervalId;
 
 function userLoggedOut(data) {
     console.log(data);
@@ -11,15 +13,14 @@ function userLoggedOut(data) {
     }
 }
 
-async function finishGame() {
+function finishGame() {
     $.ajax({
         type: 'POST',
         url: `http://localhost:8080/FinishGameServlet`,
         data: {},
         success: (data) => {console.log(data)},
         error: (data) => {console.log(data)}
-    });
-    event.preventDefault();
+    })
 }
 
 function logoutUser(){
@@ -176,9 +177,9 @@ function getBoardsInfo() {
     checkWhoIsPlaying();
 }
 
-function doWhenOtherPlayerLeavesGame() {
-    alert("Your Opponent Left The Game, You Won!!");
-    finishGame().then(()=>window.location.href = "/Lobby/lobby.html");
+function finishAndGoBackToLobby() {
+    finishGame();
+    window.location.href = "/Lobby/lobby.html";
 }
 
 function getPlayerStats() {
@@ -201,8 +202,11 @@ function getPlayerStats() {
                 $("#gameTypeInput").text(stats.gameType);
                 $("#avgMoveTimeInput").text(stats.avgMoveTime);
                 $("#shipsLeftInput").text(stats.shipsLeftToSink);
-            } else{
-                doWhenOtherPlayerLeavesGame();
+            } else if(!isOtherPlayerLeftTheGame){
+                alert("Your Opponent Left The Game, You Won!!");
+                finishAndGoBackToLobby();
+                clearInterval(statsAndMovesIntervalId);
+                isOtherPlayerLeftTheGame = true;
             }
         },
         error: (data) => {console.log(data)}
@@ -212,7 +216,7 @@ function getPlayerStats() {
 function initPage() {
     getBoardsInfo();
     getPlayerStats();
-    setInterval( () => {
+    statsAndMovesIntervalId = setInterval( () => {
         $.ajax({
             type: 'POST',
             url: `http://localhost:8080/CheckForNewMovesServlet`,

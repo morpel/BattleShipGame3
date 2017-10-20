@@ -64,6 +64,14 @@
         <servlet-name>WaitForOtherPlayerServlet</servlet-name>
         <servlet-class>Servlets.WaitForOtherPlayerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FinishGameServlet</servlet-name>
+        <servlet-class>Servlets.FinishGameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FinishGameServlet</servlet-name>
+        <url-pattern>/FinishGameServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WaitForOtherPlayerServlet</servlet-name>
         <url-pattern>/WaitForOtherPlayerServlet</url-pattern>
@@ -84,7 +92,6 @@
         <servlet-name>GetStatsServlet</servlet-name>
         <url-pattern>/GetStatsServlet</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>IsPlayerOwnGameServlet</servlet-name>
         <url-pattern>/IsPlayerOwnGameServlet</url-pattern>
