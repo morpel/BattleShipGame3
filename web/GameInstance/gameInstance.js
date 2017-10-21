@@ -1,15 +1,32 @@
 const INTERVAL_TIME = 2000;
 let isPageBlocked;
+let isPageBlockedEndGame;
+let waitForOtherPlayerIntervalId;
+let isOtherPlayerLeftTheGame = false;
+let statsAndMovesIntervalId;
+let thereIsAWinner = false;
+
 function userLoggedOut(data) {
     console.log(data);
     if (data !== "null") {
-        const url = JSON.parse(data.responseText);
+        const url = JSON.parse(data);
         console.log(url.content);
         window.location.href = url.content;
     }
 }
 
+function finishGame() {
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/FinishGameServlet`,
+        data: {},
+        success: (data) => {console.log(data)},
+        error: (data) => {console.log(data)}
+    })
+}
+
 function logoutUser(){
+    finishGame();
     $.ajax({
         type: 'POST',
         url: `http://localhost:8080/LogoutServlet`,
@@ -28,7 +45,7 @@ function createCell(parentRow, row, col, content) {
     } else{
         prefix = "a";
     }
-    newCell.id = prefix + row +","+col;
+    newCell.id = prefix + col +","+row;
     switch(content){
         case(null):{
             newCell.className = "sea cell";
@@ -43,7 +60,10 @@ function createCell(parentRow, row, col, content) {
             newCell.className = "shipHit cell";
             break;
         }case("M"):{
-            newCell.className = "mine cell";
+            var img = document.createElement('img');
+            img.src = "mineImg.jpg";
+            img.className = "mineImg";
+            newCell.appendChild(img);
             break;
         }default:{
             console.log("I cant understand what u hit " + content );
@@ -60,12 +80,22 @@ function hendelHitResult(hitResJson, prefix) {
         let cell = document.getElementById(cellId);
         console.log(hitRes);
         switch (hitRes.hitResult) {
+            case("mine"):{
+                if(prefix === "a"){
+                    let tmpCellId = "s" + hitRes.hitPoint.x + "," + hitRes.hitPoint.y;
+                    let tmpCell = document.getElementById(tmpCellId);
+                    if(tmpCell.className = "myShip cell") {
+                        tmpCell.className = "shipHit cell";
+                    }
+                    alert("Oh No, You hit a mine!");
+                }
+            }
             case("none"): {
                 cell.className = "noHit cell";
                 console.log(cell.classList);
                 break;
             }
-            case("ship" || "mine"): {
+            case("ship"): {
                 cell.className = "shipHit cell";
                 break;
             }
@@ -73,7 +103,7 @@ function hendelHitResult(hitResJson, prefix) {
                 console.log("I cant understand what u hit");
             }
         }
-        cell.removeEventListener("click", cellClickEvent);
+        cell.removeEventListener("click", cellClickEvent,true);
     }
 }
 
@@ -83,8 +113,13 @@ function addOnClickEvents(attackingCell) {
     }
 }
 
-function cellClickEvent(e){
+let cellClickEvent = (e)=>{
     e = e || window.event;
+    let cellId = e.srcElement.id.split(",")[0] + "," + e.srcElement.id.split(",")[1];
+    console.log("!!!!!!!!!!!!!" + cellId);
+    let cell = document.getElementById(cellId);
+    let new_element = cell.cloneNode(true);
+    cell.parentNode.replaceChild(new_element, cell);
     console.log(e.srcElement.id);
     $.ajax({
         type: 'POST',
@@ -96,10 +131,52 @@ function cellClickEvent(e){
     checkWhoIsPlaying();
 }
 
+function isGoodCellForMine(i_row, i_col) {
+    return new Promise((resolve,reject)=>{
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:8080/IsGoodPlaceForMineServlet`,
+            data: {row:i_row, col:i_col},
+            success: (data) => {
+                if (data === "yes"){
+                    resolve(true);
+                } else{
+                    resolve(false);
+                }
+            },
+            error: (data) => {reject(data)}
+        })
+    })
+}
+
+async function addDragEvents(shipCell,i_row,i_col) {
+    await isGoodCellForMine(i_row,i_col).then((isGoodCellForMineBool)=>{
+        if(isGoodCellForMineBool){
+            if(shipCell.children[0] === undefined) {
+                shipCell.ondrop = drop;
+                shipCell.ondragover = allowDrop;
+            }
+        } else {
+            shipCell.ondrop = null;
+            shipCell.ondragover = null;
+        }
+    }).catch((error)=>console.log(error));
+}
+
+function addMines(minesAmount) {
+    let minesDiv = $("#mines");
+    minesDiv.innerHTML = "";
+    for (var i = 0; i < minesAmount; i++ ){
+        minesDiv.append('<img id="mineImg'+i+'" src="mineImg.jpg" class="mineImg" draggable="true" ondragstart="drag(event)">');
+    }
+}
+
 function drawBoards(data) {
     let processedData = JSON.parse(data);
-    var shipsTable = document.getElementById("shipsTable")//$("#shipsTable");
+    var shipsTable = document.getElementById("shipsTable");
     var attackingTable = document.getElementById("attackingTable");
+    shipsTable.innerHTML = "";
+    attackingTable.innerHTML = "";
     let boardSize = processedData.boardSize;
     console.log(processedData);
     for (var i=0;i<boardSize;i++){
@@ -111,15 +188,17 @@ function drawBoards(data) {
             let shipCell = createCell(shipsRow,i,j,processedData.ships[i][j]);
             let attackingCell = createCell(attackingRow,i,j,processedData.attacking[i][j]);
             addOnClickEvents(attackingCell);
+            addDragEvents(shipCell,i,j);
         }
     }
+    addMines(processedData.minesAmount);
 }
 
 function showOrHideScreen(data) {
     if (data !== "true"){
         if(!isPageBlocked) {
             console.log("covering");
-            $("#body").block({
+            $("#cover").block({
                 css: {backgroundColor: '#f80', color: '#fff'},
                 message: '<h3> The Other Player Makes A Move</h3>'
             });
@@ -128,7 +207,7 @@ function showOrHideScreen(data) {
     } else{
         if(isPageBlocked) {
             console.log("un-covering");
-            $("#body").unblock();
+            $("#cover").unblock();
             isPageBlocked = false;
         }
     }
@@ -155,19 +234,158 @@ function getBoardsInfo() {
     checkWhoIsPlaying();
 }
 
-$(document).ready(getBoardsInfo);
+function finishAndGoBackToLobby() {
+    finishGame();
+    window.location.href = "/Lobby/lobby.html";
+}
 
-$(document).ready(
-    setInterval( () => {
+function someoneWon(winner) {
+    thereIsAWinner = true;
+    let msg = winner + " Won The Game, Going Back To Lobby!";
+    if(isPageBlockedEndGame === false || isPageBlockedEndGame === undefined){
+        console.log("blocking!");
+        $("#cover").block({
+            css: {backgroundColor: '#c39', color: '#fff'},
+            message: '<h3>'+msg+'</h3>'
+        });
+        isPageBlockedEndGame = true;
+    }
+    setTimeout(()=> {
+        console.log("unblocking 1");
+        if (isPageBlockedEndGame === true || isPageBlockedEndGame === undefined) {
+            console.log("unblocking 2");
+            $("#cover").unblock();
+            isPageBlockedEndGame = false;
+            clearInterval(waitForOtherPlayerIntervalId);
+            finishAndGoBackToLobby();
+        }
+    },5000);
+}
+
+function getPlayerStats() {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/CheckForNewMovesServlet`,
+        url: `http://localhost:8080/GetStatsServlet`,
         data: {},
         success: (data) => {
-            console.log("new hit on me: " + data);
-            hendelHitResult(data, "s")
+            console.log("stats: " + data);
+            if (data !== "null") {
+                console.log("stats: " + data);
+                let stats = JSON.parse(data);
+                if(stats.isGameOver === true){
+                    someoneWon(stats.winner);
+                } else{
+                    console.log(stats);
+                    $("#greeting").text("Hi " +stats.myName+", It's Game On!");
+                    $("#playerScoreInput").text(stats.myScore);
+                    $("#hitsCounterInput").text(stats.myHits);
+                    $("#missCounterInput").text(stats.myMisses);
+                    $("#minesLeftInput").text(stats.minesLeft);
+
+                    $("#opponentScoreInput").text(stats.opponentScore);
+                    $("#gameTypeInput").text(stats.gameType);
+                    $("#avgMoveTimeInput").text(stats.avgMoveTime);
+                    $("#shipsLeftInput").text(stats.shipsLeftToSink);
+                }
+            } else if(!isOtherPlayerLeftTheGame && !thereIsAWinner){
+                alert("Your Opponent Left The Game, You Won!!");
+                finishAndGoBackToLobby();
+                clearInterval(statsAndMovesIntervalId);
+                isOtherPlayerLeftTheGame = true;
+            }
         },
         error: (data) => {console.log(data)}
     });
+}
+
+function initPage() {
+    getBoardsInfo();
+    getPlayerStats();
+    statsAndMovesIntervalId = setInterval( () => {
+        $.ajax({
+            type: 'POST',
+            url: `http://localhost:8080/CheckForNewMovesServlet`,
+            data: {},
+            success: (data) => {
+                hendelHitResult(data, "s")
+            },
+            error: (data) => {console.log(data)}
+        });
+        checkWhoIsPlaying();
+        getPlayerStats();
+    },500);
+}
+
+function checkIfOtherPlayerEntered(data) {
+    if (data !== "true"){
+        console.log("blocking");
+        if(isPageBlocked === false || isPageBlocked === undefined){
+            $("#cover").block({
+                css: {backgroundColor: '#f78', color: '#fff'},
+                message: '<h3> Waiting for other player to enter the game...</h3>'
+            });
+            isPageBlocked = true;
+        }
+    } else{
+        console.log("unblocking 1");
+        if(isPageBlocked === true || isPageBlocked === undefined){
+            console.log("unblocking 2");
+            $("#cover").unblock();
+            isPageBlocked = false;
+            clearInterval(waitForOtherPlayerIntervalId);
+            initPage();
+        }
+    }
+}
+
+function initWaitForPlayerInterval() {
+        isPageBlocked = undefined;
+        waitForOtherPlayerIntervalId = setInterval(()=>{
+            $.ajax({
+                type: 'POST',
+                url: `http://localhost:8080/WaitForOtherPlayerServlet`,
+                data: {},
+                success: (data) => {
+                    console.log(data);
+                    checkIfOtherPlayerEntered(data);
+                },
+                error: (data) => {console.log(data)}
+            });
+        },3000);
+}
+
+$(document).ready(initWaitForPlayerInterval());
+
+/*drag and drop funcs*/
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function doWhenMineIsSat(data) {
     checkWhoIsPlaying();
-    },2000));
+    alert(data);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    let cell = ev.target;
+    let parent = cell.parentNode;
+    let newCell = cell.cloneNode(true);
+    newCell.childNodes.forEach((child)=>{child.draggable=false});
+    parent.replaceChild(newCell,cell);
+    $.ajax({
+        type: 'POST',
+        url: `http://localhost:8080/PlayerSatMineServlet`,
+        data: {point:ev.target.id},
+        success: (data) => {
+            doWhenMineIsSat(data);
+        },
+        error: (data) => {console.log(data)}
+    })
+}

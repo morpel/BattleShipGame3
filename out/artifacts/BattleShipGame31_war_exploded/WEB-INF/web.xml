@@ -60,6 +60,30 @@
         <servlet-name>CheckForNewMovesServlet</servlet-name>
         <servlet-class>Servlets.CheckForNewMovesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WaitForOtherPlayerServlet</servlet-name>
+        <servlet-class>Servlets.WaitForOtherPlayerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinishGameServlet</servlet-name>
+        <servlet-class>Servlets.FinishGameServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IsGoodPlaceForMineServlet</servlet-name>
+        <servlet-class>Servlets.IsGoodPlaceForMineServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IsGoodPlaceForMineServlet</servlet-name>
+        <url-pattern>/IsGoodPlaceForMineServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinishGameServlet</servlet-name>
+        <url-pattern>/FinishGameServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WaitForOtherPlayerServlet</servlet-name>
+        <url-pattern>/WaitForOtherPlayerServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckForNewMovesServlet</servlet-name>
         <url-pattern>/CheckForNewMovesServlet</url-pattern>
@@ -76,7 +100,6 @@
         <servlet-name>GetStatsServlet</servlet-name>
         <url-pattern>/GetStatsServlet</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>IsPlayerOwnGameServlet</servlet-name>
         <url-pattern>/IsPlayerOwnGameServlet</url-pattern>

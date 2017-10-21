@@ -24,8 +24,8 @@ public class BoardsInfoServlet extends HttpServlet {
 
         String[][] shipsBoard = serverEngine.getUserShipsBoard(userName);
         String[][] attackingBoard = serverEngine.getUserAttackingBoard(userName);
-
-        UserBoards userBoards = new UserBoards(attackingBoard,shipsBoard,serverEngine.getBoardSize(gameName));
+        int minesAmount = serverEngine.getMinesLeftForUser(userName);
+        UserBoards userBoards = new UserBoards(attackingBoard,shipsBoard,serverEngine.getBoardSize(gameName),minesAmount);
 
         Gson gson = new Gson();
         String boardsJson = gson.toJson(userBoards);
@@ -39,11 +39,13 @@ public class BoardsInfoServlet extends HttpServlet {
         String[][] attacking;
         String[][] ships;
         int boardSize;
+        int minesAmount;
 
-        public UserBoards(String[][] attacking, String[][] ships, int boardSize) {
+        public UserBoards(String[][] attacking, String[][] ships, int boardSize, int minesAmount) {
             this.attacking = attacking;
             this.ships = ships;
             this.boardSize = boardSize;
+            this.minesAmount = minesAmount;
         }
     }
 

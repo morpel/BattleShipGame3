@@ -88,6 +88,7 @@ span{
 .center {
     margin: auto;
     width: 90%;
+    text-align: center;
 }
 
 .overlay {
@@ -99,4 +100,10 @@ span{
     background-color:#000;
     opacity: .75;
     z-index: 9999999;
+}
+
+.mineImg{
+    height: 50px;
+    width: 50px;
+    alignment: center;
 }

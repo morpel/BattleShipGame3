@@ -178,14 +178,15 @@ public final class ServerEngine {
         return (getGame(gameName).getLogic().checkIfGameFinished());
     }
 
-    public boolean checkMineLocation(String gameName, Point minePlace) {
+    public boolean checkMineLocation(String gameName, Point minePlace, String userName) {
         Game game = getGame(gameName);
-        return game.getLogic().getCurrentPlayer().checkMineLocation(minePlace);
+        return game.getLogic().getPlayerByName(userName).checkMineLocation(minePlace);
     }
 
     public void addMineToPlayer(String gameName, Point minePlace) {
         Game game = getGame(gameName);
         game.getLogic().getCurrentPlayer().addMine(minePlace);
+        game.getLogic().switchPlayers();
     }
 
     public boolean isUserCreatedTheGame(String gameName, String userName) {
@@ -293,6 +294,34 @@ public final class ServerEngine {
     public void setIsNewMoveMadeForUser(String userName, boolean value) {
         User user = getUser(userName);
         user.setIsNewMoveMade(value);
+    }
+
+    public Boolean isGameFull(String gameName) {
+        Game game = getGame(gameName);
+        if (game != null) {
+            return game.getIsFull();
+        }
+        return true;
+    }
+
+    public boolean isUserPlaysGame(String username, String gameName) {
+        User user = getUser(username);
+        return user.getCurrentGame()!=null;
+    }
+
+    public boolean isGoodPlaceForMineToUser(String userName, Point minePoint) {
+        User user = getUser(userName);
+        return user.getCurrentGame().getLogic().getPlayerByName(userName).checkMineLocation(minePoint);
+    }
+
+    public int getMinesLeftForUser(String userName) {
+        User user = getUser(userName);
+        return user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
+    }
+
+    public String getWinner(String gameName) {
+        Game game = getGame(gameName);
+        return game.getWinner();
     }
 
     private static class XMLCheckReporter{

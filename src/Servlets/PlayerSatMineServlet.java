@@ -3,6 +3,7 @@ package Servlets;
 import ServerLogic.ServerEngine;
 import utils.Constants;
 import utils.ServletUtils;
+import utils.SessionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,22 +20,24 @@ public class PlayerSatMineServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
-        String gameName = (String)req.getAttribute(Constants.GAME_NAME);
-        int row = Integer.valueOf(req.getParameter(Constants.ROW));
-        int col = Integer.valueOf(req.getParameter(Constants.COLUMN));
+        String gameName = SessionUtils.getGameName(req);
+        String userName = SessionUtils.getUsername(req);
+        String pointStr = req.getParameter(Constants.POINT);
         //should be done only if the player has mines left to put
-        Point minePlace = new Point(col + 1, row + 1);//IS THIS RIGHT??
+        Point minePlace = serverEngine.getPointFromString(pointStr);
         PrintWriter out = resp.getWriter();
         String msg;
-        if (serverEngine.checkMineLocation(gameName,minePlace)){
-            serverEngine.addMineToPlayer(gameName,minePlace);
-            msg = "Mine Was Sat Successfully";
-        } else {
-            msg = "You Can't Place A Mine In This Location";
-        }
+        serverEngine.addMineToPlayer(gameName,minePlace);
+        msg = "Mine Was Sat Successfully";
+
 
         out.print(msg);
         out.flush();
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

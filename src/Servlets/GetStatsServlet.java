@@ -20,13 +20,18 @@ public class GetStatsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
         String userName = SessionUtils.getUsername(req);
-
-        GameStats gameStats = new GameStats(serverEngine,userName);
-        Gson gson = new Gson();
-        String gameStatsJson = gson.toJson(gameStats);
+        String gameName = SessionUtils.getGameName(req);
         PrintWriter out = resp.getWriter();
-        out.print(gameStatsJson);
-        out.flush();
+        if(serverEngine.isGameFull(gameName)) {
+            GameStats gameStats = new GameStats(serverEngine, userName, gameName);
+            Gson gson = new Gson();
+            String gameStatsJson = gson.toJson(gameStats);
+            out.print(gameStatsJson);
+            out.flush();
+        } else{
+            out.print("null");
+            out.flush();
+        }
     }
 
     @Override
@@ -35,6 +40,7 @@ public class GetStatsServlet extends HttpServlet {
     }
 
     private class GameStats{
+        private String myName;
         private int myScore;
         private int opponentScore;
         private String gameType;
@@ -43,17 +49,22 @@ public class GetStatsServlet extends HttpServlet {
         private int minesLeft;
         private String avgMoveTime;
         private int shipsLeftToSink;
+        private Boolean isGameOver;
+        private String winner;
 
-        public GameStats(ServerEngine serverEngine, String userName) {
+        public GameStats(ServerEngine serverEngine, String userName, String gameName) {
             User user = serverEngine.getUser(userName);
+            myName = user.getName();
             myScore = user.getCurrentGameStats().getScore();
+            myHits = user.getCurrentGameStats().getNumHits();
+            myMisses = user.getCurrentGameStats().getNumMiss();
+            minesLeft = user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
             opponentScore = serverEngine.getOpponentScore(userName);
             gameType = user.getCurrentGame().getLogic().getGameType();
-            myHits = user.getCurrentGameStats().getNumHits();
-            myHits = user.getCurrentGameStats().getNumMiss();
-            minesLeft = user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
             avgMoveTime = user.getCurrentGameStats().getAvgMovesTimeAsString();
             shipsLeftToSink = serverEngine.getOpponent(userName).getLShipsCount() + serverEngine.getOpponent(userName).getRegularShipsCount();
+            isGameOver = serverEngine.isGameEnded(gameName);
+            winner = serverEngine.getWinner(gameName);
         }
     }
 }

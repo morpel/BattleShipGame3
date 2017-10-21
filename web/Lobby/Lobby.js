@@ -112,21 +112,22 @@ function userLoggedOut(data) {
 }
 
 function printXmlError(data) {
-    console.log(data);
     if (data !== "null" && data!==undefined) {
         const message = JSON.parse(data);
         console.log(message);
         console.log(message.XMLValidityMsg);
         if(message.XMLValidityMsg !== undefined) {
-            $("#XmlErrMsg").css({'color':'red'});
-            document.getElementById("XmlErrMsg").innerText = message.XMLValidityMsg;
+            // $("#XmlErrMsg").css({'color':'red'});
+            // document.getElementById("XmlErrMsg").innerText = message.XMLValidityMsg;
+            alert(message.XMLValidityMsg);
         } else{
-            $("#XmlErrMsg").css({'color':'green'});
-            document.getElementById("XmlErrMsg").innerText = "Game Loaded Successfully";
+            // $("#XmlErrMsg").css({'color':'green'});
+            // document.getElementById("XmlErrMsg").innerText = "Game Loaded Successfully";
+            alert("Game Loaded Successfully");
         }
-        setTimeout(()=>{
-            document.getElementById("XmlErrMsg").innerText = "";
-        },5000)
+        // setTimeout(()=>{
+        //     document.getElementById("XmlErrMsg").innerText = "";
+        // },5000)
     }
 }
 

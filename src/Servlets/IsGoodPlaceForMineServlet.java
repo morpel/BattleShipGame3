@@ -1,6 +1,7 @@
 package Servlets;
 
 import ServerLogic.ServerEngine;
+import sun.security.jgss.HttpCaller;
 import utils.Constants;
 import utils.ServletUtils;
 import utils.SessionUtils;
@@ -10,20 +11,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "FinishGameServlet")
-public class FinishGameServlet extends HttpServlet {
+@WebServlet(name = "IsGoodPlaceForMineServlet")
+public class IsGoodPlaceForMineServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServerEngine serverEngine = ServletUtils.getServerEngine(getServletContext());
         String userName = SessionUtils.getUsername(req);
-        String gameName = SessionUtils.getGameName(req);
-        serverEngine.initGame(gameName);
-        serverEngine.detachUserFromGame(userName, gameName);
+        String row = req.getParameter(Constants.ROW);
+        String col = req.getParameter(Constants.COLUMN);
+        Point minePoint = new Point(Integer.valueOf(col),Integer.valueOf(row));
         PrintWriter out = resp.getWriter();
-        out.print("Going Out");
+        String res;
+        if(serverEngine.isGoodPlaceForMineToUser(userName,minePoint)){
+            res = "yes";
+        } else{
+            res = "no";
+        }
+
+        out.print(res);
         out.flush();
     }
 
