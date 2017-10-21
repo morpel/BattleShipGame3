@@ -56,4 +56,8 @@ public class Game {
         currentlyPlaying.remove(user);
         isFull = currentlyPlaying.size() == 2;
     }
+
+    public String getWinner() {
+        return gameLogic.getWinner();
+    }
 }

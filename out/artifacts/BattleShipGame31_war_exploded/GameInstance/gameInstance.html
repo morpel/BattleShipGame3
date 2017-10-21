@@ -29,19 +29,23 @@
 <div id = "cover">
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner ">
-            <div class="mdc-layout-grid__cell--span-6">
+            <div class="mdc-layout-grid__cell--span-12 center">
+                <h1 id="greeting" class = "center"></h1>
+            </div>
+            <div class="mdc-layout-grid__cell--span-6 center">
                 <div class="mdc-grid-list mdc-grid-list--tile-gutter-1">
+                    <h2>Your Ships Table</h2>
                     <table class ="playingBoard center" id="shipsTable"></table>
                 </div>
             </div>
-            <div class="mdc-layout-grid__cell--span-6">
+            <div class="mdc-layout-grid__cell--span-6 center">
                 <div id="attackingGrid" class="mdc-grid-list mdc-grid-list--tile-gutter-1">
+                    <h2>Your Attacking Table</h2>
                     <table class ="playingBoard center" id="attackingTable"></table>
                 </div>
             </div>
+            <div class="mdc-layout-grid__cell--span-6 center" id="mines"></div>
             <div class="mdc-layout-grid__cell--span-6"></div>
-            <div class="mdc-layout-grid__cell--span-6 center" id="mines">
-            </div>
             <div class="mdc-layout-grid__cell--span-3">
                 <h3 class = "center" id="playerScore">My Score: </h3>
                 <h3 class = "center" id="hitsCounter">Hits: </h3>

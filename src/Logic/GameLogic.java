@@ -24,6 +24,7 @@ public class GameLogic {
     private ArrayList<PlayersBoard> AttackingBoardsHistory;
     private ArrayList<String> PlayerNameHistory;
     private String gameType;
+    private String winner = null;
 
     public void initGameComponents() {
         players = new Player[PLAYERS_AMOUNT];
@@ -162,6 +163,7 @@ public class GameLogic {
 
     public boolean checkIfGameFinished() {
         if (currentPlayer.getStats().getNumHits() == totalShipPointsOnBoard) {
+            winner = currentPlayer.getName();
             return true;
         } else {
             return false;
@@ -334,5 +336,9 @@ public class GameLogic {
             return players[0];
         }
         return players[1];
+    }
+
+    public String getWinner() {
+        return winner;
     }
 }

@@ -1,8 +1,10 @@
 const INTERVAL_TIME = 2000;
 let isPageBlocked;
+let isPageBlockedEndGame;
 let waitForOtherPlayerIntervalId;
 let isOtherPlayerLeftTheGame = false;
 let statsAndMovesIntervalId;
+let thereIsAWinner = false;
 
 function userLoggedOut(data) {
     console.log(data);
@@ -237,6 +239,29 @@ function finishAndGoBackToLobby() {
     window.location.href = "/Lobby/lobby.html";
 }
 
+function someoneWon(winner) {
+    thereIsAWinner = true;
+    let msg = winner + " Won The Game, Going Back To Lobby!";
+    if(isPageBlockedEndGame === false || isPageBlockedEndGame === undefined){
+        console.log("blocking!");
+        $("#cover").block({
+            css: {backgroundColor: '#c39', color: '#fff'},
+            message: '<h3>'+msg+'</h3>'
+        });
+        isPageBlockedEndGame = true;
+    }
+    setTimeout(()=> {
+        console.log("unblocking 1");
+        if (isPageBlockedEndGame === true || isPageBlockedEndGame === undefined) {
+            console.log("unblocking 2");
+            $("#cover").unblock();
+            isPageBlockedEndGame = false;
+            clearInterval(waitForOtherPlayerIntervalId);
+            finishAndGoBackToLobby();
+        }
+    },5000);
+}
+
 function getPlayerStats() {
     $.ajax({
         type: 'POST',
@@ -247,17 +272,22 @@ function getPlayerStats() {
             if (data !== "null") {
                 console.log("stats: " + data);
                 let stats = JSON.parse(data);
-                console.log(stats);
-                $("#playerScoreInput").text(stats.myScore);
-                $("#hitsCounterInput").text(stats.myHits);
-                $("#missCounterInput").text(stats.myMisses);
-                $("#minesLeftInput").text(stats.minesLeft);
+                if(stats.isGameOver === true){
+                    someoneWon(stats.winner);
+                } else{
+                    console.log(stats);
+                    $("#greeting").text("Hi " +stats.myName+", It's Game On!");
+                    $("#playerScoreInput").text(stats.myScore);
+                    $("#hitsCounterInput").text(stats.myHits);
+                    $("#missCounterInput").text(stats.myMisses);
+                    $("#minesLeftInput").text(stats.minesLeft);
 
-                $("#opponentScoreInput").text(stats.opponentScore);
-                $("#gameTypeInput").text(stats.gameType);
-                $("#avgMoveTimeInput").text(stats.avgMoveTime);
-                $("#shipsLeftInput").text(stats.shipsLeftToSink);
-            } else if(!isOtherPlayerLeftTheGame){
+                    $("#opponentScoreInput").text(stats.opponentScore);
+                    $("#gameTypeInput").text(stats.gameType);
+                    $("#avgMoveTimeInput").text(stats.avgMoveTime);
+                    $("#shipsLeftInput").text(stats.shipsLeftToSink);
+                }
+            } else if(!isOtherPlayerLeftTheGame && !thereIsAWinner){
                 alert("Your Opponent Left The Game, You Won!!");
                 finishAndGoBackToLobby();
                 clearInterval(statsAndMovesIntervalId);

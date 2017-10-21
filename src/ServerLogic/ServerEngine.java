@@ -319,6 +319,11 @@ public final class ServerEngine {
         return user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
     }
 
+    public String getWinner(String gameName) {
+        Game game = getGame(gameName);
+        return game.getWinner();
+    }
+
     private static class XMLCheckReporter{
         protected Boolean isXMLFileInQueue = false;
         protected String XMLValidityMsg;
