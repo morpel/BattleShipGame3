@@ -186,6 +186,7 @@ public final class ServerEngine {
     public void addMineToPlayer(String gameName, Point minePlace) {
         Game game = getGame(gameName);
         game.getLogic().getCurrentPlayer().addMine(minePlace);
+        game.getLogic().switchPlayers();
     }
 
     public boolean isUserCreatedTheGame(String gameName, String userName) {
@@ -311,6 +312,11 @@ public final class ServerEngine {
     public boolean isGoodPlaceForMineToUser(String userName, Point minePoint) {
         User user = getUser(userName);
         return user.getCurrentGame().getLogic().getPlayerByName(userName).checkMineLocation(minePoint);
+    }
+
+    public int getMinesLeftForUser(String userName) {
+        User user = getUser(userName);
+        return user.getCurrentGame().getLogic().getPlayerByName(userName).getMinesLeft();
     }
 
     private static class XMLCheckReporter{

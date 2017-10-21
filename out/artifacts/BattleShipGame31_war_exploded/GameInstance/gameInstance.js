@@ -78,12 +78,22 @@ function hendelHitResult(hitResJson, prefix) {
         let cell = document.getElementById(cellId);
         console.log(hitRes);
         switch (hitRes.hitResult) {
+            case("mine"):{
+                if(prefix === "a"){
+                    let tmpCellId = "s" + hitRes.hitPoint.x + "," + hitRes.hitPoint.y;
+                    let tmpCell = document.getElementById(tmpCellId);
+                    if(tmpCell.className = "myShip cell") {
+                        tmpCell.className = "shipHit cell";
+                    }
+                }
+                alert("Oh No, You hit a mine!");
+            }
             case("none"): {
                 cell.className = "noHit cell";
                 console.log(cell.classList);
                 break;
             }
-            case("ship" || "mine"): {
+            case("ship"): {
                 cell.className = "shipHit cell";
                 break;
             }
@@ -151,6 +161,14 @@ async function addDragEvents(shipCell,i_row,i_col) {
     }).catch((error)=>console.log(error));
 }
 
+function addMines(minesAmount) {
+    let minesDiv = $("#mines");
+    minesDiv.innerHTML = "";
+    for (var i = 0; i < minesAmount; i++ ){
+        minesDiv.append('<img id="mineImg'+i+'" src="mineImg.jpg" class="mineImg" draggable="true" ondragstart="drag(event)">');
+    }
+}
+
 function drawBoards(data) {
     let processedData = JSON.parse(data);
     var shipsTable = document.getElementById("shipsTable");
@@ -171,6 +189,7 @@ function drawBoards(data) {
             addDragEvents(shipCell,i,j);
         }
     }
+    addMines(processedData.minesAmount);
 }
 
 function showOrHideScreen(data) {
@@ -264,7 +283,7 @@ function initPage() {
         });
         checkWhoIsPlaying();
         getPlayerStats();
-    },2000);
+    },500);
 }
 
 function checkIfOtherPlayerEntered(data) {
@@ -317,6 +336,7 @@ function drag(ev) {
 }
 
 function doWhenMineIsSat(data) {
+    checkWhoIsPlaying();
     alert(data);
 }
 
@@ -327,6 +347,7 @@ function drop(ev) {
     let cell = ev.target;
     let parent = cell.parentNode;
     let newCell = cell.cloneNode(true);
+    newCell.childNodes.forEach((child)=>{child.draggable=false});
     parent.replaceChild(newCell,cell);
     $.ajax({
         type: 'POST',
