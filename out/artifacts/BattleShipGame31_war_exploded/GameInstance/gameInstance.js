@@ -85,8 +85,8 @@ function hendelHitResult(hitResJson, prefix) {
                     if(tmpCell.className = "myShip cell") {
                         tmpCell.className = "shipHit cell";
                     }
+                    alert("Oh No, You hit a mine!");
                 }
-                alert("Oh No, You hit a mine!");
             }
             case("none"): {
                 cell.className = "noHit cell";
