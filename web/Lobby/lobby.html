@@ -2,22 +2,26 @@
 <head>
     <title>The Battleship Game</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,900" rel="stylesheet">
-    <link rel="stylesheet" href="/Client/node_modules/material-components-web/dist/material-components-web.css">
-    <link rel="stylesheet" href="/Lobby/Lobby.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/Client/node_modules/material-components-web/dist/material-components-web.css">
+    <link rel="stylesheet" href="/Plugins/animate.css">
+    <link rel="stylesheet" href="/Lobby/Lobby.css">
     <script src="/Plugins/jquery-3.2.1.min.js"></script>
     <script src="/Plugins/context-path-helper.js"></script>
+    <script src="/Plugins/ColorConsts.js"></script>
     <script src="/Lobby/Lobby.js"></script>
 
 </head>
 <body>
 <div id="toolbar">
-    <span>The Battleship Game - Lobby
-            <input type="button"
-                   class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface"
-                   value="LogOut"
-                    id = "logoutBtn"
-                    onclick="logoutUser()"/>
+    <span class="textMaterial">The Battleship Game - Lobby
+    </span>
+    <span class="logout">
+           <input type="button"
+                  class="mdc-button--raised mdc-button--compact mdc-button--colored mdc-button mdc-ripple-surface colorGreen "
+                  value="LogOut"
+                  id = "logoutBtn"
+                  onclick="logoutUser()"/>
     </span>
 </div>
 <div class="hero">
@@ -32,20 +36,35 @@
             <!--connected players end-->
             <!--current Games-->
             <div class="mdc-layout-grid--align-center mdc-layout-grid__cell--span-8">
-                <h1>Current Games</h1>
-                <h2>Enter your own game:
-                    <form action="/AddGameServlet" method="POST" id="addGameForm" enctype="multipart/form-data">
-                        <input type="file"
-                               name = "file"
-                               value="Choose Game(.XML)"
-                               id = "insertGameFile"/>
-                        game name:<input id="gameName" name="gameName"/>
-                        <input type = "submit" name="upload"/>
-                    </form>
-                </h2>
+                <h1>Live Games</h1>
+                <span class="textMaterial mediumText">Add New Game:
+                    <button  aria-label="add"  class="mdc-fab material-icons " data-mdc-auto-init="MDCRipple" onClick="toggleShowHideNewGameForm()" id="newGameButton">
+                            <span class="mdc-fab__icon">
+                            add
+                            </span>
+                    </button>
+                    </span>
+
+                <form action="/AddGameServlet" method="POST" id="addGameForm" enctype="multipart/form-data">
+                    <input type="file"
+                           name = "file"
+                           value="Choose Game(.XML)"
+                           id = "insertGameFile"/>
+                    <span class="textMaterial">game name:</span>
+                    <div class="mdc-textfield">
+                        <input class=" mdc-textfield__input" type="text" id="gameNameInput" name="gameName"/>
+                    </div>
+                    <button id="gameNameSubmitButton" type = "submit" name="upload" aria-label="ic_create" class="mdc-fab material-icons " data-mdc-auto-init="MDCRipple"">
+                        <span  class="mdc-fab__icon">
+                        create
+                        </span>
+                    </button>
+                </form>
                 <h4 id = "XmlErrMsg"></h4>
-                <ul id="gamesList">
-                </ul>
+                <div class="mdc-grid-list" id="currentLiveGames">
+                            <ul id="gamesList" class="mdc-grid-list__tiles">
+                            </ul>
+                </div>
             </div>
             <!--current Games end-->
         </div>

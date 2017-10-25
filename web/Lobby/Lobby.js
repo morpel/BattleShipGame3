@@ -1,4 +1,14 @@
 const INTERVAL_TIME = 2000;
+const NumOfProfilePics = 3;
+const profilePicsKind = ".svg"
+const Colors = getColorScheme();
+var currrentGamesDisplayed=0;
+let firstGamesRender = true;
+let chachedGamesMap;
+let currentLoggedInUser;
+
+
+
 
 function removeGame(i_gameName) {
     $.ajax({
@@ -12,57 +22,125 @@ function removeGame(i_gameName) {
     })
 }
 
- function isPlayerOwnGame(i_gameName) {
-    return new Promise((resolve,reject)=>{
-        $.ajax({
-            url:'http://localhost:8080/IsPlayerOwnGameServlet',
-            type:"POST",
-            data: {gameName:i_gameName},
-            success: (data) => {
-                if (data === "yes") {
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-            },
-            error: (error) => {reject(error)},
-        })
-    })
+function fireAnimation(selectorId,animationName,callback){
+
+    //in case of fade-out anim
+    if(animationName.includes("In")){
+
+        $(`#${selectorId}`).css("visibility","visible");
+    }
+    if(callback){
+        callback();
+    }
+    $(`#${selectorId}`).addClass(`animated ${animationName}`).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+        $(`#${selectorId}`).removeClass(`animated ${animationName}`);
+
+        if(animationName.includes("Out")){
+
+            $(`#${selectorId}`).css("visibility","hidden");
+        }
+        //in case of fade-in anim
+        else
+        {
+            $(`#${selectorId}`).css("visibility","visible");
+        }
+    });
+
+}
+function toggleShowHideNewGameForm(event){
+    const formVisibility = $("#addGameForm").css("visibility");
+    if(        $("#newGameButton")[0].children[0].innerText === "close")
+    {
+        $("#gameNameInput").removeClass("gameNameInputLookStretchOut");
+        $("#gameNameInput").addClass("gameNameInputLookNoStretchOut")
+        $("#newGameButton").css("background-color",Colors.New);
+        $("#newGameButton")[0].children[0].innerText = "add";
+
+        fireAnimation("addGameForm","fadeOutDown")
+
+    }
+    else
+    {
+        $("#newGameButton").css("background-color",Colors.Close);
+        $("#newGameButton")[0].children[0].innerText = "close";
+        $("#gameNameInput").removeClass("gameNameInputLookNoStretchOut");
+        $("#gameNameInput").addClass("gameNameInputLookStretchOut");
+
+        fireAnimation("addGameForm","fadeInLeft");
+
+    }
+}
+ function isPlayerOwnGame(i_game) {
+    return i_game.creator === currentLoggedInUser;
+    // return new Promise((resolve,reject)=>{
+    //     $.ajax({
+    //         url:'http://localhost:8080/IsPlayerOwnGameServlet',
+    //         type:"POST",
+    //         data: {gameName:i_gameName},
+    //         success: (data) => {
+    //             if (data === "yes") {
+    //                 resolve(true);
+    //             } else {
+    //                 resolve(false);
+    //             }
+    //         },
+    //         error: (error) => {reject(error)},
+    //     })
+    // })
 }
 
-async function renderCurrentGames(games) {
+ function renderCurrentGames(games) {
 
-    $("#gamesList").empty();
-    $.each(games,async (index,game) => {
-        console.log(game);
-        $("#gamesList").append(
-            '<div id="game'+index+'">' +
-                '<li>Game Name: ' +game.gameName+'</li>' +
-                '<li>Game Creator: ' +game.creator+'</li>' +
-                '<li>Board Size: ' +game.boardSize+'</li>' +
-                '<li>Game Type: ' +game.gameStyle+'</li>' +
-                '<li>Players Connected: ' +game.otherPlayerInGame+'</li>' +
-                '<li><button id="enterGameNum'+index+'">Enter</button></li>' +
-            '</div>'
-        );
-        const enterBtnId = "#enterGameNum"+index;
-        $(enterBtnId).click(function(event) {
-            enterGame(game.gameName);
-        });
-       await isPlayerOwnGame(game.gameName).then((isPlayerOwnGameBool)=>{
-            if (isPlayerOwnGameBool){
-                const divId = "#game"+index;
-                $(divId).append(
-                    '<li><button id="removeGameNum'+index+'">Remove</button></li>'
-                );
-                const removeBtnId = "#removeGameNum"+index;
-                $(removeBtnId).click(function(event) {
-                    removeGame(game.gameName);
-                });
+        $("#gamesList").empty();
+        $.each(games, (index,game) => {
+                if (isPlayerOwnGame(game)){
+                    $("#gamesList").append(
+                        '<li class="mdc-grid-tile textMaterial gameItemBackground" id="game'+index+'">' +
+                        '<span><button class="deleteGameButton mdc-fab mdc-fab--mini material-icons " data-mdc-auto-init="MDCRipple" id="removeGameNum'+index+'">'+
+                        '<span class="mdc-fab__icon">delete_forever</span></button></span>'+
+                        '<div id="gameCubeFirstItem'+index+'">Game Name: ' +game.gameName+'</div>' +
+                        '<div>Game Creator: ' +game.creator+'</div>' +
+                        '<div>Board Size: ' +game.boardSize+'</div>' +
+                        '<div>Game Type: ' +game.gameStyle+'</div>' +
+                        '<div>Players Connected: ' +game.otherPlayerInGame+'</div>' +
+                        '<div>---------------------------------</div>'+
+                        '<div id="gameCubeLastItem'+index+'"> <button class="gameItemButtons colorGreen mdc-fab mdc-fab--mini material-icons " data-mdc-auto-init="MDCRipple" id="enterGameNum'+index+'">' +
+                        '<span class="mdc-fab__icon">' +'directions_boat'+
+                        '</span></button><span class="enterGameButtonLabel">Enter</span></div>' +
+                        '</li>'
+                    );
+                    const removeBtnId = "#removeGameNum"+index;
+                    $(removeBtnId).click(function(event) {
+                        removeGame(game.gameName);
 
-            };
-        }).catch((error)=>console.log(error));
-    })
+                    });
+
+                    const enterBtnId = "#enterGameNum"+index;
+                    $(enterBtnId).click(function(event) {
+                        enterGame(game.gameName);
+                    });
+                }
+                else{
+                    $("#gamesList").append(
+                        '<li class="mdc-grid-tile textMaterial gameItemBackground" id="game'+index+'">' +
+                        '<div id="gameCubeLineSpace">' +
+                        '<div id="gameCubeFirstItem'+index+'">Game Name: ' +game.gameName+'</div>' +
+                        '<div>Game Creator: ' +game.creator+'</div>' +
+                        '<div>Board Size: ' +game.boardSize+'</div>' +
+                        '<div>Game Type: ' +game.gameStyle+'</div>' +
+                        '<div>Players Connected: ' +game.otherPlayerInGame+'</div>' +
+                        '<div>---------------------------------</div>'+
+                        '<div id="gameCubeLastItem'+index+'"> <button class="gameItemButtons colorGreen mdc-fab mdc-fab--mini material-icons " data-mdc-auto-init="MDCRipple" id="enterGameNum'+index+'">' +
+                        '<span class="mdc-fab__icon">' +'directions_boat'+
+                        '</span></button><span class="enterGameButtonLabel">Enter</span></div>' +
+                        '</li>'
+                    );
+                    const enterBtnId = "#enterGameNum"+index;
+                    $(enterBtnId).click(function(event) {
+                        enterGame(game.gameName);
+                    });
+                }
+            })
 }
 
 function enterGame(i_gameName) {
@@ -86,20 +164,38 @@ function enterGame(i_gameName) {
     })
 }
 
+function randProfilePic(){
+    let profilePicPath = "../Client/Resources/animal";
+    const randIndex = Math.floor(Math.random()*NumOfProfilePics + 1);
+    profilePicPath=profilePicPath.concat(randIndex).concat(profilePicsKind);
+    return profilePicPath;
+}
 function renderLoggedinUsers(users) {
     $("#usersList").empty();
+    let profilePicPath = randProfilePic();
     $.each(users,(index,user) => {
-        $("#usersList").append('<h3>'+user+'</h3>');
+        $("#usersList").append(`<li class="mdc-list-item mdc-list-item-heightFix"><img class="mdc-list-item__start-detail profilePic" src=${profilePicPath}> <h2 class="bold">${user.toLocaleUpperCase()}</h2></li>`);
+        profilePicPath = randProfilePic();
     })
 }
-
 function renderGamesAndUsers(data){
     const gamesAndUsersObj = JSON.parse(data);
     console.log(gamesAndUsersObj);
+    currentLoggedInUser = gamesAndUsersObj.userName;
     if (gamesAndUsersObj !== null && gamesAndUsersObj!==undefined){
-        renderCurrentGames(gamesAndUsersObj.games);
-        renderLoggedinUsers(gamesAndUsersObj.users);
-    }
+
+
+            if(gamesAndUsersObj.games.length !== currrentGamesDisplayed) {
+                renderCurrentGames(gamesAndUsersObj.games);
+                currentGamesDisplayed = gamesAndUsersObj.games.length;
+
+            }
+            renderLoggedinUsers(gamesAndUsersObj.users);
+
+
+        }
+
+
 }
 
 function userLoggedOut(data) {
@@ -131,28 +227,6 @@ function printXmlError(data) {
     }
 }
 
-$(document).ready(
-    ()=>{
-        setInterval(()=>{
-                $.ajax({
-                    url:'http://localhost:8080/CheckForXmlErrorsServlet',
-                    type:"POST",
-                    data: {},
-                    success: (data) => printXmlError(data),
-                    error: error => console.log(error)
-                })
-            },INTERVAL_TIME);
-        setInterval(()=>{
-            $.ajax({
-                url: `http://localhost:8080/GameServlet`,
-                type: "POST",
-                data: {},
-                success:(data) => renderGamesAndUsers(data) ,
-                error: (data) => userLoggedOut(data)
-            })}
-        ,INTERVAL_TIME);
-    }
-);
 
 function logoutUser(){
     $.ajax({
@@ -166,6 +240,13 @@ function logoutUser(){
 }
 
 $(document).ready(function () {
+    $('#gameNameSubmitButton').click(()=>{
+
+        if($("#gameNameInput")[0].value===""){
+            alert("Please enter a non-empty game name!");
+            event.preventDefault();
+        }
+    })
     $("#logoutBtn").onclick = function(event){
             $.ajax({
                 type: 'POST',
@@ -182,4 +263,23 @@ $(document).ready(function () {
             });
         event.preventDefault();
     }
+        setInterval(()=>{
+            $.ajax({
+                url:'http://localhost:8080/CheckForXmlErrorsServlet',
+                type:"POST",
+                data: {},
+                success: (data) => printXmlError(data),
+                error: error => console.log(error)
+            })
+        },INTERVAL_TIME);
+        setInterval(()=>{
+                $.ajax({
+                    url: `http://localhost:8080/GameServlet`,
+                    type: "POST",
+                    data: {},
+                    success:(data) => renderGamesAndUsers(data) ,
+                    error: (data) => userLoggedOut(data)
+                })}
+            ,INTERVAL_TIME);
+
 });

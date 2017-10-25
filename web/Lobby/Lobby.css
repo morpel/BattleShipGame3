@@ -24,8 +24,7 @@ h2{
     font-size:24px;
 }
 
-span{
-    font-size:48px;
+.textMaterial{
     font-family: "Poppins",sans-serif;
     font-weight: 100;
     color: #FFFFFF;
@@ -33,6 +32,10 @@ span{
     text-shadow: 0 2px 5px rgba(0,0,0,0.50);
 
 }
+.mediumText{
+    font-size:24px;
+}
+
 
 #toolbar {
     background-color: #3E3E3E;
@@ -41,4 +44,146 @@ span{
 
 #XmlErrMsg {
     color: red;
+}
+.bold{
+
+    font-weight:400;
+}
+
+.profilePic{
+    width:64px;
+    height:64px !important;
+}
+#addGameForm
+{
+    visibility: hidden;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-delay: 0s;
+    /*-webkit-animation-iteration-count: infinite;*/
+}
+.gameNameInputLookStretchOut
+{
+    color:white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 150px;
+    height: 42px;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    border: none;
+    -webkit-border-radius: 21px;
+    border-radius: 21px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: rgba(40,40,40,0.4);
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5) inset;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5) inset;
+    -webkit-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -moz-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -o-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+.gameNameInputLookNoStretchOut
+{
+    color:white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 150px;
+    height: 42px;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    border: none;
+    -webkit-border-radius: 21px;
+    border-radius: 21px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: rgba(40,40,40,0.4);
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5) inset;
+    box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5) inset;
+    /*-webkit-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);*/
+    /*-moz-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);*/
+    /*-o-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);*/
+    /*transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);*/
+}
+
+#gameNameInput:hover {
+    color: rgb(255, 253, 251);
+    background: rgba(0,0,0,0.4);
+    -webkit-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -moz-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -o-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+#gameNameInput:focus {
+    width: 213px;
+    cursor: default;
+    padding: -13px 20px 0;
+    color: rgba(255,255,255,1);
+    -webkit-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -moz-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -o-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+.mdc-list-item-heightFix{
+    height:75px;
+}
+/*#addGameForm{*/
+/*visibility: hidden;*/
+/*}*/
+.mdc-fab{
+    margin-left:20px;
+}
+.mdc-grid-tile {
+    --mdc-grid-list-tile-width: 250px;
+    border-radius: 10px;
+}
+.mdc-grid-list .mdc-grid-tile{
+    margin: 2px 2px;
+    padding: 10px 10px 10px 10px;
+}
+#currentLiveGames{
+
+}
+.gameItemBackground{
+   background-color: rgba(44, 62, 80,0.7);
+}
+#gameNameSubmitButton{
+    background-color:lightskyblue;
+}
+
+.gameItemButtons{
+    margin-left:50px;
+
+}
+.deleteGameButton{
+    margin-left:200px;
+}
+.gameItemFirstItem{
+
+}
+.colorGreen{
+    background-color:#2ecc71 !important;
+}
+.enterGameButtonLabel{
+    margin-left:30px;
+}
+.logout{
+    margin-left:60%;
+}
+#gameCubeLineSpace{
+    margin-top:40px;
 }

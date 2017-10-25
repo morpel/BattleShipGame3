@@ -33,7 +33,7 @@ public class GameServlet extends HttpServlet {
         if (serverEngine.isPlayerLoggedIn(userName)) {
             List<SingleGameDetails> gamesDetails = getGameDetails(serverEngine.getGames());
             List<String> loggedInUsers = serverEngine.getUsersList();
-            GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers);
+            GamesAndUsersList gamesAndUsers = new GamesAndUsersList(gamesDetails, loggedInUsers,userName);
             String gamesAndUsersJson = gson.toJson(gamesAndUsers);
             out.print(gamesAndUsersJson);
             out.flush();
@@ -83,10 +83,11 @@ public class GameServlet extends HttpServlet {
     private class GamesAndUsersList {
         private List<SingleGameDetails> games;
         private List<String> users;
-
-        public GamesAndUsersList(List<SingleGameDetails> gamesDetails, List<String> loggedInUsers) {
+        private String userName;
+        public GamesAndUsersList(List<SingleGameDetails> gamesDetails, List<String> loggedInUsers , String username) {
             games = gamesDetails;
             users = loggedInUsers;
+            userName=username;
         }
     }
 }

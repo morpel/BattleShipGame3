@@ -53,7 +53,7 @@ span{
 }
 
 .cell{
-    border:1px solid #7f7f7f;
+    border:1px solid white;
     width:50px;
     height:50px;
     text-align:center;
@@ -66,23 +66,23 @@ span{
 }
 
 .noHit{
-    background-color: red;
+    background-color: rgba(231, 76, 60,1.0);
 }
 
 .shipHit{
-    background-color: green;
+    background-color: rgba(46, 204, 113,1.0);
 }
 
 .sea{
-    background-color: midnightblue;
+background-color:rgba(0, 0, 0, 0.5)
 }
 
 .myShip{
-    background-color: yellow;
+    background-color: rgba(241, 196, 15,1.0);
 }
 
 .mine{
-    background-color: grey;
+    background-color: rgba(236, 240, 241,1.0);
 }
 
 .center {

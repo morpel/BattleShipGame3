@@ -1,4 +1,5 @@
 const servletUrl = buildUrlWithContextPath("LoginPageServlet")
+
 console.log(servletUrl);
 
 function loginErr(data) {
