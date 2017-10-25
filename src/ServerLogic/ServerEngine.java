@@ -39,9 +39,9 @@ public final class ServerEngine {
     }
 
     public void setXMLValidityMsg(String i_XMLValidityMsg) {
-        if (i_XMLValidityMsg == null){
+        if (i_XMLValidityMsg == null) {
             xmlCheckReporter.XMLValidityMsg = null;
-        } else{
+        } else {
             xmlCheckReporter.XMLValidityMsg = new String(i_XMLValidityMsg);
         }
     }
@@ -57,7 +57,7 @@ public final class ServerEngine {
 
     public boolean isPlayerLoggedIn(String enteredName) {
         User user = getUser(enteredName);
-        if (user == null){
+        if (user == null) {
             return false;
         }
 
@@ -75,7 +75,7 @@ public final class ServerEngine {
     }
 
     //returns null if not exist
-    public User getUser(String name){
+    public User getUser(String name) {
         for (User user : m_Users) {
             if (user.getName().equals(name)) {
                 return user;
@@ -107,12 +107,12 @@ public final class ServerEngine {
             } else {
                 res = "Game initialization failed!";
             }
-        } catch (NotXMLFileException|InvalidXMLInputsException ex) {
+        } catch (NotXMLFileException | InvalidXMLInputsException ex) {
             res = ex.getMessage();
-        } catch (FileSystemNotFoundException|FileNotFoundException e) {
+        } catch (FileSystemNotFoundException | FileNotFoundException e) {
             res = "File Not Found. Try Again!\n";
         } catch (UnmarshalException ex) {
-           res = "The XML file doesn't contain the requested data";
+            res = "The XML file doesn't contain the requested data";
         } catch (JAXBException ex) {
             res = "Path parsing didn't work";
         } catch (Exception ex) {
@@ -125,7 +125,7 @@ public final class ServerEngine {
     public void addNewGame(String i_GameName, String i_UserName) {
         User creator = getUser(i_UserName);
         Game newGame = new Game(i_GameName, creator);
-        m_Games.put(i_GameName,newGame);
+        m_Games.put(i_GameName, newGame);
     }
 
     public Map<String, Game> getGames() {
@@ -139,7 +139,7 @@ public final class ServerEngine {
     public List<String> getUsersList() {
         List<String> res = new ArrayList<>();
 
-        for(User user : m_Users){
+        for (User user : m_Users) {
             res.add(user.getName());
         }
 
@@ -149,7 +149,7 @@ public final class ServerEngine {
     public Boolean assignUserToGame(String userName, String gameName) {
         User user = getUser(userName);
         Game game = m_Games.get(gameName);
-        if(game == null || game.getIsFull()){
+        if (game == null || game.getIsFull()) {
             return false;
         } else {
             user.setCurrentGame(game);
@@ -223,7 +223,7 @@ public final class ServerEngine {
         return user.getCurrentGameStats();
     }
 
-    public int getOpponentScore(String userName){
+    public int getOpponentScore(String userName) {
         return getOpponent(userName).getStats().getScore();
     }
 
@@ -231,10 +231,9 @@ public final class ServerEngine {
         User user = getUser(userName);
         Player me = user.getCurrentGame().getLogic().getPlayerByName(userName);
         Player opponent;
-        if(user.getCurrentGame().getLogic().getPlayers()[0].equals(me)){
+        if (user.getCurrentGame().getLogic().getPlayers()[0].equals(me)) {
             opponent = user.getCurrentGame().getLogic().getPlayers()[1];
-        }
-        else{
+        } else {
             opponent = user.getCurrentGame().getLogic().getPlayers()[0];
         }
 
@@ -258,14 +257,14 @@ public final class ServerEngine {
     }
 
     public Point getPointFromString(String str) {
-        if(str!=null) {
+        if (str != null) {
             str = str.substring(1);
             String[] values = str.split(",");
             int row = Integer.valueOf(values[0]);
             int col = Integer.valueOf(values[1]);
 
             return new Point(row, col);
-        } else{
+        } else {
             return null;
         }
     }
@@ -306,7 +305,7 @@ public final class ServerEngine {
 
     public boolean isUserPlaysGame(String username, String gameName) {
         User user = getUser(username);
-        return user.getCurrentGame()!=null;
+        return user.getCurrentGame() != null;
     }
 
     public boolean isGoodPlaceForMineToUser(String userName, Point minePoint) {
@@ -324,7 +323,12 @@ public final class ServerEngine {
         return game.getWinner();
     }
 
-    private static class XMLCheckReporter{
+    public void startCurrentPlayerTime(String gameName) {
+        Game game = getGame(gameName);
+        game.getLogic().getCurrentPlayer().getStats().startClock();
+    }
+
+    private static class XMLCheckReporter {
         protected Boolean isXMLFileInQueue = false;
         protected String XMLValidityMsg;
     }

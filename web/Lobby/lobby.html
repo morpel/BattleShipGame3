@@ -3,13 +3,13 @@
     <title>The Battleship Game</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,900" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/Client/node_modules/material-components-web/dist/material-components-web.css">
-    <link rel="stylesheet" href="/Plugins/animate.css">
-    <link rel="stylesheet" href="/Lobby/Lobby.css">
-    <script src="/Plugins/jquery-3.2.1.min.js"></script>
-    <script src="/Plugins/context-path-helper.js"></script>
-    <script src="/Plugins/ColorConsts.js"></script>
-    <script src="/Lobby/Lobby.js"></script>
+    <link rel="stylesheet" href="../Client/node_modules/material-components-web/dist/material-components-web.css">
+    <link rel="stylesheet" href="../Plugins/animate.css">
+    <link rel="stylesheet" href="Lobby.css">
+    <script src="../Plugins/jquery-3.2.1.min.js"></script>
+    <script src="../Plugins/context-path-helper.js"></script>
+    <script src="../Plugins/ColorConsts.js"></script>
+    <script src="Lobby.js"></script>
 
 </head>
 <body>
@@ -45,7 +45,7 @@
                     </button>
                     </span>
 
-                <form action="/AddGameServlet" method="POST" id="addGameForm" enctype="multipart/form-data">
+                <form action="../AddGameServlet" method="POST" id="addGameForm" enctype="multipart/form-data">
                     <input type="file"
                            name = "file"
                            value="Choose Game(.XML)"
@@ -54,7 +54,7 @@
                     <div class="mdc-textfield">
                         <input class=" mdc-textfield__input" type="text" id="gameNameInput" name="gameName"/>
                     </div>
-                    <button id="gameNameSubmitButton" type = "submit" name="upload" aria-label="ic_create" class="mdc-fab material-icons " data-mdc-auto-init="MDCRipple"">
+                    <button id="gameNameSubmitButton" type = "submit" name="upload" aria-label="ic_create" class="mdc-fab material-icons " data-mdc-auto-init="MDCRipple">
                         <span  class="mdc-fab__icon">
                         create
                         </span>

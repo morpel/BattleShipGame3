@@ -12,7 +12,7 @@ let currentLoggedInUser;
 
 function removeGame(i_gameName) {
     $.ajax({
-        url:'http://localhost:8080/DeleteGameServlet',
+        url:'../DeleteGameServlet',
         type:"POST",
         data: {gameName:i_gameName},
         success: (data) => {
@@ -72,21 +72,6 @@ function toggleShowHideNewGameForm(event){
 }
  function isPlayerOwnGame(i_game) {
     return i_game.creator === currentLoggedInUser;
-    // return new Promise((resolve,reject)=>{
-    //     $.ajax({
-    //         url:'http://localhost:8080/IsPlayerOwnGameServlet',
-    //         type:"POST",
-    //         data: {gameName:i_gameName},
-    //         success: (data) => {
-    //             if (data === "yes") {
-    //                 resolve(true);
-    //             } else {
-    //                 resolve(false);
-    //             }
-    //         },
-    //         error: (error) => {reject(error)},
-    //     })
-    // })
 }
 
  function renderCurrentGames(games) {
@@ -146,7 +131,7 @@ function toggleShowHideNewGameForm(event){
 function enterGame(i_gameName) {
     console.log("Entering game: "+i_gameName);
     $.ajax({
-        url:'http://localhost:8080/EnterGameServlet',
+        url:'../EnterGameServlet',
         type:"POST",
         data: {gameName:i_gameName},
         success: (data) =>{
@@ -180,50 +165,28 @@ function renderLoggedinUsers(users) {
 }
 function renderGamesAndUsers(data){
     const gamesAndUsersObj = JSON.parse(data);
-    console.log(gamesAndUsersObj);
     currentLoggedInUser = gamesAndUsersObj.userName;
     if (gamesAndUsersObj !== null && gamesAndUsersObj!==undefined){
-
-
-            if(gamesAndUsersObj.games.length !== currrentGamesDisplayed) {
-                renderCurrentGames(gamesAndUsersObj.games);
-                currentGamesDisplayed = gamesAndUsersObj.games.length;
-
-            }
-            renderLoggedinUsers(gamesAndUsersObj.users);
-
-
-        }
-
-
+        renderCurrentGames(gamesAndUsersObj.games);
+        renderLoggedinUsers(gamesAndUsersObj.users);
+    }
 }
 
 function userLoggedOut(data) {
-    console.log(data);
     if (data !== "null") {
         const url = JSON.parse(data.responseText);
-        console.log(url.content);
-        window.location.href = url.content;
+        window.location.href = "../" + url.content;
     }
 }
 
 function printXmlError(data) {
     if (data !== "null" && data!==undefined) {
         const message = JSON.parse(data);
-        console.log(message);
-        console.log(message.XMLValidityMsg);
         if(message.XMLValidityMsg !== undefined) {
-            // $("#XmlErrMsg").css({'color':'red'});
-            // document.getElementById("XmlErrMsg").innerText = message.XMLValidityMsg;
             alert(message.XMLValidityMsg);
         } else{
-            // $("#XmlErrMsg").css({'color':'green'});
-            // document.getElementById("XmlErrMsg").innerText = "Game Loaded Successfully";
             alert("Game Loaded Successfully");
         }
-        // setTimeout(()=>{
-        //     document.getElementById("XmlErrMsg").innerText = "";
-        // },5000)
     }
 }
 
@@ -231,7 +194,7 @@ function printXmlError(data) {
 function logoutUser(){
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/LogoutServlet`,
+        url: `../LogoutServlet`,
         data: {},
         success: (data) => userLoggedOut(data),
         error: (data) => {console.log(data)}
@@ -250,12 +213,11 @@ $(document).ready(function () {
     $("#logoutBtn").onclick = function(event){
             $.ajax({
                 type: 'POST',
-                url: `http://localhost:8080/LogoutServlet`,
+                url: `../LogoutServlet`,
                 data: {},
                 success: function (data) {
                     if (data !== undefined && data !== null) {
                         const url = JSON.parse(data);
-                        console.log(url.content);
                         window.location.href = url.content;
                     }
                 },
@@ -265,7 +227,7 @@ $(document).ready(function () {
     }
         setInterval(()=>{
             $.ajax({
-                url:'http://localhost:8080/CheckForXmlErrorsServlet',
+                url:'../CheckForXmlErrorsServlet',
                 type:"POST",
                 data: {},
                 success: (data) => printXmlError(data),
@@ -274,12 +236,11 @@ $(document).ready(function () {
         },INTERVAL_TIME);
         setInterval(()=>{
                 $.ajax({
-                    url: `http://localhost:8080/GameServlet`,
+                    url: `../GameServlet`,
                     type: "POST",
                     data: {},
                     success:(data) => renderGamesAndUsers(data) ,
                     error: (data) => userLoggedOut(data)
                 })}
             ,INTERVAL_TIME);
-
 });

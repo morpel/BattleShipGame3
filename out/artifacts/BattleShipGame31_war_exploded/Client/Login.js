@@ -20,7 +20,7 @@ $(document).ready(function () {
                 if (data !== "null") {
                     const url = JSON.parse(data);
                     console.log(url.content);
-                    window.location.href = url.content;
+                    window.location.href = "../"+url.content;
                 }
             },
             error: error => console.log(error)

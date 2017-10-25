@@ -29,6 +29,7 @@ public class WaitForOtherPlayerServlet extends HttpServlet{
         PrintWriter out = resp.getWriter();
         Boolean isGameContain2Players = serverEngine.isGameFull(gameName);
         if(isGameContain2Players) {
+            serverEngine.startCurrentPlayerTime(gameName);
             res = "true";
         } else{
             res = "false";

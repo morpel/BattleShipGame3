@@ -27,21 +27,19 @@ public class LoginPageServlet extends HttpServlet {
         Url GoToLobby = new Url(Constants.LOBBY_URL);
         String GoToLobbyJson = responseJson.toJson(GoToLobby);
         PrintWriter out = response.getWriter();
-
+        System.out.println("From session: " + usernameFromSession);
         if (usernameFromSession == null) {
             //user is not logged in yet
-            String usernameFromParameter = request.getParameter(Constants.USERNAME);
+            String usernameFromParameter = (String)request.getAttribute(Constants.USERNAME);
+            if (usernameFromParameter == null || usernameFromParameter.equals("null")){
+                usernameFromParameter = request.getParameter(Constants.USERNAME);
+            }
+            System.out.println("From parameter: " + usernameFromParameter);
             if (usernameFromParameter != null) {
                 //normalize the username value
                 usernameFromParameter = usernameFromParameter.trim();
                 if (serverEngine.isPlayerLoggedIn(usernameFromParameter)) {
                     String errorMessage = "Username " + usernameFromParameter + " already exists. Please enter a different username.";
-                    // username already exists, forward the request back to index.jsp
-                    // with a parameter that indicates that an error should be displayed
-                    // the request dispatcher obtained from the servlet context is one that MUST get an absolute path (starting with'/')
-                    // and is relative to the web app root
-                    // see this link for more details:
-                    // http://timjansen.github.io/jarfiller/guide/servlet25/requestdispatcher.xhtml
                     response.setStatus(400);
                     out.print(errorMessage);
                     out.flush();
