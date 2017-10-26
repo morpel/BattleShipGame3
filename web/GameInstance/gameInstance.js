@@ -11,7 +11,7 @@ function userLoggedOut(data) {
     if (data !== "null") {
         const url = JSON.parse(data);
         console.log(url.content);
-        window.location.href = url.content;
+        window.location.href = "../" + url.content;
     }
 }
 
@@ -165,7 +165,7 @@ function addMines(minesAmount) {
     let minesDiv = $("#mines");
     minesDiv.innerHTML = "";
     for (var i = 0; i < minesAmount; i++ ){
-        minesDiv.append('<img id="mineImg'+i+'" src="Client/Resources/mine.png" class="mineImg" draggable="true" ondragstart="drag(event)">');
+        minesDiv.append('<img id="mineImg'+i+'" src="../Client/Resources/mine.png" class="mineImg" draggable="true" ondragstart="drag(event)">');
     }
 }
 
@@ -234,7 +234,7 @@ function getBoardsInfo() {
 
 function finishAndGoBackToLobby() {
     finishGame();
-    window.location.href = "Lobby/lobby.html";
+    window.location.href = "../Lobby/lobby.html";
 }
 
 function someoneWon(winner) {

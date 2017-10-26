@@ -107,3 +107,8 @@ background-color:rgba(0, 0, 0, 0.5)
     width: 50px;
     alignment: center;
 }
+.gameItemBackground{
+    background-color: rgba(44, 62, 80,0.7);
+    border-radius: 20px;
+    border: 1px solid white;
+}

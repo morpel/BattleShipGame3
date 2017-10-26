@@ -139,7 +139,7 @@ function enterGame(i_gameName) {
             if (data !== "null") {
                 const url = JSON.parse(data);
                 console.log(url.content);
-                window.location.href = url.content;
+                window.location.href = "../" + url.content;
             }
     },
         error: error => {
@@ -218,7 +218,7 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data !== undefined && data !== null) {
                         const url = JSON.parse(data);
-                        window.location.href = url.content;
+                        window.location.href = "../" + url.content;
                     }
                 },
                 error: (data) => {console.log(data)}
