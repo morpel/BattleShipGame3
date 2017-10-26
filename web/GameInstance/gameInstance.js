@@ -18,7 +18,7 @@ function userLoggedOut(data) {
 function finishGame() {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/FinishGameServlet`,
+        url: '../FinishGameServlet',
         data: {},
         success: (data) => {console.log(data)},
         error: (data) => {console.log(data)}
@@ -29,7 +29,7 @@ function logoutUser(){
     finishGame();
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/LogoutServlet`,
+        url: '../LogoutServlet',
         data: {},
         success: (data) => userLoggedOut(data),
         error: (data) => {console.log(data)}
@@ -116,14 +116,12 @@ function addOnClickEvents(attackingCell) {
 let cellClickEvent = (e)=>{
     e = e || window.event;
     let cellId = e.srcElement.id.split(",")[0] + "," + e.srcElement.id.split(",")[1];
-    console.log("!!!!!!!!!!!!!" + cellId);
     let cell = document.getElementById(cellId);
     let new_element = cell.cloneNode(true);
     cell.parentNode.replaceChild(new_element, cell);
-    console.log(e.srcElement.id);
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/PlayerMadeMoveServlet`,
+        url: '../PlayerMadeMoveServlet',
         data: {point:e.srcElement.id},
         success: (data) => {hendelHitResult(data,"a")},
         error: (data) => {console.log(data)}
@@ -135,7 +133,7 @@ function isGoodCellForMine(i_row, i_col) {
     return new Promise((resolve,reject)=>{
         $.ajax({
             type: 'POST',
-            url: `http://localhost:8080/IsGoodPlaceForMineServlet`,
+            url: '../IsGoodPlaceForMineServlet',
             data: {row:i_row, col:i_col},
             success: (data) => {
                 if (data === "yes"){
@@ -167,7 +165,7 @@ function addMines(minesAmount) {
     let minesDiv = $("#mines");
     minesDiv.innerHTML = "";
     for (var i = 0; i < minesAmount; i++ ){
-        minesDiv.append('<img id="mineImg'+i+'" src="/Client/Resources/mine.png" class="mineImg" draggable="true" ondragstart="drag(event)">');
+        minesDiv.append('<img id="mineImg'+i+'" src="Client/Resources/mine.png" class="mineImg" draggable="true" ondragstart="drag(event)">');
     }
 }
 
@@ -216,7 +214,7 @@ function showOrHideScreen(data) {
 function checkWhoIsPlaying() {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/CheckIfIPlayServlet`,
+        url: '../CheckIfIPlayServlet',
         data: {},
         success: (data) => showOrHideScreen(data),
         error: (data) => {console.log(data)}
@@ -226,7 +224,7 @@ function checkWhoIsPlaying() {
 function getBoardsInfo() {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/BoardsInfoServlet`,
+        url: '../BoardsInfoServlet',
         data: {},
         success: (data) => drawBoards(data),
         error: (data) => {console.log(data)}
@@ -236,7 +234,7 @@ function getBoardsInfo() {
 
 function finishAndGoBackToLobby() {
     finishGame();
-    window.location.href = "/Lobby/lobby.html";
+    window.location.href = "Lobby/lobby.html";
 }
 
 function someoneWon(winner) {
@@ -265,7 +263,7 @@ function someoneWon(winner) {
 function getPlayerStats() {
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/GetStatsServlet`,
+        url: '../GetStatsServlet',
         data: {},
         success: (data) => {
             console.log("stats: " + data);
@@ -304,7 +302,7 @@ function initPage() {
     statsAndMovesIntervalId = setInterval( () => {
         $.ajax({
             type: 'POST',
-            url: `http://localhost:8080/CheckForNewMovesServlet`,
+            url: '../CheckForNewMovesServlet',
             data: {},
             success: (data) => {
                 hendelHitResult(data, "s")
@@ -343,7 +341,7 @@ function initWaitForPlayerInterval() {
         waitForOtherPlayerIntervalId = setInterval(()=>{
             $.ajax({
                 type: 'POST',
-                url: `http://localhost:8080/WaitForOtherPlayerServlet`,
+                url: '../WaitForOtherPlayerServlet',
                 data: {},
                 success: (data) => {
                     console.log(data);
@@ -381,7 +379,7 @@ function drop(ev) {
     parent.replaceChild(newCell,cell);
     $.ajax({
         type: 'POST',
-        url: `http://localhost:8080/PlayerSatMineServlet`,
+        url: '../PlayerSatMineServlet',
         data: {point:ev.target.id},
         success: (data) => {
             doWhenMineIsSat(data);

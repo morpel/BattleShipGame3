@@ -3,9 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/BattleShipGame31_war</output-path>
     <root id="archive" name="BattleShipGame31_war.war">
       <element id="artifact" artifact-name="BattleShipGame31:war exploded" />
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" />
-      </element>
     </root>
   </artifact>
 </component>

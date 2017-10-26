@@ -18,8 +18,8 @@ public class Constants {
     public static final String IS_MINE_SET_SUCCESSFULLY = "isMineSetSuccessfully";
     public static final String IS_DELETE_GAME_SUCCESS = "isDeleteGameSuccess";
     public static final String DELETE_GAME_ERROR = "deleteGameError";
-    public static final String LOBBY_URL = "Lobby/lobby.html";
+    public static final String LOBBY_URL = "./Lobby/lobby.html";
     public static final String INDEX_URL = "index.html";
-    public static final String GAME_URL = "GameInstance/gameInstance.html";
+    public static final String GAME_URL = "../GameInstance/gameInstance.html";
     public static final String GAME_CREATOR = "creator";
 }

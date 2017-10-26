@@ -12,7 +12,8 @@ function loginErr(data) {
 $(document).ready(function () {
     const checkIfSessionExists = () => {
         $.ajax({
-            url: `http://localhost:8080/${servletUrl}`,
+            // url: `http://localhost:8080/${servletUrl}`,
+            url: "LoginPageServlet",
             type: "POST",
             data: {},
             success: function (data) {
@@ -20,7 +21,7 @@ $(document).ready(function () {
                 if (data !== "null") {
                     const url = JSON.parse(data);
                     console.log(url.content);
-                    window.location.href = "../"+url.content;
+                    window.location.href = url.content;
                 }
             },
             error: error => console.log(error)
@@ -38,7 +39,8 @@ $(document).ready(function () {
         {
             $.ajax({
                 type: 'POST',
-                url: `http://localhost:8080/${servletUrl}`,
+                // url: `http://localhost:8080/${servletUrl}`,
+                url: "LoginPageServlet",
                 data: {
                     userName: name
                 },
