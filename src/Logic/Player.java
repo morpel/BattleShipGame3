@@ -219,7 +219,14 @@ public class Player {
 
         public void stopClock() {
             movesTotalTime.add(stopWatch.getElapsedTimeInMS());
-            avgMovesTimeMS = (avgMovesTimeMS + movesTotalTime.get(movesTotalTime.size() - 1)) / movesTotalTime.size();
+            long sum = 0;
+            for(Long d : movesTotalTime)
+            {
+                sum += d;
+
+            }
+            avgMovesTimeMS = sum / movesTotalTime.size();
+//            avgMovesTimeMS = (avgMovesTimeMS + movesTotalTime.get(movesTotalTime.size() - 1)) / movesTotalTime.size();
         }
     }
 }
